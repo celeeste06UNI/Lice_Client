@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,23 +22,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Qualifier("userDetailsService")
 	UserDetailsService userDetailsService;
 
+	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+		auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		/*http.authorizeRequests().antMatchers("/admin/**")
-			.access("hasRole('ROLE_ADMIN')").and().formLogin()
-			.loginPage("/login").failureUrl("/login?error")
-				.usernameParameter("username")
-				.passwordParameter("password")
-				.and().logout().logoutSuccessUrl("/login?logout")
-				.and().csrf()
-				.and().exceptionHandling().accessDeniedPage("/403");*/
-/*		http.authorizeRequests().antMatchers("/admin/**")
+		http.authorizeRequests().antMatchers("/admin/**")
 		.access("hasRole('ROLE_ADMIN')").and().formLogin()
 		.loginPage("/login").defaultSuccessUrl("/admin").failureUrl("/login?error")
 			.usernameParameter("username")
@@ -44,22 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().logout().logoutSuccessUrl("/login?logout")
 			.and().csrf()
 			.and().exceptionHandling().accessDeniedPage("/403");
-		
-		http.csrf().disable();*/
-		
-		http.authorizeRequests()
-		.antMatchers("/admin/**")
-		.access("hasRole('ROLE_ADMIN')").and().formLogin()
-		.loginPage("/login").defaultSuccessUrl("/admin").failureUrl("/login?error")
-			.usernameParameter("username")
-			.passwordParameter("password")
-			.and().logout().logoutSuccessUrl("/login?logout")
-			.and().csrf()
-			.and().exceptionHandling().accessDeniedPage("/403");
-		
-		
 		
 		http.csrf().disable();
+	
 		
 	}
 	
