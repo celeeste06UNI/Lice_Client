@@ -1,0 +1,13 @@
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/web/controller/UserController.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/web/controller/MainController.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/users/service/UserServiceImpl.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/users/dao/UserDao.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/config/AppConfig.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/config/SecurityConfig.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/users/service/UserService.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/users/dao/UserDaoImpl.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/users/service/MyUserDetailsService.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/config/core/SpringSecurityInitializer.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/config/core/SpringMvcInitializer.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/users/model/User.java
+/Users/celeste/eclipse-workspace/spring-security-hibernate-annotation/src/main/java/com/mkyong/users/model/UserRole.java
