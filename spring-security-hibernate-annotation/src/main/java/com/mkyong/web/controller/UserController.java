@@ -36,15 +36,15 @@ public class UserController {
 		return model;
 	}*/
 	
-	@RequestMapping(value = "/inicio")
+/*	@RequestMapping(value = "/inicio")
 	public ModelAndView inicio(ModelAndView model) throws IOException {
 		//List<Employee> listEmployee = employeeService.getAllEmployees();
 		//model.addObject("listEmployee", listEmployee);
 		model.setViewName("inicio");
 		return model;
-	}
+	}*/
 
-	@RequestMapping(value = "/newEmployee", method = RequestMethod.GET)
+	@RequestMapping(value = "main/newEmployee", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
 		Personal personal = new Personal();
 		model.addObject("personal", personal);
@@ -81,7 +81,7 @@ public class UserController {
 		return model;
 	}*/
 	
-	@RequestMapping(value = "/viewEmployee", method = RequestMethod.GET)
+	@RequestMapping(value = "main/viewEmployee", method = RequestMethod.GET)
 	public ModelAndView viewEmployee(ModelAndView model) {
 		List<Personal> listPersonal = personalService.getAllPersonal();
 		model.addObject("listPersonal", listPersonal);

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+/*	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 
 		ModelAndView model = new ModelAndView();
@@ -26,9 +26,9 @@ public class MainController {
 		model.setViewName("hello");
 		return model;
 
-	}
+	}*/
 
-	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
 
 		ModelAndView model = new ModelAndView();
@@ -39,8 +39,15 @@ public class MainController {
 		return model;
 
 	}
+	*/
+	@RequestMapping(value = "/main**", method = RequestMethod.GET)
+	public ModelAndView mainPage() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("main");
+		return model;
+	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
 
