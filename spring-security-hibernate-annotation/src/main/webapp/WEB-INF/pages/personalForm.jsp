@@ -41,6 +41,17 @@
 					<td><form:input path="telephone" /></td>
 				</tr>
 
+				<tr>
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">Example select</label> <select
+							class="form-control" name="role" id="role">
+							<option value="ROLE_ADMIN">ADMIN</option>
+							<option value="ROLE_USER">USER</option>
+
+						</select>
+					</div>
+				</tr>
+
 			</table>
 			<tr>
 				<td><input type="submit" value="Save" /></td>

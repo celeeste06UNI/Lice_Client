@@ -3,6 +3,8 @@ package com.mkyong.users.service;
 import java.util.List;
 
 import com.mkyong.users.model.Personal;
+import com.mkyong.users.model.User;
+import com.mkyong.users.model.UserRole;
 
 
 public interface PersonalService {
@@ -16,4 +18,8 @@ public interface PersonalService {
 	public User getUser(int userId);
 
 	public User updateUser(User user);*/
+
+	public void addUser(User user);
+
+	public void addUserRole(User user, String role);
 }

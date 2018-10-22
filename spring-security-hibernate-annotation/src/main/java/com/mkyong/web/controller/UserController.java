@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.User;
+import com.mkyong.users.model.UserRole;
 import com.mkyong.users.service.PersonalService;
 @Controller
 public class UserController {
@@ -53,15 +55,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
-	public ModelAndView saveEmployee(@ModelAttribute("personal") Personal personal) {
+	public ModelAndView saveEmployee(@ModelAttribute("personal") Personal personal, @ModelAttribute("role") String role) {
+		
 		personalService.addPersonal(personal);
-		/*if (user.getUsername() != "") { // if employee id is 0 then creating the
-			// employee other updating the employee
-			userService.addPersonal(personal);
-		} else {
-			userService.updateUser(personal);
-		}*/
-		return new ModelAndView("redirect:/");
+		
+		String password = role + ((Math.random() * 50) + 1);
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String passwordEncriptada = passwordEncoder.encode(password);
+		User user = new User(personal.getName(),passwordEncriptada,true);
+		//personalService.addUser(user);
+		
+		//UserRole userRole = new UserRole(user, role);
+		personalService.addUserRole(user,role);
+		
+		return new ModelAndView("redirect:/main");
 	}
 
 /*	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.GET)

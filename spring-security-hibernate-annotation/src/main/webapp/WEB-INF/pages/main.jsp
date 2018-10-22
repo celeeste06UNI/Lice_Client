@@ -1,66 +1,80 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>LiceDQTool</title>
-<title>Webdisenia .:. Ejemplo barra navegaciÃ³n</title>
+<title>Home</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
-	<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">LiceDQTool</a>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">LiceDQTool</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<!-- <li class="active"><a href="#">Home</a></li> -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Crear</a></li>
+						<li><a href="#">Eliminar</a></li>
+						<li><a href="#">Modificar</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Organizaciones <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Crear</a></li>
+						<li><a href="#">Eliminar</a></li>
+						<li><a href="#">Modificar</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Crear</a></li>
+						<li><a href="#">Eliminar</a></li>
+						<li><a href="#">Modificar</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Modelo de Datos <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Crear</a></li>
+						<li><a href="#">Eliminar</a></li>
+						<li><a href="#">Modificar</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Reglas de Negocio <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Crear</a></li>
+						<li><a href="#">Eliminar</a></li>
+						<li><a href="#">Modificar</a></li>
+					</ul></li>
+			</ul>
 		</div>
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">Inicio</a></li>
-			<li><a href="#">Usuarios</a></li>
-			<li><a href="#">Organizaciones</a></li>
-			<li><a href="#">Proyectos</a></li>
-			<li><a href="#">Reglas de Negocio</a></li>
-			<li><a href="#">Modelo de Datos</a></li>
-		</ul>
-
-		<ul class="nav navbar-nav navbar-right">
-
-
-			<li><a href="#">Cerrar Sesion</a></li>
-		</ul>
-	</div>
 	</nav>
-	<div class="container">
-		<h3>Trabajo de Fin de Grado</h3>
-		<p>Celeste LÃ³pez Garrido</p>
+
+
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Trabajo de Fin de Grado</h1>
+			<p>Herramienta de soporte al ciclo de vida de la evaluación de la
+				calidad de datos.</p>
+			<h6>Celeste López Garrido</h6>
+		</div>
+
 	</div>
+
+
 
 </body>
-<footer>
-		<c:url value="/logout" var="logoutUrl" />
-		<form action="${logoutUrl}" method="post" id="logoutForm">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-		</form>
-		<script>
-			function formSubmit() {
-				document.getElementById("logoutForm").submit();
-			}
-		</script>
-
-		<c:if test="${pageContext.request.userPrincipal.name != null}">
-			<h2>
-				User : ${pageContext.request.userPrincipal.name} | <a
-					href="javascript:formSubmit()"> Logout</a>
-			</h2>
-		</c:if>
-</footer>
 </html>
