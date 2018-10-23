@@ -22,4 +22,6 @@ public interface PersonalService {
 	public void addUser(User user);
 
 	public void addUserRole(User user, String role);
+
+	public void deletePersonal(String name);
 }

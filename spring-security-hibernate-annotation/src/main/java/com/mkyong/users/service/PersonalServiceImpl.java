@@ -27,10 +27,6 @@ import com.sun.jersey.api.json.JSONConfiguration;
 @Transactional
 public class PersonalServiceImpl implements PersonalService {
 
-	// En este caso no tenemos que crear un DAO porque es el cliente sino que
-	// tenemos que hacer la llamadas
-	// a los servicios del servidor
-
 	String rutaServidor = "http://localhost:8080/SpringSecurityServer";
 	@Autowired
 	private PersonalDao personalDao;
@@ -88,24 +84,36 @@ public class PersonalServiceImpl implements PersonalService {
 
 	@Override
 	public void addUserRole(User user, String rol) {
-		String url = rutaServidor + "/personal/saveUserRole?"
-			+ "username=" + user.getUsername()
-        		+ "&password="+ user.getPassword()
-        		+ "&enabled=" + user.isEnabled()
-        		+ "&role="+ rol;
- 
-        ClientConfig clientConfig = new DefaultClientConfig();
-        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
-        Client client = Client.create(clientConfig); 
-        WebResource webResource = client.resource(url);
-        ClientResponse response = webResource.accept("application/json").type("application/json").post(ClientResponse.class);		
-		
+		String url = rutaServidor + "/personal/saveUserRole?" + "username=" + user.getUsername() + "&password="
+				+ user.getPassword() + "&enabled=" + user.isEnabled() + "&role=" + rol;
+
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.post(ClientResponse.class);
+
+	}
+	@Override
+	public void deletePersonal(String name) {
+		//personalDao.deleteUser(userId);
+		String url = rutaServidor + "/personal/deletePersonal?" + "name=" + name;
+
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.post(ClientResponse.class);
 	}
 
+	
+
+	
+
+
 	/*
-	 * @Transactional public void deleteUser(Integer userId) {
-	 * userDao.deleteUser(userId); }
-	 * 
 	 * public User getUser(int userId) { return userDao.getUser(userId); }
 	 * 
 	 * public User updateUser(User user) { // TODO Auto-generated method stub return

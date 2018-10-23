@@ -27,9 +27,11 @@
 					<td>${employee.email}</td>
 					<td>${employee.address}</td>
 					<td>${employee.telephone}</td>
-					<td><a href="editEmployee?id=${employee.id}">Edit</a>
-						&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="deleteEmployee?id=${employee.id}">Delete</a></td>
+					<td><a href="<c:url value='/editEmployee?name=${employee.name}' />">Edit</a>
+					<%-- <a href="editEmployee?id=${employee.id}">Edit</a> --%>
+						&nbsp;&nbsp;&nbsp;&nbsp; <%-- <a
+						href="/deleteEmployee?name=${employee.name}">Delete</a> --%>
+						<a href="<c:url value='/deleteEmployee?name=${employee.name}' />">Delete</a></td>
 
 				</tr>
 			</c:forEach>
