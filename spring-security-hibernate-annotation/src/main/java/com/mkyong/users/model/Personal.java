@@ -18,6 +18,9 @@ public class Personal implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	@Column
+	private String username;
 
 	@Column
 	private String name;
@@ -71,9 +74,17 @@ public class Personal implements Serializable {
 		this.telephone = telephone;
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	public String toString() {
 		
-		return this.id + this.name + this.address + this.email + this.telephone;
+		return this.id + this.username + this.name + this.address + this.email + this.telephone;
 		
 	}
 

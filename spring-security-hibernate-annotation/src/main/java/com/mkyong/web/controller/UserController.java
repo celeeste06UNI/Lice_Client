@@ -62,8 +62,8 @@ public class UserController {
 		String password = role + ((Math.random() * 50) + 1);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordEncriptada = passwordEncoder.encode(password);
-		User user = new User(personal.getName(), passwordEncriptada, true);
-		// personalService.addUser(user);
+		User user = new User(personal.getUsername(), passwordEncriptada, true);
+		//personalService.addUser(user);
 
 		// UserRole userRole = new UserRole(user, role);
 		personalService.addUserRole(user, role);
@@ -73,10 +73,12 @@ public class UserController {
 
 	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.GET)
 	public ModelAndView deleteEmployee(HttpServletRequest request) {
-		System.err.println("hola");
-		String name = request.getParameter("name");
-		System.out.println(name);
-		//personalService.deletePersonal(name);
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		String username = request.getParameter("username");
+		personalService.deleteUser(username);
+		personalService.deletePersonal(id);
+		//personalService.deleteUserRole(username);
+		
 		return new ModelAndView("redirect:/main");
 	}
 	@RequestMapping(value = "/editEmployee", method = RequestMethod.GET)

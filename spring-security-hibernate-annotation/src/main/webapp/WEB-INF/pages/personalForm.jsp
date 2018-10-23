@@ -34,9 +34,8 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="main/newEmployee">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="newEmployee">Crear</a></li>
+						<li><a href="viewEmployee">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Organizaciones <span
@@ -83,6 +82,14 @@
 			<form:form action="${cp}/saveEmployee" method="POST"
 				modelAttribute="personal">
 				<div class="form-group">
+					<label class="control-label col-sm-2">Nombre de Usuario:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="username"
+							placeholder="Introduzca el nombre de usuario">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
 					<label class="control-label col-sm-2">Nombre:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name"
@@ -107,9 +114,9 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Teléfono:</label>
+					<label class="control-label col-sm-2">Telefono:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" path="telephone"
+						<input type="text" class="form-control" name="telephone"
 							placeholder="Introduzca el teléfono">
 					</div>
 				</div>
@@ -128,8 +135,8 @@
 				<div class="container" align="center">
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</div>
-				
-				
+
+
 			</form:form>
 		</div>
 	</sec:authorize>

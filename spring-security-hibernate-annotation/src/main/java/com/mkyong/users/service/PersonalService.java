@@ -9,19 +9,23 @@ import com.mkyong.users.model.UserRole;
 
 public interface PersonalService {
 	
-	public void addPersonal(Personal personal);
-
-	public List<Personal> getAllPersonal();
 /*
 	public void deleteUser(Integer userId);
 
 	public User getUser(int userId);
 
 	public User updateUser(User user);*/
+	public List<Personal> getAllPersonal();
+	
+	public void addPersonal(Personal personal);
 
 	public void addUser(User user);
 
 	public void addUserRole(User user, String role);
 
-	public void deletePersonal(String name);
+	public void deletePersonal(Integer id);
+
+	public void deleteUser(String username);
+
+	public void deleteUserRole(String username);
 }

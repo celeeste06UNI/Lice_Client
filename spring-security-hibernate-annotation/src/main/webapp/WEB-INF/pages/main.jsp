@@ -28,8 +28,7 @@
 						data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/newEmployee">Crear</a></li>
-							<li><a href="main/viewEmployee">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
+							<li><a href="main/viewEmployee">Eliminar/Editar</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Organizaciones <span

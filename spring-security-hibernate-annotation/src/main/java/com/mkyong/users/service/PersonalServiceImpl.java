@@ -33,9 +33,8 @@ public class PersonalServiceImpl implements PersonalService {
 
 	@Transactional
 	public void addPersonal(Personal personal) {
-		String url = rutaServidor + "/personal/savePersonal?" + "id=" + personal.getId() + "&name=" + personal.getName()
-				+ "&email=" + personal.getEmail() + "&address=" + personal.getAddress() + "&telephone="
-				+ personal.getTelephone();
+		String url = rutaServidor + "/personal/savePersonal?" + "id=" + personal.getId() + "&username=" + personal.getUsername() + "&name=" + personal.getName()
+				+ "&email=" + personal.getEmail() + "&address=" + personal.getAddress() + "&telephone=" + personal.getTelephone();
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -69,7 +68,6 @@ public class PersonalServiceImpl implements PersonalService {
 		return list;
 	}
 
-	@Override
 	public void addUser(User user) {
 		String url = rutaServidor + "/personal/saveUser?" + "username=" + user.getUsername() + "&password="
 				+ user.getPassword() + "&enabled=" + user.isEnabled();
@@ -82,7 +80,6 @@ public class PersonalServiceImpl implements PersonalService {
 				.post(ClientResponse.class);
 	}
 
-	@Override
 	public void addUserRole(User user, String rol) {
 		String url = rutaServidor + "/personal/saveUserRole?" + "username=" + user.getUsername() + "&password="
 				+ user.getPassword() + "&enabled=" + user.isEnabled() + "&role=" + rol;
@@ -95,10 +92,33 @@ public class PersonalServiceImpl implements PersonalService {
 				.post(ClientResponse.class);
 
 	}
-	@Override
-	public void deletePersonal(String name) {
+	
+	public void deletePersonal(Integer id) {
 		//personalDao.deleteUser(userId);
-		String url = rutaServidor + "/personal/deletePersonal?" + "name=" + name;
+		String url = rutaServidor + "/personal/deletePersonal?" + "id=" + id;
+
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.post(ClientResponse.class);
+	}
+
+	public void deleteUser(String username) {
+		String url = rutaServidor + "/personal/deleteUser?" + "username=" + username;
+
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.post(ClientResponse.class);
+		
+	}
+
+	public void deleteUserRole(String username) {
+		String url = rutaServidor + "/personal/deleteUserRole?" + "username=" + username;
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);

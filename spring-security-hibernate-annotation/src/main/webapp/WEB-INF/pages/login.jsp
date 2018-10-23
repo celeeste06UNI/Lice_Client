@@ -1,82 +1,3 @@
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page session="true"%>
-<html>
-<head>
-<title>Login Page</title>
-<style>
-.error {
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: #a94442;
-	background-color: #f2dede;
-	border-color: #ebccd1;
-}
-
-.msg {
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: #31708f;
-	background-color: #d9edf7;
-	border-color: #bce8f1;
-}
-
-#login-box {
-	width: 300px;
-	padding: 20px;
-	margin: 100px auto;
-	background: #fff;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border: 1px solid #000;
-}
-</style>
-</head>
-<body onload='document.loginForm.username.focus();'>
-
-	<h1>Spring Security Login Form (Database + Hibernate
-		Authentication)</h1>
-
-	<div id="login-box">
-
-		<h3>Login with Username and Password</h3>
-
-		<c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if>
-		<c:if test="${not empty msg}">
-			<div class="msg">${msg}</div>
-		</c:if>
-
-		<form name='loginForm' action="<c:url value='/login' />" method='POST'>
-
-			<table>
-				<tr>
-					<td>User:</td>
-					<td><input type='text' name='username'></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type='password' name='password' /></td>
-				</tr>
-				<tr>
-					<td colspan='2'><input name="submit" type="submit"
-						value="submit" /></td>
-				</tr>
-			</table>
-
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-
-		</form>
-	</div>
-
-</body>
-</html> --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 
@@ -87,12 +8,8 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-
 <html>
 <head>
-
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -100,7 +17,6 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <style type="text/css">
 body#LoginForm {
@@ -108,7 +24,8 @@ body#LoginForm {
 		/* url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg"); */
 		/* url("http://www.liocreativo.com/wp-content/uploads/2014/03/fondo-11.jpg"); */
 		/* url("http://www.defondos.com/images/wallpapers/rombos%20horizontal%20wallpaper%20pattern%20(55)-579255_800.jpeg"); */
-		url("http://www.hdfondos.eu/pictures/2015/1029/1/orig_770062.jpg");
+		/* url("http://www.hdfondos.eu/pictures/2015/1029/1/orig_770062.jpg"); */
+		url("https://s3.pixers.pics/pixers/700/FO/56/88/39/28/700_FO56883928_50b3e5528286100e09d73c921aec546b.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -117,14 +34,14 @@ body#LoginForm {
 }
 
 .form-heading {
-	color: #fff;
+	color: #000000;
 	font-size: 50px;
-	margin: 10px auto 60px;
+	margin: 60px auto 60px;
 }
 
 .panel h2 {
 	color: #444444;
-	font-size: 18px;
+	font-size: 25px;
 	margin: 0 0 8px 0;
 }
 
@@ -147,9 +64,9 @@ body#LoginForm {
 .main-div {
 	background: #ffffff none repeat scroll 0 0;
 	border-radius: 2px;
-	margin: 10px auto 30px;
+	margin: 60px auto 30px;
 	max-width: 38%;
-	padding: 50px 70px 70px 71px;
+	padding: 50px 80px 80px 80px;
 	*/
 }
 
@@ -168,8 +85,8 @@ body#LoginForm {
 }
 
 .login-form  .btn.btn-primary {
-	background: #f0ad4e none repeat scroll 0 0;
-	border-color: #f0ad4e;
+	background: #636363 none repeat scroll 0 0;
+	border-color: #636363;
 	color: #ffffff;
 	font-size: 14px;
 	width: 100%;
@@ -202,38 +119,35 @@ body#LoginForm {
 	color: #444444;
 	font-size: 13px;
 	text-decoration: none;
-} 
-</style> 
+}
+</style>
 </head>
 <body id="LoginForm">
 	<div class="container">
-		<h1 class="form-heading">Welcome to LiceDQTool!</h1>
+		<h1 class="form-heading" align="center">LiceDQTool</h1>
 		<div class="login-form">
 			<div class="main-div">
 				<div class="panel">
-					<h2>Login</h2>
-					<p>Please enter your user and password</p>
+					<h2>Inicio de Sesión</h2>
+					<p>Introduzca su nombre de usuario y su contraseña</p>
 				</div>
 				<form name='loginForm' action="<c:url value='/login' />"
 					method='POST'>
 
 					<div class="form-group">
-
-
-						User <input type="text" class="form-control" name="username">
-
+						Nombre de Usuario <input type="text" class="form-control" name="username">
 					</div>
 
 					<div class="form-group">
 
-						Password <input type="password" class="form-control"
+						Contraseña <input type="password" class="form-control"
 							name="password">
 
 					</div>
 					<!-- 					<div class="forgot">
 						<a href="reset.html">Forgot password?</a>
 					</div> -->
-					<button type="submit" class="btn btn-primary">Login</button>
+					<button type="submit" class="btn btn-primary">Acceder</button>
 
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
