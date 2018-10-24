@@ -63,33 +63,49 @@ public class UserController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordEncriptada = passwordEncoder.encode(password);
 		User user = new User(personal.getUsername(), passwordEncriptada, true);
-		//personalService.addUser(user);
 
-		// UserRole userRole = new UserRole(user, role);
 		personalService.addUserRole(user, role);
 
 		return new ModelAndView("redirect:/main");
 	}
 
-	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.GET)
-	public ModelAndView deleteEmployee(HttpServletRequest request) {
+	@RequestMapping(value = "/deletePersonal", method = RequestMethod.GET)
+	public ModelAndView deletePersonal(HttpServletRequest request) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		String username = request.getParameter("username");
 		personalService.deleteUser(username);
-		personalService.deletePersonal(id);
-		//personalService.deleteUserRole(username);
-		
+		personalService.deletePersonal(id);		
 		return new ModelAndView("redirect:/main");
 	}
-	@RequestMapping(value = "/editEmployee", method = RequestMethod.GET)
-	public ModelAndView editEmployee(HttpServletRequest request) {
-		System.err.println("hola");
-		String name = request.getParameter("name");
-		System.out.println(name);
-		//personalService.deletePersonal(name);
+	@RequestMapping(value = "/editPersonal", method = RequestMethod.GET)
+	public ModelAndView editPersonal(ModelAndView model, HttpServletRequest request) {
+		
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		//String username = request.getParameter("username");
+		Personal personal = personalService.getPersonal(id);
+		model.addObject("personal", personal);
+		model.setViewName("personalUpdate");
+		
+		//System.out.println(personal);
+		//personalService.updateUser(username);
+		//personalService.updatePersonal(id);
+		return model;
+	}
+	
+	@RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
+	public ModelAndView updateEmployee(@ModelAttribute("personal") Personal personal) {
+		personalService.updatePersonal(personal);
 		return new ModelAndView("redirect:/main");
 	}
 
+
+	@RequestMapping(value = "main/viewEmployee", method = RequestMethod.GET)
+	public ModelAndView viewEmployee(ModelAndView model) {
+		List<Personal> listPersonal = personalService.getAllPersonal();
+		model.addObject("listPersonal", listPersonal);
+		model.setViewName("personalList");
+		return model;
+	}
 	/*
 	 * @RequestMapping(value = "/editEmployee", method = RequestMethod.GET) public
 	 * ModelAndView editContact(HttpServletRequest request) { int userId =
@@ -99,13 +115,5 @@ public class UserController {
 	 * 
 	 * return model; }
 	 */
-
-	@RequestMapping(value = "main/viewEmployee", method = RequestMethod.GET)
-	public ModelAndView viewEmployee(ModelAndView model) {
-		List<Personal> listPersonal = personalService.getAllPersonal();
-		model.addObject("listPersonal", listPersonal);
-		model.setViewName("personalList");
-		return model;
-	}
 
 }

@@ -33,8 +33,9 @@ public class PersonalServiceImpl implements PersonalService {
 
 	@Transactional
 	public void addPersonal(Personal personal) {
-		String url = rutaServidor + "/personal/savePersonal?" + "id=" + personal.getId() + "&username=" + personal.getUsername() + "&name=" + personal.getName()
-				+ "&email=" + personal.getEmail() + "&address=" + personal.getAddress() + "&telephone=" + personal.getTelephone();
+		String url = rutaServidor + "/personal/savePersonal?" + "id=" + personal.getId() + "&username="
+				+ personal.getUsername() + "&name=" + personal.getName() + "&email=" + personal.getEmail() + "&address="
+				+ personal.getAddress() + "&telephone=" + personal.getTelephone();
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -44,6 +45,20 @@ public class PersonalServiceImpl implements PersonalService {
 				.post(ClientResponse.class);
 	}
 
+	@Transactional
+	public void updatePersonal(Personal personal) {
+		String url = rutaServidor + "/personal/updatePersonal?" + "id=" + personal.getId() + "&username="
+				+ personal.getUsername() + "&name=" + personal.getName() + "&email=" + personal.getEmail() + "&address="
+				+ personal.getAddress() + "&telephone=" + personal.getTelephone();
+
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.post(ClientResponse.class);
+	}
+	
 	@Transactional
 	public List<Personal> getAllPersonal() {
 		String url = rutaServidor + "/personal/getAllPersonal";
@@ -92,9 +107,9 @@ public class PersonalServiceImpl implements PersonalService {
 				.post(ClientResponse.class);
 
 	}
-	
+
 	public void deletePersonal(Integer id) {
-		//personalDao.deleteUser(userId);
+		// personalDao.deleteUser(userId);
 		String url = rutaServidor + "/personal/deletePersonal?" + "id=" + id;
 
 		ClientConfig clientConfig = new DefaultClientConfig();
@@ -114,11 +129,11 @@ public class PersonalServiceImpl implements PersonalService {
 		WebResource webResource = client.resource(url);
 		ClientResponse response = webResource.accept("application/json").type("application/json")
 				.post(ClientResponse.class);
-		
+
 	}
 
-	public void deleteUserRole(String username) {
-		String url = rutaServidor + "/personal/deleteUserRole?" + "username=" + username;
+	public void updatePersonal(Integer id) {
+		String url = rutaServidor + "/personal/updatePersonal?" + "id=" + id;
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -126,12 +141,36 @@ public class PersonalServiceImpl implements PersonalService {
 		WebResource webResource = client.resource(url);
 		ClientResponse response = webResource.accept("application/json").type("application/json")
 				.post(ClientResponse.class);
+
 	}
 
-	
+	public Personal getPersonal(Integer id) {
+		String url = rutaServidor + "/personal/getPersonal?" + "id=" + id;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+		
+		Personal personal = new Personal();
+		List<Personal> list = new ArrayList<Personal>();
+		ObjectMapper mapper = new ObjectMapper();
 
-	
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Personal[].class));
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
+		for (int i = 0; i < list.size(); i++) {
+			personal = list.get(i);
+		}
+
+		return personal;
+	}
 
 	/*
 	 * public User getUser(int userId) { return userDao.getUser(userId); }

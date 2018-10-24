@@ -27,5 +27,9 @@ public interface PersonalService {
 
 	public void deleteUser(String username);
 
-	public void deleteUserRole(String username);
+	public void updatePersonal(Personal personal);
+
+	public Personal getPersonal(Integer id);
+
+
 }
