@@ -85,7 +85,7 @@
 					<label class="control-label col-sm-2">id:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="id"
-							value=${personal.id}>
+							value=${personal.id} readonly>
 					</div>
 				</div>
 				&nbsp
@@ -93,7 +93,7 @@
 					<label class="control-label col-sm-2">Nombre de Usuario:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="username"
-							value=${personal.username}>
+							value=${personal.username} readonly>
 					</div>
 				</div>
 				&nbsp
