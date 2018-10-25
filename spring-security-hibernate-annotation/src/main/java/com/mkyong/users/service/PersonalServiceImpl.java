@@ -28,8 +28,7 @@ import com.sun.jersey.api.json.JSONConfiguration;
 public class PersonalServiceImpl implements PersonalService {
 
 	String rutaServidor = "http://localhost:8080/SpringSecurityServer";
-	@Autowired
-	private PersonalDao personalDao;
+
 
 	@Transactional
 	public void addPersonal(Personal personal) {

@@ -34,7 +34,7 @@
 						data-toggle="dropdown" href="#">Organizaciones <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Crear</a></li>
+							<li><a href="main/newOrganization">Crear</a></li>
 							<li><a href="#">Eliminar</a></li>
 							<li><a href="#">Modificar</a></li>
 						</ul></li>
