@@ -5,13 +5,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="cp" value="${pageContext.request.contextPath}"
-	scope="request" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>nueva organización</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>eliminar/editar organización</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -20,10 +19,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <body>
-	<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
+
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -73,75 +72,40 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Nueva Organización</h2>
+				<h2>Eliminar/Editar Organización</h2>
 			</div>
 
 		</div>
-		<div class="container" align="center">
-			<form:form action="${cp}/saveOrganization" method="POST"
-				modelAttribute="organization">
-<!-- 				<div class="form-group">
-					<label class="control-label col-sm-2">id:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="id"
-							placeholder="Introduzca el cif de la organización">
-					</div>
-				</div> -->
-				<div class="form-group">
-					<label class="control-label col-sm-2">CIF:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="cif"
-							placeholder="Introduzca el cif de la organización">
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2">Nombre:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_org"
-							placeholder="Introduzca el nombre de la organización">
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2">Razón Social:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_trade"
-							placeholder="Introduzca la razón social">
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2">Persona de Contacto:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_contact"
-							placeholder="Introduzca el nombre de la persona de contacto">
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2">Rol del Contacto:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="role_contact"
-							placeholder="Introduzca el rol de la persona de contacto">
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2">Teléfono de Contacto:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="telephone_contact"
-							placeholder="Introduzca el teléfono de la persona de contacto">
-					</div>
-				</div>
-				&nbsp
-				<div class="container" align="center">
-					<button type="submit" class="btn btn-primary">Guardar</button>
-				</div>
+		<div class="container" align="left">
+		<table class = "table table-hover">
+		<p>Busque la organización que desee y pulse "Eliminar" o "Editar" en el caso que quiera cambiar algún dato</p>
+			<!-- <th>Id</th> -->
+			<th>CIF</th>
+			<th>Nombre de la Organización</th>
+			<th>Razón Social</th>
+			<th>Nombre de Contacto</th>
+			<th>Rol del Contacto</th>
+			<th>Teléfono de Contacto</th>
+			<th>Acción</th>
+			
 
+			<c:forEach var="organization" items="${listOrganization}">
+				<tr>
+					<%-- <td>${employee.id}</td> --%>
+					<td>${organization.cif}</td>
+					<td>${organization.name_org}</td>
+					<td>${organization.name_trade}</td>
+					<td>${organization.name_contact}</td>
+					<td>${organization.role_contact}</td>
+					<td>${organization.telephone_contact}</td>
+					<td><a href="<c:url value='/editOrganization?id=${organization.id}' />">Editar</a>
+					- <a href="<c:url value='/deleteOrganization?id=${organization.id}' />">Eliminar</a></td>
 
-			</form:form>
+				</tr>
+			</c:forEach>
+		</table>
 		</div>
 	</sec:authorize>
 </body>
+
 </html>

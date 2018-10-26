@@ -1,5 +1,9 @@
 package com.mkyong.web.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,13 +40,34 @@ public class OrganizationController {
 
 		return new ModelAndView("redirect:/main");
 	}
-/*	@RequestMapping(value = "/saveOrganization", method = RequestMethod.POST)
-	public String saveOrganization(@RequestParam(value = "id") int id, @RequestParam(value = " cif") int cif,@RequestParam(value = "name_org") String name_org,
-			@RequestParam(value = "name_trade") String name_trade, @RequestParam(value = "name_contact") String name_contact,
-			@RequestParam(value = "role_contact") String role_contact, @RequestParam(value = "telephone_contact") String telephone_contact) {
-		Organization organization = new Organization(id, cif,name_org, name_trade, name_contact, role_contact,telephone_contact);
-		organizationService.addOrganization(organization);
-		return "main";
-	}*/
+
+	@RequestMapping(value = "main/viewOrganization", method = RequestMethod.GET)
+	public ModelAndView viewOrganization(ModelAndView model) {
+		List<Organization> listOrganization = organizationService.getAllOrganization();
+		model.addObject("listOrganization", listOrganization);
+		model.setViewName("organizationList");
+		return model;
+	}
+	@RequestMapping(value = "/deleteOrganization", method = RequestMethod.GET)
+	public ModelAndView deleteOrganization(HttpServletRequest request) {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		organizationService.deleteOrganization(id);		
+		return new ModelAndView("redirect:/main");
+	}
+	
+	@RequestMapping(value = "/editOrganization", method = RequestMethod.GET)
+	public ModelAndView editOrganization(ModelAndView model, HttpServletRequest request) {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		Organization organization = organizationService.getOrganization(id);
+		model.addObject("organization", organization);
+		model.setViewName("organizationUpdate");
+		return model;
+	}
+	
+	@RequestMapping(value = "/updateOrganization", method = RequestMethod.POST)
+	public ModelAndView updateOrganization(@ModelAttribute("organization") Organization organization) {
+		organizationService.updateOrganization(organization);
+		return new ModelAndView("redirect:/main");
+	}
 
 }

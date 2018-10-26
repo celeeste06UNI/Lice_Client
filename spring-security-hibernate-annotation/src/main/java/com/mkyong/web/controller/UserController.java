@@ -79,16 +79,10 @@ public class UserController {
 	}
 	@RequestMapping(value = "/editPersonal", method = RequestMethod.GET)
 	public ModelAndView editPersonal(ModelAndView model, HttpServletRequest request) {
-		
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		//String username = request.getParameter("username");
 		Personal personal = personalService.getPersonal(id);
 		model.addObject("personal", personal);
 		model.setViewName("personalUpdate");
-		
-		//System.out.println(personal);
-		//personalService.updateUser(username);
-		//personalService.updatePersonal(id);
 		return model;
 	}
 	

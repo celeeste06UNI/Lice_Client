@@ -11,7 +11,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>nueva organización</title>
+<title>editar organización</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -23,7 +23,7 @@
 
 </head>
 <body>
-	<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -41,15 +41,14 @@
 					data-toggle="dropdown" href="#">Organizaciones <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newOrganization">Crear</a></li>
-						<li><a href="viewOrganization">Eliminar/Editar</a></li>
+						<li><a href="newEmployee">Crear</a></li>
+						<li><a href="viewEmployee">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="newOrganization">Crear</a></li>
+						<li><a href="viewOrganization">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
@@ -73,25 +72,27 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Nueva Organización</h2>
+				<h2>Editar Organización</h2>
 			</div>
 
 		</div>
 		<div class="container" align="center">
-			<form:form action="${cp}/saveOrganization" method="POST"
+			<form:form action="${cp}/updateOrganization" method="POST"
 				modelAttribute="organization">
-<!-- 				<div class="form-group">
-					<label class="control-label col-sm-2">id:</label>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Identificador:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="id"
-							placeholder="Introduzca el cif de la organización">
+							readonly value=${organization.id} >
 					</div>
-				</div> -->
+				</div>
+				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2">CIF:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="cif"
-							placeholder="Introduzca el cif de la organización">
+							value=${organization.cif}>
 					</div>
 				</div>
 				&nbsp
@@ -99,7 +100,7 @@
 					<label class="control-label col-sm-2">Nombre:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name_org"
-							placeholder="Introduzca el nombre de la organización">
+							value=${organization.name_org}>
 					</div>
 				</div>
 				&nbsp
@@ -107,7 +108,7 @@
 					<label class="control-label col-sm-2">Razón Social:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name_trade"
-							placeholder="Introduzca la razón social">
+							value=${organization.name_trade}>
 					</div>
 				</div>
 				&nbsp
@@ -115,7 +116,7 @@
 					<label class="control-label col-sm-2">Persona de Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name_contact"
-							placeholder="Introduzca el nombre de la persona de contacto">
+							value=${organization.name_contact}>
 					</div>
 				</div>
 				&nbsp
@@ -123,7 +124,7 @@
 					<label class="control-label col-sm-2">Rol del Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="role_contact"
-							placeholder="Introduzca el rol de la persona de contacto">
+							value=${organization.role_contact}>
 					</div>
 				</div>
 				&nbsp
@@ -131,14 +132,13 @@
 					<label class="control-label col-sm-2">Teléfono de Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="telephone_contact"
-							placeholder="Introduzca el teléfono de la persona de contacto">
+							value=${organization.telephone_contact}>
 					</div>
 				</div>
 				&nbsp
 				<div class="container" align="center">
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</div>
-
 
 			</form:form>
 		</div>
