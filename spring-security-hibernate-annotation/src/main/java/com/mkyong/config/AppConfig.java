@@ -1,5 +1,6 @@
 package com.mkyong.config;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -11,6 +12,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -64,5 +67,10 @@ public class AppConfig {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
+	
+	@Bean
+    public MultipartResolver multipartResolver() throws IOException {        
+        return new StandardServletMultipartResolver();
+    }
 	
 }

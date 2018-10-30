@@ -29,10 +29,11 @@ public class PersonalServiceImpl implements PersonalService {
 
 
 	@Transactional
-	public void addPersonal(Personal personal) {
+	public void addPersonal(Personal personal, String passNoEncryp) {
 		String url = rutaServidor + "/personal/savePersonal?" + "id=" + personal.getId() + "&username="
 				+ personal.getUsername() + "&name=" + personal.getName() + "&email=" + personal.getEmail() + "&address="
-				+ personal.getAddress() + "&telephone=" + personal.getTelephone();
+				+ personal.getAddress() + "&telephone=" + personal.getTelephone()
+				+ "&passNoEncryp=" + passNoEncryp;
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
