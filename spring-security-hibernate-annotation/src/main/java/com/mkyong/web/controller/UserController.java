@@ -54,13 +54,16 @@ public class UserController {
 	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
 	public ModelAndView saveEmployee(@ModelAttribute("personal") Personal personal,
 			@ModelAttribute("role") String role) {
+		
+		
+		personalService.addPersonal(personal);
 
 		String password = role + ((Math.random() * 50) + 1);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordEncriptada = passwordEncoder.encode(password);
 		User user = new User(personal.getUsername(), passwordEncriptada, true);
 		
-		personalService.addPersonal(personal, password);
+		
 		personalService.addUserRole(user, role);
 		
 

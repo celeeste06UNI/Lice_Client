@@ -17,7 +17,7 @@ public interface PersonalService {
 	public User updateUser(User user);*/
 	public List<Personal> getAllPersonal();
 	
-	public void addPersonal(Personal personal, String passNoEncryp);
+	public void addPersonal(Personal personal);
 
 	public void addUser(User user);
 
