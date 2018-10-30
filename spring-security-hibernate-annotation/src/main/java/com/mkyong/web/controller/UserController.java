@@ -1,6 +1,5 @@
 package com.mkyong.web.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.User;
-import com.mkyong.users.model.UserRole;
 import com.mkyong.users.service.PersonalService;
 
 @Controller
@@ -57,14 +55,14 @@ public class UserController {
 	public ModelAndView saveEmployee(@ModelAttribute("personal") Personal personal,
 			@ModelAttribute("role") String role) {
 
-		personalService.addPersonal(personal);
-
 		String password = role + ((Math.random() * 50) + 1);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordEncriptada = passwordEncoder.encode(password);
 		User user = new User(personal.getUsername(), passwordEncriptada, true);
-
+		
+		personalService.addPersonal(personal, password);
 		personalService.addUserRole(user, role);
+		
 
 		return new ModelAndView("redirect:/main");
 	}

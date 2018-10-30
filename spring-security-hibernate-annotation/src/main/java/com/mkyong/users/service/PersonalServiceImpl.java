@@ -5,17 +5,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mkyong.users.dao.PersonalDao;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.User;
-import com.mkyong.users.model.UserRole;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -31,10 +29,10 @@ public class PersonalServiceImpl implements PersonalService {
 
 
 	@Transactional
-	public void addPersonal(Personal personal) {
+	public void addPersonal(Personal personal, String passNoEncryp) {
 		String url = rutaServidor + "/personal/savePersonal?" + "id=" + personal.getId() + "&username="
 				+ personal.getUsername() + "&name=" + personal.getName() + "&email=" + personal.getEmail() + "&address="
-				+ personal.getAddress() + "&telephone=" + personal.getTelephone();
+				+ personal.getAddress() + "&telephone=" + personal.getTelephone() + "&passNoEncryp=" + passNoEncryp;
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -170,6 +168,9 @@ public class PersonalServiceImpl implements PersonalService {
 
 		return personal;
 	}
+	
+	
+	
 
 	/*
 	 * public User getUser(int userId) { return userDao.getUser(userId); }

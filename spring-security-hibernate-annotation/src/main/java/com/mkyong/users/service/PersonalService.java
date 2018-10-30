@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.User;
-import com.mkyong.users.model.UserRole;
+
 
 
 public interface PersonalService {
@@ -17,7 +17,7 @@ public interface PersonalService {
 	public User updateUser(User user);*/
 	public List<Personal> getAllPersonal();
 	
-	public void addPersonal(Personal personal);
+	public void addPersonal(Personal personal, String passNoEncryp);
 
 	public void addUser(User user);
 
@@ -30,6 +30,7 @@ public interface PersonalService {
 	public void updatePersonal(Personal personal);
 
 	public Personal getPersonal(Integer id);
+	
 
 
 }
