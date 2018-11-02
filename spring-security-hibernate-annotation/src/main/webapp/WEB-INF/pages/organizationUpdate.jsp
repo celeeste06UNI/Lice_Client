@@ -41,22 +41,21 @@
 					data-toggle="dropdown" href="#">Organizaciones <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newEmployee">Crear</a></li>
-						<li><a href="viewEmployee">Eliminar/Editar</a></li>
+						<li><a href="newOrganization">Crear</a></li>
+						<li><a href="viewOrganization">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newOrganization">Crear</a></li>
-						<li><a href="viewOrganization">Eliminar/Editar</a></li>
+						<li><a href="#">Crear</a></li>
+						<li><a href="#">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
+						<li><a href="viewUpload">Crear</a></li>
 						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -66,6 +65,10 @@
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="${cp}/logout"><span
+						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
 			</ul>
 		</div>
 		</nav>
@@ -83,8 +86,8 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">Identificador:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="id"
-							readonly value=${organization.id} >
+						<input type="text" class="form-control" name="id" readonly
+							value=${organization.id} >
 					</div>
 				</div>
 				&nbsp

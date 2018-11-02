@@ -22,7 +22,7 @@ public class FileUploadController {
 	@Autowired
 	private DatamodelService datamodelService;
 
-	@RequestMapping("/c")
+	@RequestMapping("main/viewUpload")
 	public String UploadPage(Model model) {
 		return "uploadview";
 	}

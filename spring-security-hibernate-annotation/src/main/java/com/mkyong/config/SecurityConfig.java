@@ -12,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -21,8 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	@Qualifier("userDetailsService")
 	UserDetailsService userDetailsService;
-
-	
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -33,27 +29,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		
-		http.authorizeRequests()
-		.antMatchers("/main/**")
-		.access("hasAnyRole('ROLE_ADMIN, ROLE_USER')").and().formLogin()
-		.loginPage("/login").defaultSuccessUrl("/main").failureUrl("/login?error")
-			.usernameParameter("username")
-			.passwordParameter("password")
-			.and().logout().logoutSuccessUrl("/login?logout")
-			.and().csrf()
-			.and().exceptionHandling().accessDeniedPage("/403");
-		
+
+		http.authorizeRequests().antMatchers("/main/**").access("hasAnyRole('ROLE_ADMIN, ROLE_USER')").and().formLogin()
+				.loginPage("/login").defaultSuccessUrl("/main").failureUrl("/").usernameParameter("username")
+				.passwordParameter("password").and().logout().logoutSuccessUrl("/").and().csrf().and()
+				.exceptionHandling().accessDeniedPage("/403");
+
 		http.csrf().disable();
-	
-		
+
 	}
-	
+
 	@Bean
-	public PasswordEncoder passwordEncoder(){
+	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder;
 	}
-	
+
 }

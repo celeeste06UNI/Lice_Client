@@ -41,9 +41,8 @@
 					data-toggle="dropdown" href="#">Organizaciones <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="newOrganization">Crear</a></li>
+						<li><a href="viewOrganization">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
@@ -56,9 +55,8 @@
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
+						<li><a href="viewUpload">Crear</a></li>
 						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -68,6 +66,10 @@
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="${cp}/logout"><span
+						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
 			</ul>
 		</div>
 		</nav>
@@ -81,11 +83,11 @@
 		<div class="container" align="center">
 			<form:form action="${cp}/updateEmployee" method="POST"
 				modelAttribute="personal">
- 				<div class="form-group">
+				<div class="form-group">
 					<label class="control-label col-sm-2">id:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="id"
-							value=${personal.id} readonly>
+							value=${personal.id } readonly>
 					</div>
 				</div>
 				&nbsp
@@ -93,7 +95,7 @@
 					<label class="control-label col-sm-2">Nombre de Usuario:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="username"
-							value=${personal.username} readonly>
+							value=${personal.username } readonly>
 					</div>
 				</div>
 				&nbsp
@@ -128,7 +130,7 @@
 							value=${personal.telephone}>
 					</div>
 				</div>
-<!-- 			&nbsp
+				<!-- 			&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2"
 						for="exampleFormControlSelect1">Rol:</label>

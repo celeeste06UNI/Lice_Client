@@ -5,6 +5,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="cp" value="${pageContext.request.contextPath}"
+	scope="request" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -54,9 +56,8 @@
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
+						<li><a href="viewUpload">Crear</a></li>
 						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -66,6 +67,10 @@
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="${cp}/logout"><span
+						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
 			</ul>
 		</div>
 		</nav>
@@ -77,33 +82,36 @@
 
 		</div>
 		<div class="container" align="left">
-		<table class = "table table-hover">
-		<p>Busque la organización que desee y pulse "Eliminar" o "Editar" en el caso que quiera cambiar algún dato</p>
-			<!-- <th>Id</th> -->
-			<th>CIF</th>
-			<th>Nombre de la Organización</th>
-			<th>Razón Social</th>
-			<th>Nombre de Contacto</th>
-			<th>Rol del Contacto</th>
-			<th>Teléfono de Contacto</th>
-			<th>Acción</th>
-			
+			<table class="table table-hover">
+				<p>Busque la organización que desee y pulse "Eliminar" o
+					"Editar" en el caso que quiera cambiar algún dato</p>
+				<!-- <th>Id</th> -->
+				<th>CIF</th>
+				<th>Nombre de la Organización</th>
+				<th>Razón Social</th>
+				<th>Nombre de Contacto</th>
+				<th>Rol del Contacto</th>
+				<th>Teléfono de Contacto</th>
+				<th>Acción</th>
 
-			<c:forEach var="organization" items="${listOrganization}">
-				<tr>
-					<%-- <td>${employee.id}</td> --%>
-					<td>${organization.cif}</td>
-					<td>${organization.name_org}</td>
-					<td>${organization.name_trade}</td>
-					<td>${organization.name_contact}</td>
-					<td>${organization.role_contact}</td>
-					<td>${organization.telephone_contact}</td>
-					<td><a href="<c:url value='/editOrganization?id=${organization.id}' />">Editar</a>
-					- <a href="<c:url value='/deleteOrganization?id=${organization.id}' />">Eliminar</a></td>
 
-				</tr>
-			</c:forEach>
-		</table>
+				<c:forEach var="organization" items="${listOrganization}">
+					<tr>
+						<%-- <td>${employee.id}</td> --%>
+						<td>${organization.cif}</td>
+						<td>${organization.name_org}</td>
+						<td>${organization.name_trade}</td>
+						<td>${organization.name_contact}</td>
+						<td>${organization.role_contact}</td>
+						<td>${organization.telephone_contact}</td>
+						<td><a
+							href="<c:url value='/editOrganization?id=${organization.id}' />">Editar</a>
+							- <a
+							href="<c:url value='/deleteOrganization?id=${organization.id}' />">Eliminar</a></td>
+
+					</tr>
+				</c:forEach>
+			</table>
 		</div>
 	</sec:authorize>
 </body>
