@@ -47,14 +47,16 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
-						<li><a href="#">Eliminar/Editar</a></li>
+						<li><a href="newProject">Crear</a></li>
+						<li><a href="#">Proyectos activos</a></li>
+						<li><a href="#">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="viewUpload">Crear</a></li>
+						<li><a href="#">Visualizar</a></li>
 						<li><a href="#">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -70,6 +72,10 @@
 				<li><a href="${cp}/logout"><span
 						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a><span class="glyphicon glyphicon-user"> </span>
+						${pageContext.request.userPrincipal.name}</a></li>
+			</ul>
 		</div>
 		</nav>
 
@@ -84,7 +90,7 @@
 				modelAttribute="organization">
 
 				<div class="form-group">
-					<label class="control-label col-sm-2">Identificador:</label>
+					<label class="control-label col-sm-2" align="right">Identificador:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="id" readonly
 							value=${organization.id} >
@@ -92,7 +98,7 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">CIF:</label>
+					<label class="control-label col-sm-2" align="right">CIF:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="cif"
 							value=${organization.cif}>
@@ -100,7 +106,7 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Nombre:</label>
+					<label class="control-label col-sm-2" align="right">Nombre:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name_org"
 							value=${organization.name_org}>
@@ -108,7 +114,8 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Razón Social:</label>
+					<label class="control-label col-sm-2" align="right">Razón
+						Social:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name_trade"
 							value=${organization.name_trade}>
@@ -116,7 +123,8 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Persona de Contacto:</label>
+					<label class="control-label col-sm-2" align="right">Persona
+						de Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name_contact"
 							value=${organization.name_contact}>
@@ -124,7 +132,8 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Rol del Contacto:</label>
+					<label class="control-label col-sm-2" align="right">Rol del
+						Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="role_contact"
 							value=${organization.role_contact}>
@@ -132,7 +141,8 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Teléfono de Contacto:</label>
+					<label class="control-label col-sm-2" align="right">Teléfono
+						de Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="telephone_contact"
 							value=${organization.telephone_contact}>

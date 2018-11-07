@@ -42,17 +42,17 @@
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Crear</a></li>
-							<li><a href="#">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
+							<li><a href="main/newProject">Crear</a></li>
+							<li><a href="#">Proyectos activos</a></li>
+							<li><a href="#">Proyectos cerrados</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Modelo de Datos <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/viewUpload">Crear</a></li>
+							<li><a href="#">Visualizar</a></li>
 							<li><a href="#">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -63,9 +63,15 @@
 							<li><a href="#">Modificar</a></li>
 						</ul></li>
 				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${cp}/logout"><span
 							class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><a><span class="glyphicon glyphicon-user">
+					</span> ${pageContext.request.userPrincipal.name}</a></li>
 				</ul>
 			</div>
 		</nav>

@@ -46,17 +46,17 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="newProject">Crear</a></li>
+						<li><a href="#">Proyectos activos</a></li>
+						<li><a href="#">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Crear</a></li>
+						<li><a href="#">Visualizar</a></li>
 						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -71,6 +71,10 @@
 				<li><a href="${cp}/logout"><span
 						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a><span class="glyphicon glyphicon-user"> </span>
+						${pageContext.request.userPrincipal.name}</a></li>
+			</ul>
 		</div>
 		</nav>
 
@@ -79,12 +83,45 @@
 				<h2>Nuevo Modelo de Datos</h2>
 			</div>
 		</div>
+		<div class="container" align="center">
+			<form action="${cp}/upload" method="post"
+				enctype="multipart/form-data">
 
-		<form action="${cp}/upload" method="post"
-			enctype="multipart/form-data">
-			<input type="file" name="files" multiple> <input
-				type="submit" value="Upload Files"></input>
-		</form>
+				<div class="form-group">
+					<label class="control-label col-sm-2"
+						for="exampleFormControlSelect1" align="right">Sistema
+						gestos de Base de Datos:</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="sistemabbdd" id="sistemabbdd">
+							<option value="mysql">MySql</option>
+							<option value="sqlserver">SQLServer</option>
+							<option value="oracle">Oracle</option>
+						</select>
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Version:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="version"
+							placeholder="Introduzca el nombre">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Archivo:</label>
+					<div class="col-sm-10">
+						<input type="file" name="files" multiple>
+					</div>
+				</div>
+				&nbsp
+				<div class="container" align="center">
+					<input type="submit" class="btn btn-primary" value="Upload Files"></input>
+				</div>
+				<!-- <input type="file" name="files" multiple> 
+				<input type="submit" class="btn btn-primary" value="Upload Files"></input> -->
+			</form>
+		</div>
 	</sec:authorize>
 
 

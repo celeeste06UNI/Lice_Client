@@ -28,7 +28,10 @@ public class FileUploadController {
 	}
 
 	@RequestMapping("/upload")
-	public String upload(@RequestParam("files") MultipartFile[] files) {
+	public String upload(@RequestParam("files") MultipartFile[] files, @RequestParam("sistemabbdd") String sistemabbdd,
+			@RequestParam("version") String version) {
+		
+		
 		StringBuilder fileNames = new StringBuilder();
 		
 		for (MultipartFile file : files) {
@@ -36,7 +39,7 @@ public class FileUploadController {
 			fileNames.append(file.getOriginalFilename() + " ");
 			try {
 				Files.write(fileNameAndPath, file.getBytes());
-				datamodelService.upload(fileNameAndPath.toString());
+				datamodelService.upload(fileNameAndPath.toString(), sistemabbdd, version);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

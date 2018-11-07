@@ -11,7 +11,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>editar usuario</title>
+<title>nuevo proyecto</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -23,7 +23,7 @@
 
 </head>
 <body>
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -81,72 +81,133 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Editar Usuario</h2>
+				<h2>Nuevo Proyecto</h2>
 			</div>
-
 		</div>
+
+
 		<div class="container" align="center">
-			<form:form action="${cp}/updateEmployee" method="POST"
-				modelAttribute="personal">
-				<div class="form-group">
-					<label class="control-label col-sm-2" align="right">id:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="id"
-							value=${personal.id } readonly>
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2" align="right">Nombre
-						de Usuario:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="username"
-							value=${personal.username } readonly>
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2" align="right">Nombre:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name"
-							value=${personal.name} >
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2" align="right">Email:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="email"
-							value=${personal.email}>
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2" align="right">Dirección:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="address"
-							value=${personal.address}>
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2" align="right">Telefono:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="telephone"
-							value=${personal.telephone}>
-					</div>
-				</div>
-				<!-- 			&nbsp
+			<form:form action="${cp}/saveProject" method="POST"
+				modelAttribute="organization">
 				<div class="form-group">
 					<label class="control-label col-sm-2"
-						for="exampleFormControlSelect1">Rol:</label>
+						for="exampleFormControlSelect1" align="right">Organización:</label>
 					<div class="col-sm-10">
-						<select class="form-control" name="role" id="role" disabled>
-							<option value="ROLE_ADMIN">ADMIN</option>
-							<option value="ROLE_USER">USER</option>
+						<select class="form-control" name="organization" id="organization">
+							<c:forEach var="organization" items="${organizationList}">
+								<option value="${organization.id}">${organization.name_org}</option>
+							</c:forEach>
 						</select>
 					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2"
+						for="exampleFormControlSelect1" align="right">Modelo de
+						Datos:</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="datamodel" id="datamodel">
+							<c:forEach var="datamodel" items="${datamodelList}">
+								<option value="${datamodel}">${datamodel}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2"
+						for="exampleFormControlSelect1" align="right">Consultor
+						asociado:</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="personal" id="personal">
+							<c:forEach var="personal" items="${personalList}">
+								<option value="${personal.id}">${personal.username}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Fecha
+						de Inicio:</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" name="start_date"
+							placeholder="dd/MM/yyyy">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Fecha
+						de Fin Estimada:</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" name="finish_date"
+							placeholder="dd/MM/yyyy">
+					</div>
+				</div>
+				&nbsp
+				<div class="container" align="center">
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+			</form:form>
+		</div>
+
+		<%-- <div class="container" align="center">
+			<form:form action="${cp}/saveOrganization" method="POST"
+				modelAttribute="organization">
+				<!-- 				<div class="form-group">
+					<label class="control-label col-sm-2">id:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="id"
+							placeholder="Introduzca el cif de la organización">
+					</div>
 				</div> -->
+				<div class="form-group">
+					<label class="control-label col-sm-2">CIF:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="cif"
+							placeholder="Introduzca el cif de la organización">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2">Nombre:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="name_org"
+							placeholder="Introduzca el nombre de la organización">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2">Razón Social:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="name_trade"
+							placeholder="Introduzca la razón social">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2">Persona de Contacto:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="name_contact"
+							placeholder="Introduzca el nombre de la persona de contacto">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2">Rol del Contacto:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="role_contact"
+							placeholder="Introduzca el rol de la persona de contacto">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2">Teléfono de Contacto:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="telephone_contact"
+							placeholder="Introduzca el teléfono de la persona de contacto">
+					</div>
+				</div>
 				&nbsp
 				<div class="container" align="center">
 					<button type="submit" class="btn btn-primary">Guardar</button>
@@ -154,7 +215,7 @@
 
 
 			</form:form>
-		</div>
+		</div> --%>
 	</sec:authorize>
 </body>
 </html>

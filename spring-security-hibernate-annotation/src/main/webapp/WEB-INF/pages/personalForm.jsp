@@ -27,7 +27,7 @@
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">LiceDQTool</a>
+				<a class="navbar-brand" href="">LiceDQTool</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<!-- <li class="active"><a href="#">Home</a></li> -->
@@ -47,17 +47,17 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="newProject">Crear</a></li>
+						<li><a href="#">Proyectos activos</a></li>
+						<li><a href="#">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="viewUpload">Crear</a></li>
+						<li><a href="#">Visualizar</a></li>
 						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -72,6 +72,10 @@
 				<li><a href="${cp}/logout"><span
 						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a><span class="glyphicon glyphicon-user"> </span>
+						${pageContext.request.userPrincipal.name}</a></li>
+			</ul>
 		</div>
 		</nav>
 
@@ -85,7 +89,8 @@
 			<form:form action="${cp}/saveEmployee" method="POST"
 				modelAttribute="personal">
 				<div class="form-group">
-					<label class="control-label col-sm-2">Nombre de Usuario:</label>
+					<label class="control-label col-sm-2" align="right">Nombre
+						de Usuario:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="username"
 							placeholder="Introduzca el nombre de usuario">
@@ -93,7 +98,7 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Nombre:</label>
+					<label class="control-label col-sm-2" align="right">Nombre:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name"
 							placeholder="Introduzca el nombre">
@@ -101,7 +106,7 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Email:</label>
+					<label class="control-label col-sm-2" align="right">Email:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="email"
 							placeholder="Introduzca el email">
@@ -109,7 +114,7 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Dirección:</label>
+					<label class="control-label col-sm-2" align="right">Dirección:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="address"
 							placeholder="Introduzca la dirección">
@@ -117,7 +122,7 @@
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Telefono:</label>
+					<label class="control-label col-sm-2" align="right">Telefono:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="telephone"
 							placeholder="Introduzca el teléfono">
@@ -126,7 +131,7 @@
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2"
-						for="exampleFormControlSelect1">Rol:</label>
+						for="exampleFormControlSelect1" align="right">Rol:</label>
 					<div class="col-sm-10">
 						<select class="form-control" name="role" id="role">
 							<option value="ROLE_ADMIN">ADMIN</option>
