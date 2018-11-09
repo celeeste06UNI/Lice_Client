@@ -108,7 +108,7 @@
 					<div class="col-sm-10">
 						<select class="form-control" name="datamodel" id="datamodel">
 							<c:forEach var="datamodel" items="${datamodelList}">
-								<option value="${datamodel}">${datamodel}</option>
+								<option value="${datamodel.id_datamodel}">${datamodel.database_name}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -131,8 +131,8 @@
 					<label class="control-label col-sm-2" align="right">Fecha
 						de Inicio:</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" name="start_date"
-							placeholder="dd/MM/yyyy">
+						<input type="text" class="form-control" name="start_date"
+							placeholder="yyyy/MM/dd">
 					</div>
 				</div>
 				&nbsp
@@ -140,10 +140,10 @@
 					<label class="control-label col-sm-2" align="right">Fecha
 						de Fin Estimada:</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" name="finish_date"
-							placeholder="dd/MM/yyyy">
+						<input type="text" class="form-control" name="finish_date"
+							placeholder="yyyy/MM/dd">
 					</div>
-				</div>
+				</div>		
 				&nbsp
 				<div class="container" align="center">
 					<button type="submit" class="btn btn-primary">Guardar</button>

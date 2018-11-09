@@ -51,7 +51,7 @@
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/viewUpload">Crear</a></li>
-							<li><a href="#">Visualizar</a></li>
+							<li><a href="main/viewDatamodel">Visualizar</a></li>
 							<li><a href="#">Eliminar</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"

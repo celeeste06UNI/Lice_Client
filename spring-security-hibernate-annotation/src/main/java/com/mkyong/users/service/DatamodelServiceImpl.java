@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mkyong.users.model.DataModel;
+import com.mkyong.users.model.DataModelDecript;
 import com.mkyong.users.model.Personal;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -69,6 +70,56 @@ public class DatamodelServiceImpl implements DatamodelService{
 	@Transactional
 	public List<String> getAllNameDatamodel() {
 		String url = rutaServidor + "/datam/getAllNameDatamodel";
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<String> list = new ArrayList<String>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), String[].class));
+			//list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), String[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@Transactional
+	public List<String> getdmdByIdDatamodel(Integer id_datamodel) {
+		String url = rutaServidor + "/datam/getdmdByIdDatamodel?"+ "id_datamodel=" + id_datamodel;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<String> list = new ArrayList<String>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), String[].class));
+			//list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), String[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@Transactional
+	public List<String> getAttributesByTable(String table_name) {
+		String url = rutaServidor + "/datam/getAttributesByTable?"+ "table_name=" + table_name;
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
 		Client client = Client.create(clientConfig);
