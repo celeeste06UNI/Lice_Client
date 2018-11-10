@@ -1,6 +1,6 @@
 package com.mkyong.users.service;
 
-import java.util.Date;
+import java.sql.Date;
 
 public interface ProjectService {
 	
