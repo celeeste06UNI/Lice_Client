@@ -52,7 +52,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="main/viewUpload">Crear</a></li>
 							<li><a href="main/viewDatamodel">Visualizar</a></li>
-							<li><a href="#">Eliminar</a></li>
+							<li><a href="main/deleteDataModel">Eliminar</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Reglas de Negocio <span

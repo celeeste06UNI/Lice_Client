@@ -95,4 +95,19 @@ public class FileUploadController {
 		model.setViewName("datamodelList");
 		return model;
 	}
+	
+	@RequestMapping(value = "main/deleteDataModel", method = RequestMethod.GET)
+	public ModelAndView deleteDataModel(ModelAndView model,HttpServletRequest request) {
+		List<DataModel> listDMDelete = datamodelService.getAllDatamodel();
+		model.addObject("listDMDelete", listDMDelete);
+		model.setViewName("datamodelDelete");
+		return model;
+	}
+	@RequestMapping(value = "/actionDelete", method = RequestMethod.GET)
+	public ModelAndView actionDelete(HttpServletRequest request) {
+		String database_name = request.getParameter("database_name");
+		String version = request.getParameter("version");
+		//datamodelService.deleteDataModel(database_name,version);	
+		return new ModelAndView("redirect:/main");
+	}
 }

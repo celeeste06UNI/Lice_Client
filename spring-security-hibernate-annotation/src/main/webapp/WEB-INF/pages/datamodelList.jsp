@@ -35,20 +35,20 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newEmployee">Crear</a></li>
-						<li><a href="viewEmployee">Eliminar/Editar</a></li>
+						<li><a href="main/newEmployee">Crear</a></li>
+						<li><a href="main/viewEmployee">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Organizaciones <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newOrganization">Crear</a></li>
-						<li><a href="viewOrganization">Eliminar/Editar</a></li>
+						<li><a href="main/newOrganization">Crear</a></li>
+						<li><a href="main/viewOrganization">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newProject">Crear</a></li>
+						<li><a href="main/newProject">Crear</a></li>
 						<li><a href="#">Proyectos activos</a></li>
 						<li><a href="#">Proyectos cerrados</a></li>
 					</ul></li>
@@ -56,8 +56,8 @@
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="viewUpload">Crear</a></li>
-						<li><a href="#">Visualizar</a></li>
+						<li><a href="main/viewUpload">Crear</a></li>
+						<li><a href="main/viewDatamodel">Visualizar</a></li>
 						<li><a href="#">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
