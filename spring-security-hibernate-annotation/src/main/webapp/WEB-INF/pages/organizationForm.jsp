@@ -48,8 +48,8 @@
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newProject">Crear</a></li>
-						<li><a href="#">Proyectos activos</a></li>
-						<li><a href="#">Proyectos cerrados</a></li>
+						<li><a href="viewOpenProject">Proyectos activos</a></li>
+						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
@@ -57,7 +57,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="viewUpload">Crear</a></li>
 						<li><a href="viewDatamodel">Visualizar</a></li>
-						<li><a href="#">Eliminar</a></li>
+						<li><a href="deleteDataModel">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -67,6 +67,7 @@
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
+				<li><a href="#">Catalogo</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -98,7 +99,8 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">CIF:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="cif"
+						<input type="text" class="form-control" name="cif" required
+							autocomplete="off"
 							placeholder="Introduzca el cif de la organización">
 					</div>
 				</div>
@@ -106,7 +108,8 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Nombre:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_org"
+						<input type="text" class="form-control" name="name_org" required
+							autocomplete="off"
 							placeholder="Introduzca el nombre de la organización">
 					</div>
 				</div>
@@ -115,8 +118,8 @@
 					<label class="control-label col-sm-2" align="right">Razón
 						Social:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_trade"
-							placeholder="Introduzca la razón social">
+						<input type="text" class="form-control" name="name_trade" required
+							autocomplete="off" placeholder="Introduzca la razón social">
 					</div>
 				</div>
 				&nbsp
@@ -125,6 +128,7 @@
 						de Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name_contact"
+							required autocomplete="off"
 							placeholder="Introduzca el nombre de la persona de contacto">
 					</div>
 				</div>
@@ -134,6 +138,7 @@
 						Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="role_contact"
+							required autocomplete="off"
 							placeholder="Introduzca el rol de la persona de contacto">
 					</div>
 				</div>
@@ -143,6 +148,7 @@
 						de Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="telephone_contact"
+							required autocomplete="off"
 							placeholder="Introduzca el teléfono de la persona de contacto">
 					</div>
 				</div>

@@ -35,30 +35,30 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="main/newEmployee">Crear</a></li>
-						<li><a href="main/viewEmployee">Eliminar/Editar</a></li>
+						<li><a href="newEmployee">Crear</a></li>
+						<li><a href="viewEmployee">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Organizaciones <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="main/newOrganization">Crear</a></li>
-						<li><a href="main/viewOrganization">Eliminar/Editar</a></li>
+						<li><a href="newOrganization">Crear</a></li>
+						<li><a href="viewOrganization">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="main/newProject">Crear</a></li>
-						<li><a href="#">Proyectos activos</a></li>
-						<li><a href="#">Proyectos cerrados</a></li>
+						<li><a href="newProject">Crear</a></li>
+						<li><a href="viewOpenProject">Proyectos activos</a></li>
+						<li><a href="viewOpenProject">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="main/viewUpload">Crear</a></li>
-						<li><a href="main/viewDatamodel">Visualizar</a></li>
-						<li><a href="#">Eliminar</a></li>
+						<li><a href="viewUpload">Crear</a></li>
+						<li><a href=viewDatamodel">Visualizar</a></li>
+						<li><a href="deleteDataModel">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -68,6 +68,7 @@
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
+				<li><a href="#">Catalogo</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -92,7 +93,7 @@
 					<h4 align="center">Modelo de datos</h4>
 					<c:forEach var="datamodel" items="${datamodelList}">
 						<a align="center" class="list-group-item"
-							href="<c:url value='/viewTable?id_datamodel=${datamodel.id_datamodel}' />">${datamodel.database_name}</a>
+							href="<c:url value='viewTable?id_datamodel=${datamodel.id_datamodel}' />">${datamodel.database_name}</a>
 					</c:forEach>
 				</div>
 				<div class="col-sm-4">
@@ -100,7 +101,7 @@
 					<div class="list-group">
 						<c:forEach var="tableDatamodel" items="${datamodelDecriptList}">
 							<a align="center" class="list-group-item"
-								href="<c:url value='/viewAttribute?table_name=${tableDatamodel}' />">${tableDatamodel}</a>
+								href="<c:url value='viewAttribute?table_name=${tableDatamodel}' />">${tableDatamodel}</a>
 							<%-- <a href="#" class="list-group-item">${tableDatamodel}</a> --%>
 						</c:forEach>
 					</div>

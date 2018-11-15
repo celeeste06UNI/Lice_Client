@@ -49,8 +49,8 @@
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newProject">Crear</a></li>
-						<li><a href="#">Proyectos activos</a></li>
-						<li><a href="#">Proyectos cerrados</a></li>
+						<li><a href="viewOpenProject">Proyectos activos</a></li>
+						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
@@ -58,7 +58,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="viewUpload">Crear</a></li>
 						<li><a href="viewDatamodel">Visualizar</a></li>
-						<li><a href="#">Eliminar</a></li>
+						<li><a href="deleteDataModel">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -68,6 +68,7 @@
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
+				<li><a href="#">Catalogo</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span

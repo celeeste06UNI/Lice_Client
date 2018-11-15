@@ -65,7 +65,7 @@ public class FileUploadController {
 	}
 	
 	
-	@RequestMapping(value = "/viewTable", method = RequestMethod.GET)
+	@RequestMapping(value = "main/viewTable", method = RequestMethod.GET)
 	public ModelAndView viewTable(ModelAndView model, HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		List<DataModel> datamodelList = datamodelService.getAllDatamodel();
@@ -78,7 +78,7 @@ public class FileUploadController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/viewAttribute", method = RequestMethod.GET)
+	@RequestMapping(value = "main/viewAttribute", method = RequestMethod.GET)
 	public ModelAndView viewAttribute(ModelAndView model, HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		List<DataModel> datamodelList = datamodelService.getAllDatamodel();

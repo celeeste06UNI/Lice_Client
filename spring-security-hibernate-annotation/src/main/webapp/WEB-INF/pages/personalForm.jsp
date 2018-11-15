@@ -48,8 +48,8 @@
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newProject">Crear</a></li>
-						<li><a href="#">Proyectos activos</a></li>
-						<li><a href="#">Proyectos cerrados</a></li>
+						<li><a href="viewOpenProject">Proyectos activos</a></li>
+						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
@@ -57,7 +57,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="viewUpload">Crear</a></li>
 						<li><a href="viewDatamodel">Visualizar</a></li>
-						<li><a href="#">Eliminar</a></li>
+						<li><a href="deleteDataModel">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -67,6 +67,7 @@
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
+				<li><a href="#">Catalogo</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -92,40 +93,40 @@
 					<label class="control-label col-sm-2" align="right">Nombre
 						de Usuario:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="username"
-							placeholder="Introduzca el nombre de usuario">
+						<input type="text" class="form-control" name="username" required
+							autocomplete="off" placeholder="Introduzca el nombre de usuario">
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Nombre:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name"
-							placeholder="Introduzca el nombre">
+						<input type="text" class="form-control" name="name" required
+							autocomplete="off" placeholder="Introduzca el nombre">
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Email:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="email"
-							placeholder="Introduzca el email">
+						<input type="text" class="form-control" name="email" required
+							autocomplete="off" placeholder="Introduzca el email">
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Dirección:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="address"
-							placeholder="Introduzca la dirección">
+						<input type="text" class="form-control" name="address" required
+							autocomplete="off" placeholder="Introduzca la dirección">
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Telefono:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="telephone"
-							placeholder="Introduzca el teléfono">
+						<input type="text" class="form-control" name="telephone" required
+							autocomplete="off" placeholder="Introduzca el teléfono">
 					</div>
 				</div>
 				&nbsp

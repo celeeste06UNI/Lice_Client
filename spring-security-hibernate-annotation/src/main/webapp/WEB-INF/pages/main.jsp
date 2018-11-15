@@ -62,16 +62,18 @@
 							<li><a href="#">Eliminar</a></li>
 							<li><a href="#">Modificar</a></li>
 						</ul></li>
+
+					<li><a href="#">Catalogo</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${cp}/logout"><span
 							class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
 				</ul>
-				
+
 				<ul class="nav navbar-nav navbar-right">
-					<li><a><span class="glyphicon glyphicon-user">
-					</span> ${pageContext.request.userPrincipal.name}</a></li>
+					<li><a><span class="glyphicon glyphicon-user"> </span>
+							${pageContext.request.userPrincipal.name}</a></li>
 				</ul>
 			</div>
 		</nav>

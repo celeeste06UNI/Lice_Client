@@ -48,8 +48,8 @@
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newProject">Crear</a></li>
-						<li><a href="#">Proyectos activos</a></li>
-						<li><a href="#">Proyectos cerrados</a></li>
+						<li><a href="viewOpenProject">Proyectos activos</a></li>
+						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
@@ -57,7 +57,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="viewUpload">Crear</a></li>
 						<li><a href="viewDatamodel">Visualizar</a></li>
-						<li><a href="#">Eliminar</a></li>
+						<li><a href="deleteDataModel">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
@@ -67,6 +67,7 @@
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
+				<li><a href="#">Catalogo</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -93,23 +94,23 @@
 					<label class="control-label col-sm-2" align="right">Identificador:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="id" readonly
-							value=${organization.id} >
+							required autocomplete="off" value=${organization.id} >
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">CIF:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="cif"
-							value=${organization.cif}>
+						<input type="text" class="form-control" name="cif" required
+							autocomplete="off" value=${organization.cif}>
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Nombre:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_org"
-							value=${organization.name_org}>
+						<input type="text" class="form-control" name="name_org" required
+							autocomplete="off" value=${organization.name_org}>
 					</div>
 				</div>
 				&nbsp
@@ -117,8 +118,8 @@
 					<label class="control-label col-sm-2" align="right">Razón
 						Social:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_trade"
-							value=${organization.name_trade}>
+						<input type="text" class="form-control" name="name_trade" required
+							autocomplete="off" value=${organization.name_trade}>
 					</div>
 				</div>
 				&nbsp
@@ -127,7 +128,7 @@
 						de Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name_contact"
-							value=${organization.name_contact}>
+							required autocomplete="off" value=${organization.name_contact}>
 					</div>
 				</div>
 				&nbsp
@@ -136,7 +137,7 @@
 						Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="role_contact"
-							value=${organization.role_contact}>
+							required autocomplete="off" value=${organization.role_contact}>
 					</div>
 				</div>
 				&nbsp
@@ -145,6 +146,7 @@
 						de Contacto:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="telephone_contact"
+							required autocomplete="off"
 							value=${organization.telephone_contact}>
 					</div>
 				</div>
