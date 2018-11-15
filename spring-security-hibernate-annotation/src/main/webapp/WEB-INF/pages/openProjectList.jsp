@@ -91,24 +91,25 @@
 			<table class="table table-hover">
 				<!-- <p></p> -->
 				<!-- <th>Id</th> -->
+				<th>Consultor Asociado</th>
 				<th>Organización</th>
 				<th>Modelo de Datos</th>
-				<th>Consultor Asociado</th>
 				<th>Fecha de Inicio</th>
 				<th>Fecha de Fin</th>
 				<th>Reglas Asociadas</th>
 
 
 
-				<%-- <c:forEach var="openProject" items="${listOpenProject}">
+				<c:forEach var="openProject" items="${listOpenProject}">
 					<tr>
+						<td>${openProject.name_emp}</td>
 						<td>${openProject.name_org}</td>
-						<td>${openProject.name_trade}</td>
-						<td>${openProject.name_contact}</td>
-						<td>${openProject.role_contact}</td>
-						<td>${openProject.role_contact}</td>
+						<td>${openProject.name_datamodel}</td>
+						<td>${openProject.start_date}</td>
+						<td>${openProject.finish_date}</td>
+						<td>${openProject.rules}</td>
 					</tr>
-				</c:forEach> --%>
+				</c:forEach>
 			</table>
 		</div>
 	</sec:authorize>

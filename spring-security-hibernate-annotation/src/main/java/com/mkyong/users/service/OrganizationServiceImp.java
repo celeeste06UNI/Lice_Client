@@ -13,6 +13,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
+import com.mkyong.users.model.Project;
+import com.mkyong.users.model.ProjectForView;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;

@@ -14,6 +14,7 @@ import com.mkyong.users.model.DataModel;
 import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.Project;
+import com.mkyong.users.model.ProjectForView;
 import com.mkyong.users.service.DatamodelService;
 import com.mkyong.users.service.OrganizationService;
 import com.mkyong.users.service.PersonalService;
@@ -68,7 +69,7 @@ public class ProjectController {
 	
 	@RequestMapping(value = "main/viewOpenProject", method = RequestMethod.GET)
 	public ModelAndView viewOpenProject(ModelAndView model) {
-		List<Project> listOpenProject = null; //= organizationService.getAllOrganization();
+		List<ProjectForView> listOpenProject = projectService.getOpenProjectForView();
 		model.addObject("listOpenProject", listOpenProject);
 		model.setViewName("openProjectList");
 		return model;
@@ -76,7 +77,7 @@ public class ProjectController {
 	
 	@RequestMapping(value = "main/viewCloseProject", method = RequestMethod.GET)
 	public ModelAndView viewCloseProject(ModelAndView model) {
-		List<Project> listCloseProject = null; //= organizationService.getAllOrganization();
+		List<ProjectForView> listCloseProject = projectService.getCloseProjectForView();
 		model.addObject("listCloseProject", listCloseProject);
 		model.setViewName("closeProjectList");
 		return model;

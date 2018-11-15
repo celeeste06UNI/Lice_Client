@@ -89,26 +89,27 @@
 		</div>
 		<div class="container" align="left">
 			<table class="table table-hover">
+				<th>Consultor Asociado</th>
 				<th>Organización</th>
 				<th>Modelo de Datos</th>
-				<th>Consultor Asociado</th>
 				<th>Fecha de Inicio</th>
 				<th>Fecha de Fin</th>
 				<th>Reglas Asociadas</th>
 
-				<%--<c:forEach var="project" items="${listProject}">
+
+
+				<c:forEach var="closeProject" items="${listCloseProject}">
 					<tr>
-						<td>${employee.id}</td>
-						<td>${project.id_}</td>
-						<td>${project.name_org}</td>
-						<td>${project.name_trade}</td>
-						<td>${project.name_contact}</td>
-						<td>${project.role_contact}</td>
-						<td>${project.role_contact}</td>
+						<td>${closeProject.name_emp}</td>
+						<td>${closeProject.name_org}</td>
+						<td>${closeProject.name_datamodel}</td>
+						<td>${closeProject.start_date}</td>
+						<td>${closeProject.finish_date}</td>
+						<td>${closeProject.rules}</td>
 					</tr>
 				</c:forEach>
 			</table>
-		</div> --%>
+		</div>
 	</sec:authorize>
 </body>
 
