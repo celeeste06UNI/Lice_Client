@@ -105,7 +105,7 @@
 					<label class="control-label col-sm-2" align="right">Version:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="version" required
-							autocomplete="off" placeholder="Introduzca el nombre">
+							autocomplete="off" placeholder="Introduzca la version">
 					</div>
 				</div>
 				&nbsp
