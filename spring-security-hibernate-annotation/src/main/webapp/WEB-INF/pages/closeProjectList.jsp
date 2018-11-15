@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>project</title>
+<title>proyectos cerrados</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -49,8 +49,8 @@
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newProject">Crear</a></li>
-						<li><a href="#">Proyectos activos</a></li>
-						<li><a href="#">Proyectos cerrados</a></li>
+						<li><a href="viewOpenProject">Proyectos activos</a></li>
+						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
@@ -82,11 +82,11 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Proyectos</h2>
+				<h2>Proyectos Cerrados</h2>
 			</div>
 
 		</div>
-		<%-- <div class="container" align="left">
+		<div class="container" align="left">
 			<table class="table table-hover">
 				<!-- <p></p> -->
 				<!-- <th>Id</th> -->
@@ -99,7 +99,7 @@
 				
 
 
-				<c:forEach var="project" items="${listProject}">
+				<%--<c:forEach var="project" items="${listProject}">
 					<tr>
 						<td>${employee.id}</td>
 						<td>${project.id_}</td>

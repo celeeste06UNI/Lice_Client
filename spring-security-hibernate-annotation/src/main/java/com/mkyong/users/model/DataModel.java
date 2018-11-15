@@ -15,7 +15,7 @@ public class DataModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_datamodel;
+	private int id_dm;
 
 	@Column
 	private String database_name;
@@ -23,9 +23,9 @@ public class DataModel {
 	@Column
 	private String version;
 
-	public DataModel(int id_datamodel, String database_name, String version) {
+	public DataModel(int id_dm, String database_name, String version) {
 		super();
-		this.id_datamodel = id_datamodel;
+		this.id_dm = id_dm;
 		this.database_name = database_name;
 		this.version = version;
 	}
@@ -34,11 +34,11 @@ public class DataModel {
 	}
 
 	public int getId_datamodel() {
-		return id_datamodel;
+		return id_dm;
 	}
 
-	public void setId_datamodel(int id_datamodel) {
-		this.id_datamodel = id_datamodel;
+	public void setId_datamodel(int id_dm) {
+		this.id_dm = id_dm;
 	}
 
 	public String getDatabase_name() {
@@ -59,7 +59,7 @@ public class DataModel {
 	
 	public String toString() {
 		
-		return this.database_name + this.id_datamodel + this.version;
+		return this.database_name + this.id_dm + this.version;
 		
 	}
 }

@@ -141,5 +141,18 @@ public class DatamodelServiceImpl implements DatamodelService{
 		}
 		return list;
 	}
+	@Transactional
+	public void deleteDataModel(String database_name, String version) {
+		String url = rutaServidor + "/datam/deleteDataModel?"
+				+ "database_name=" + database_name
+				+ "&version=" + version;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+		
+	}
 
 }

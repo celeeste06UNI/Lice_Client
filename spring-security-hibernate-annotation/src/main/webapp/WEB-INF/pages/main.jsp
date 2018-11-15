@@ -43,8 +43,8 @@
 						data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/newProject">Crear</a></li>
-							<li><a href="#">Proyectos activos</a></li>
-							<li><a href="#">Proyectos cerrados</a></li>
+							<li><a href="main/viewOpenProject">Proyectos activos</a></li>
+							<li><a href="main/viewCloseProject">Proyectos cerrados</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Modelo de Datos <span

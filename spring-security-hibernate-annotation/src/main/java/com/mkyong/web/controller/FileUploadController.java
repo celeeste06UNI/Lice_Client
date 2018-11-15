@@ -107,7 +107,7 @@ public class FileUploadController {
 	public ModelAndView actionDelete(HttpServletRequest request) {
 		String database_name = request.getParameter("database_name");
 		String version = request.getParameter("version");
-		//datamodelService.deleteDataModel(database_name,version);	
+		datamodelService.deleteDataModel(database_name,version);	
 		return new ModelAndView("redirect:/main");
 	}
 }

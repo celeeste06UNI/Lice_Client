@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mkyong.users.model.DataModel;
 import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
+import com.mkyong.users.model.Project;
 import com.mkyong.users.service.DatamodelService;
 import com.mkyong.users.service.OrganizationService;
 import com.mkyong.users.service.PersonalService;
@@ -62,20 +63,23 @@ public class ProjectController {
 		java.util.Date date1 = sdf1.parse(finalizar);
 		java.sql.Date sqlStartDate1 = new java.sql.Date(date.getTime()); 
 		projectService.addProject(id,id_personal, id_organization, id_datamodel, sqlStartDate,sqlStartDate1);
-		
-		/*try {
-
-			start_date = (Date) formatoDelTexto.parse(inicio);
-			finish_date = (Date) formatoDelTexto.parse(finalizar);
-			System.out.println("++++++"+start_date+ "" +finish_date);
-			if(start_date != null && finish_date!=null) {
-				int id = 0;
-				//projectService.addProject(id,id_personal, id_organization, id_datamodel, start_date,finish_date);
-			}
-		} catch (ParseException ex) {
-		ex.printStackTrace();
-		}*/
 		return new ModelAndView("redirect:/main");
+	}
+	
+	@RequestMapping(value = "main/viewOpenProject", method = RequestMethod.GET)
+	public ModelAndView viewOpenProject(ModelAndView model) {
+		List<Project> listOpenProject = null; //= organizationService.getAllOrganization();
+		model.addObject("listOpenProject", listOpenProject);
+		model.setViewName("openProjectList");
+		return model;
+	}
+	
+	@RequestMapping(value = "main/viewCloseProject", method = RequestMethod.GET)
+	public ModelAndView viewCloseProject(ModelAndView model) {
+		List<Project> listCloseProject = null; //= organizationService.getAllOrganization();
+		model.addObject("listCloseProject", listCloseProject);
+		model.setViewName("closeProjectList");
+		return model;
 	}
 
 }
