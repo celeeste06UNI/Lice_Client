@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mkyong.users.model.Personal;
+import com.mkyong.users.model.Project;
 import com.mkyong.users.model.ProjectForView;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -30,8 +31,8 @@ public class ProjectServiceImpl implements ProjectService{
 	String rutaServidor = "http://localhost:8080/SpringSecurityServer";
 	
 	@Transactional
-	public void addProject(int id, int id_emp, int id_org, int id_datamodel, Date start_date, Date finish_date) {
-		String url = rutaServidor + "/project/saveProject?" + "id=" + id + "&id_emp="
+	public void addProject(int id, String proj_name, int id_emp, int id_org, int id_datamodel, Date start_date, Date finish_date) {
+		String url = rutaServidor + "/project/saveProject?" + "id=" + id + "&proj_name="+ proj_name + "&id_emp="
 				+ id_emp + "&id_org=" + id_org + "&id_datamodel=" + id_datamodel + "&start_date="
 				+ start_date + "&finish_date=" + finish_date;
 
@@ -57,6 +58,29 @@ public class ProjectServiceImpl implements ProjectService{
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), ProjectForView[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<Project> getOpenProject() {
+		String url = rutaServidor + "/project/getOpenProject";
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<Project> list = new ArrayList<Project>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Project[].class));
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

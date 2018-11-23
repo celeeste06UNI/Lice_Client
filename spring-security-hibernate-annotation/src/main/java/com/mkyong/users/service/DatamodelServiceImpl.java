@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mkyong.users.model.DataModel;
 import com.mkyong.users.model.DataModelDecript;
+import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -154,5 +155,34 @@ public class DatamodelServiceImpl implements DatamodelService{
 				.get(ClientResponse.class);
 		
 	}
+	
+	public DataModel getDataModel(Integer id) {
+		String url = rutaServidor + "/datam/getDataModel?" + "id_dm=" + id;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		DataModel dataModel = new DataModel();
+		List<DataModel> list = new ArrayList<DataModel>();
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), DataModel[].class));
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < list.size(); i++) {
+			dataModel = list.get(i);
+		}
+
+		return dataModel;
+	}
+
 
 }

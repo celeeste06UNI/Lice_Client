@@ -63,7 +63,16 @@ public class ProjectController {
 		java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
 		java.util.Date date1 = sdf1.parse(finalizar);
 		java.sql.Date sqlStartDate1 = new java.sql.Date(date.getTime()); 
-		projectService.addProject(id,id_personal, id_organization, id_datamodel, sqlStartDate,sqlStartDate1);
+		
+		Organization organization = organizationService.getOrganization(id_organization);
+		String org_name = organization.getName_org();
+		
+		DataModel dataModel = datamodelService.getDataModel(id_datamodel);
+		String dataModel_name = dataModel.getDatabase_name();
+		
+		String proj_name = org_name + "_" + dataModel_name + "_" + sqlStartDate;
+		System.out.println(proj_name);
+		projectService.addProject(id,proj_name,id_personal, id_organization, id_datamodel, sqlStartDate,sqlStartDate1);
 		return new ModelAndView("redirect:/main");
 	}
 	
@@ -82,5 +91,16 @@ public class ProjectController {
 		model.setViewName("closeProjectList");
 		return model;
 	}
+	
+	@RequestMapping(value = "/selectProject", method = RequestMethod.GET)
+	public ModelAndView selectProject(ModelAndView model, @ModelAttribute("numberAt") int numberAt) {
+		int numerAtFor = numberAt;
+		List<Project> projectList = projectService.getOpenProject();
+		model.addObject("projectList", projectList);
+		model.addObject("numerAtFor", numerAtFor);
+		model.setViewName("ruleForm");
+		return model;
+	}
+	
 
 }
