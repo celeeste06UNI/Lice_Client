@@ -28,7 +28,7 @@
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">LiceDQTool</a>
+				<a class="navbar-brand" href="/SpringSecurity/main">LiceDQTool</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -63,7 +63,7 @@
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
+						<li><a href="newRule">Crear</a></li>
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>

@@ -11,8 +11,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>eliminar/editar usuario</title>
+<title>nueva regla</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -21,9 +20,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -83,40 +82,72 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Eliminar/Editar Usuario</h2>
+				<h2>Nueva Regla</h2>
 			</div>
 
 		</div>
-		<div class="container" align="left">
-			<table class="table table-hover">
-				<p>Busque el usuario que desee y pulse "Eliminar" o "Editar" en
-					el caso que quiera cambiar algún dato</p>
-				<!-- <th>Id</th> -->
-				<th>Nombre de Usuario</th>
-				<th>Nombre</th>
-				<th>Email</th>
-				<th>Dirección</th>
-				<th>Teléfono</th>
-				<th>Acción</th>
+		<div class="container" align="center">
+			<form:form action="${cp}/saveEmployee" method="POST"
+				modelAttribute="personal">
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Nombre
+						de Usuario:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="username" required
+							autocomplete="off" placeholder="Introduzca el nombre de usuario">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Nombre:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="name" required
+							autocomplete="off" placeholder="Introduzca el nombre">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Email:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="email" required
+							autocomplete="off" placeholder="Introduzca el email">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Dirección:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="address" required
+							autocomplete="off" placeholder="Introduzca la dirección">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2" align="right">Telefono:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="telephone" required
+							autocomplete="off" placeholder="Introduzca el teléfono">
+					</div>
+				</div>
+				&nbsp
+				<div class="form-group">
+					<label class="control-label col-sm-2"
+						for="exampleFormControlSelect1" align="right">Rol:</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="role" id="role">
+							<option value="ROLE_ADMIN">ADMIN</option>
+							<option value="ROLE_USER">USER</option>
+						</select>
+					</div>
+				</div>
+				&nbsp
+				<div class="container" align="center">
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
 
-				<c:forEach var="employee" items="${listPersonal}">
-					<tr>
-						<%-- <td>${employee.id}</td> --%>
-						<td>${employee.username}</td>
-						<td>${employee.name}</td>
-						<td>${employee.email}</td>
-						<td>${employee.address}</td>
-						<td>${employee.telephone}</td>
-						<td><a
-							href="<c:url value='/editPersonal?id=${employee.id}&username=${employee.username}' />">Editar</a>
-							- <a
-							href="<c:url value='/deletePersonal?id=${employee.id}&username=${employee.username}' />">Eliminar</a></td>
 
-					</tr>
-				</c:forEach>
-			</table>
+			</form:form>
 		</div>
 	</sec:authorize>
 </body>
-
 </html>

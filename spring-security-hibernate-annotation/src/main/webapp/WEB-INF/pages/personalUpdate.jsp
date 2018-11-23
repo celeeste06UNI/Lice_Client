@@ -27,43 +27,43 @@
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">LiceDQTool</a>
+				<a class="navbar-brand" href="/SpringSecurity/main">LiceDQTool</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<!-- <li class="active"><a href="#">Home</a></li> -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newEmployee">Crear</a></li>
-						<li><a href="viewEmployee">Eliminar/Editar</a></li>
+						<li><a href="main/newEmployee">Crear</a></li>
+						<li><a href="main/viewEmployee">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Organizaciones <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newOrganization">Crear</a></li>
-						<li><a href="viewOrganization">Eliminar/Editar</a></li>
+						<li><a href="main/newOrganization">Crear</a></li>
+						<li><a href="main/viewOrganization">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newProject">Crear</a></li>
-						<li><a href="viewOpenProject">Proyectos activos</a></li>
-						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
+						<li><a href="main/newProject">Crear</a></li>
+						<li><a href="main/viewOpenProject">Proyectos activos</a></li>
+						<li><a href="main/viewCloseProject">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="viewUpload">Crear</a></li>
-						<li><a href="viewDatamodel">Visualizar</a></li>
-						<li><a href="deleteDataModel">Eliminar</a></li>
+						<li><a href="main/viewUpload">Crear</a></li>
+						<li><a href="main/viewDatamodel">Visualizar</a></li>
+						<li><a href="main/deleteDataModel">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Crear</a></li>
+						<li><a href="main/newRule">Crear</a></li>
 						<li><a href="#">Eliminar</a></li>
 						<li><a href="#">Modificar</a></li>
 					</ul></li>
