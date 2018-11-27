@@ -32,9 +32,36 @@ public class RuleController {
 	}
 
 	@RequestMapping(value = "main/newRule", method = RequestMethod.GET)
-	public ModelAndView newContact(ModelAndView model) {
+	public ModelAndView newContact(ModelAndView model,  HttpServletRequest request) {
+		Integer numeroAtributos = (Integer) model.getModel().get("numberAt");
 		List<Project> projectList = projectService.getOpenProject();
+		model.addObject("numberContr", numeroAtributos);
 		model.addObject("projectList", projectList);
+		model.setViewName("ruleForm");
+		return model;
+	}
+	
+	@RequestMapping(value = "/saveRule", method = RequestMethod.GET)
+	public ModelAndView saveRule(ModelAndView model, HttpServletRequest request) {
+		Integer numeroAtributos = Integer.parseInt(request.getParameter("bucle"));
+		String operador = request.getParameter("operador");
+		for(int i = 1; i<numeroAtributos + 1; i++) {
+			String cuantificador = request.getParameter("cuantificador" + i);
+			String termino = request.getParameter("termino" + i);
+			String verbo = request.getParameter("verbo" + i);
+			String operadorLogi = request.getParameter("operadorLogi" + i);
+			String valorAt = request.getParameter("valorAt" + i);
+			System.out.println(operador + " " + cuantificador + " " + termino + " "+ verbo + " " + operadorLogi 
+					+ " " + valorAt);
+			//Crear un objeto atributoRegla con todos estos datos 
+		}
+		String propiedad = request.getParameter("propiedad");
+		String estado = request.getParameter("estado");
+		String criticidad = request.getParameter("criticidad");
+		String prioridad = request.getParameter("prioridad");
+		String version = request.getParameter("version");
+		String catalogo = request.getParameter("catalogo");
+		
 		model.setViewName("ruleForm");
 		return model;
 	}

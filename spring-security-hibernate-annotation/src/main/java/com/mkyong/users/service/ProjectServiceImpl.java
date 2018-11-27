@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.Project;
 import com.mkyong.users.model.ProjectForView;
@@ -112,6 +113,34 @@ public class ProjectServiceImpl implements ProjectService{
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public Project getProject(Integer id_project) {
+		String url = rutaServidor + "/project/getProject?" + "id=" + id_project;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		Project project = new Project();
+		List<Project> list = new ArrayList<Project>();
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Project[].class));
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < list.size(); i++) {
+			project = list.get(i);
+		}
+
+		return project;
 	}
 	
 	

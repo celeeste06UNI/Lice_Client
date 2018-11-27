@@ -11,6 +11,49 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">
+	function pregunta() {
+		if (confirm("¿Desea crear la regla?")) {
+			document.pruebaForm.submit()
+		}
+	}
+</script>
+<script type="text/javascript">
+	function datos() {
+		alert("Valores posibles: NULL, UNIQUE, {1,2}");
+	}
+</script>
+<!-- <script type="text/javascript">
+	function mostrar() {
+		document.getElementById('oculto').style.display = 'block';
+	}
+</script> -->
+<!-- <script type="text/javascript">
+	function PromptDemo() {	   
+		//var bucle = document.getElementById('bucle').value;
+		//Ingresamos un mensaje a mostrar
+		var cadena = prompt("Escriba: fijo/rango/termino.{numeroAtributo}. Ejemplo: fijo.1", "");
+		separador = ".", // un espacio en blanco
+		limite = 2,
+		arregloDeSubCadenas = cadena.split(separador, limite);
+		var eleccion = arregloDeSubCadenas[0];	
+		var numero = arregloDeSubCadenas[1];
+		//Detectamos si el usuario ingreso un valor
+		if (eleccion != null) {
+			if(eleccion.localeCompare("fijo") || eleccion.localeCompare("rango") || eleccion.localeCompare("termino") || 
+					eleccion.localeCompare("expresion")){
+				document.getElementById(eleccion+numero).style.display = 'block';
+				document.getElementById('añadirValor'+numero).disabled=true;
+			}else{
+				alert("No has seleccionado ninguna de las opciones correctas");
+			}
+		}
+		//Detectamos si el usuario NO ingreso un valor
+		else {
+			alert("Ningun valor introducido");
+		}
+	}
+</script> -->
 <title>nueva regla</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -93,7 +136,8 @@
 				<h4>
 					<strong>Informacion principal</strong>
 				</h4>
-				<form:form action="${cp}/selectProject" method="GET">
+				<form:form name='cargarForm' action="${cp}/selectProject"
+					method="GET">
 					<div class="form-group">
 						<label class="control-label col-sm-2"
 							for="exampleFormControlSelect1" align="right">Proyecto:</label>
@@ -123,184 +167,286 @@
 				</form:form>
 			</div>
 		</div>
-		<div class="container" align="center">
-			<div class="w3-panel w3-border w3-round-xlarge">
-				&nbsp
-				<h4>
-					<strong>Construya la regla</strong>
-				</h4>
-				<div class="form-group">
-					<label class="control-label col-sm-2"
-						for="exampleFormControlSelect1" align="right">Operadores
-						Modales:</label>
-					<div class="col-sm-10">
-						<select class="form-control" name=project id="project">
-							<option value="es obligatorio que">Es obligatorio que...</option>
-							<option value="es obligatorio que">Es obligatorio que...</option>
-						</select>
+		<form:form name='pruebaForm' action="${cp}/saveRule" method="GET">
+
+			<div class="container" align="center">
+				<div class="w3-panel w3-border w3-round-xlarge">
+					&nbsp
+					<h4>
+						<strong>Construya la regla</strong>
+					</h4>
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Operadores
+							Modales:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=operador id="operador">
+								<option value="oligatorio">Es obligatorio que...</option>
+								<option value="necesario">Es necesario que...</option>
+								<option value="imposible">Es imposible que...</option>
+								<option value="puede">Puede que...</option>
+								<option value="paratodo">Para todo registro que...</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<c:forEach var="i" begin="1" end="${numerAtFor}">
+					<div class="form-group">
+						<div class="col-sm-10">
+							<input id="bucle" type="hidden" class="form-control" name="bucle"
+								value="${numerAtFor}">
+						</div>
+					</div>
+					<c:forEach var="i" begin="1" end="${numerAtFor}">
          			&nbsp
          			<div class="w3-panel w3-leftbar w3-border-blue">
-						&nbsp
-						<h6>
-							<strong>Atributo ${i}</strong>
-						</h6>
-						&nbsp
-						<div class="form-group">
-							<label class="control-label col-sm-2" align="right">Cuantificadores:</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="numberAt" disabled
-									placeholder="el campo">
+							&nbsp
+							<h6>
+								<strong>Atributo ${i}</strong>
+							</h6>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2" align="right">Cuantificadores:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control"
+										name="cuantificador${i}" value="el campo"
+										placeholder="el campo">
+								</div>
 							</div>
-						</div>
-						&nbsp
-						<div class="form-group">
-							<label class="control-label col-sm-2"
-								for="exampleFormControlSelect1" align="right">Terminos:</label>
-							<div class="col-sm-10">
-								<select class="form-control" name=project id="project">
-									<option value="es obligatorio que">Es obligatorio
-										que...</option>
-									<option value="es obligatorio que">Es obligatorio
-										que...</option>
-								</select>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2"
+									for="exampleFormControlSelect1" align="right">Terminos:</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="termino${i}"
+										id="termino${i}">
+										<c:forEach var="dataModelDec" items="${listAttributes}">
+											<option value="${dataModelDec}">${dataModelDec}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<%-- <div class="col-sm-2">
+									<input id="añadirValor${i}" type="button" class="btn btn-primary"
+										onclick="PromptDemo()" value="Añadir valor" />
+								</div> --%>
 							</div>
-						</div>
-						&nbsp
-						<div class="form-group">
-							<label class="control-label col-sm-2"
-								for="exampleFormControlSelect1" align="right">Verbos:</label>
-							<div class="col-sm-10">
-								<select class="form-control" name=project id="project">
-									<option value="es obligatorio que">sea</option>
-									<option value="es obligatorio que">puede</option>
-								</select>
+							&nbsp
+							<!-- <div class="container" align="center">
+								<input type="button" onclick="PromptDemo()" value="Añadir valor" />
+							</div> -->
+							<%-- 							&nbsp
+							<div id='fijo${i}' style='display: none;' class="form-group">
+								<label class="control-label col-sm-2" align="right">Valor
+									fijo:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="valorfijo${i}"
+										placeholder="indique el valor">
+								</div>
 							</div>
-						</div>
-						&nbsp
-						<div class="form-group">
-							<label class="control-label col-sm-2"
-								for="exampleFormControlSelect1" align="right">Operadores
-								Lógicos:</label>
-							<div class="col-sm-10">
-								<select class="form-control" name=project id="project">
-									<option value="no">no</option>
-									<option value="-">-</option>
-								</select>
+
+							<div id='rango${i}' style='display: none;' class="form-group">
+								<label class="control-label col-sm-2" align="right">Rango
+									de valores:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="rangoIntro${i}"
+										placeholder="indique el valor">
+								</div>
 							</div>
-						</div>
-						&nbsp
-						<div class="form-group">
-							<label class="control-label col-sm-2"
-								for="exampleFormControlSelect1" align="right">Otras
-								palabras:</label>
-							<div class="col-sm-10">
-								<select class="form-control" name=project id="project">
-									<option value="nulo">nulo</option>
-									<option value="-">-</option>
-								</select>
+
+							<div id='expresion${i}' style='display: none;' class="form-group">
+								<label class="control-label col-sm-2" align="right">Expresion
+									regular:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="expresionIntro${i}"
+										placeholder="indique el valor">
+								</div>
+							</div> --%>
+
+
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2"
+									for="exampleFormControlSelect1" align="right">Verbos:</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="verbo${i}" id="project">
+										<option value="sea">sea</option>
+										<option value="tomevalor">Tome el valor...</option>
+										<option value="tomevalores">Tome los valores...</option>
+										<option value="expresion">Tenga una expresión regular
+											definida como...</option>
+									</select>
+								</div>
 							</div>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2"
+									for="exampleFormControlSelect1" align="right">Operadores
+									Lógicos:</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="operadorLogi${i}" id="no">
+										<option value="no">no</option>
+										<option value="operalodorLo-">-</option>
+									</select>
+								</div>
+							</div>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2" align="right">Valor
+									del Termino:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="valorAt${i}"
+										placeholder="indique el valor del atributo">
+								</div>
+								<div class="col-sm-2">									
+									<button type="button" onclick= "datos()" class="btn btn-info"> 
+										<span class="glyphicon glyphicon-info-sign"></span> Info
+									</button>
+
+								</div>
+							</div>
+							&nbsp
 						</div>
-						&nbsp
-					</div>
 					&nbsp
 				</c:forEach>
 
 
-				&nbsp
+					&nbsp
+				</div>
 			</div>
-		</div>
-		<div class="container" align="center">
-			<div class="w3-panel w3-border w3-round-xlarge">
-				&nbsp
+			<%-- 			<div class="container" align="center">
+				<div class="w3-panel w3-border w3-round-xlarge">
+					&nbsp
 
-				<h4>
-					<strong>Visualice la regla</strong>
-				</h4>
+					<h4>
+						<strong>Visualice la regla</strong>
+					</h4>
 
-				<div class="form-group">
-					<div class="col-sm-2">
-						<button type="button" class="btn btn-primary">Cargar
-							regla</button>
+					<div class="form-group">
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-primary">Cargar
+								regla</button>
+						</div>
+						<div class="col-sm-10">
+							<textarea class="form-control" rows="5" id="comment">${ completeRule}</textarea>
+						</div>
 					</div>
-					<div class="col-sm-10">
-						<textarea class="form-control" rows="5" id="comment">${ completeRule}</textarea>
-					</div>
+					&nbsp
 				</div>
-				&nbsp
+			</div> --%>
+
+			<div class="container" align="center">
+				<div class="w3-panel w3-border w3-round-xlarge">
+					&nbsp
+
+					<h4>
+						<strong>Información adicional</strong>
+					</h4>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Propiedad
+							de la Calidad:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=propiedad id="propiedad">
+								<option value="precisionsintactica">Precision
+									sintactica</option>
+								<option value="precisionsemantica">Precision semantica</option>
+								<option value="rangoprecision">Rango de precision</option>
+								<option value="completitudregistro">Completitud de
+									registro</option>
+								<option value="completitudfichero">Completitud de
+									fichero</option>
+								<option value="completitudvalores">Completitud de
+									valores de datos</option>
+								<option value="completitudfalsa">Completitud falsa de
+									ficheros</option>
+								<option value="consistenciaintegridad">Consistencia
+									integridad referencial</option>
+								<option value="consistenciaformato">Consistencia de
+									formato</option>
+								<option value="consistenciasemantica">Consistencia
+									semántica</option>
+								<option value="inconsistencia">Riesgos de
+									inconsistencia</option>
+								<option value="credibilidadvalores">Credibilidad de los
+									valores de datos</option>
+								<option value="credibilidadfuente">Credibilidad de la
+									fuente de datos</option>
+								<option value="actualidadfrecuencia">Frecuencia de
+									actualizacion</option>
+								<option value="actualidadconveniencia">Conveniencia de
+									actualizacion</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Estado:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=estado id="estado">
+								<option value="elicitada">Elicitada</option>
+								<option value="validada">Validada</option>
+								<option value="evaluada">Evaluada</option>
+								<option value="validada">Cerrada</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Criticidad:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=criticidad id="criticidad">
+								<option value="c_muyalta">Muy alta</option>
+								<option value="c_alta">Alta</option>
+								<option value="c_baja">Baja</option>
+								<option value="c_muybaja">Muy baja</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Prioridad:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=prioridad id="prioridad">
+								<option value="p_muyalta">Muy alta</option>
+								<option value="p_alta">Alta</option>
+								<option value="p_media">Media</option>
+								<option value="p_baja">Baja</option>
+								<option value="p_muybaja">Muy baja</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2" align="right">Version:</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" name="version"
+								placeholder="indique la version">
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Catalogo:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=catalogo id="catalogo">
+								<option value="catalogo1">catalogo1</option>
+								<option value="catalogo2">catalogo2</option>
+								<option value="catalogo-">-</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+
+				</div>
 			</div>
-		</div>
-
-		<div class="container" align="center">
-			<div class="w3-panel w3-border w3-round-xlarge">
-				&nbsp
-
-				<h4>
-					<strong>Información adicional</strong>
-				</h4>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2"
-						for="exampleFormControlSelect1" align="right">Propiedad de
-						la Calidad:</label>
-					<div class="col-sm-10">
-						<select class="form-control" name=propiedad id="propiedad">
-							<option value="propiedad1">propiedad1</option>
-							<option value="propiedad2">propiedad2</option>
-						</select>
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2"
-						for="exampleFormControlSelect1" align="right">Estado:</label>
-					<div class="col-sm-10">
-						<select class="form-control" name=estado id="estado">
-							<option value="estado1">estado1</option>
-							<option value="estado2">estado2</option>
-						</select>
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2"
-						for="exampleFormControlSelect1" align="right">Criticidad:</label>
-					<div class="col-sm-10">
-						<select class="form-control" name=criticidad id="criticidad">
-							<option value="criticidad1">criticidad1</option>
-							<option value="criticidad2">criticidad2</option>
-						</select>
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2"
-						for="exampleFormControlSelect1" align="right">Prioridad:</label>
-					<div class="col-sm-10">
-						<select class="form-control" name=prioridad: id="prioridad:">
-							<option value="prioridad1">prioridad1</option>
-							<option value="prioridad2">prioridad2</option>
-						</select>
-					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2" align="right">Version:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="version"
-							placeholder="indique la version">
-					</div>
-				</div>
-				&nbsp
-
-			</div>
-		</div>
 		&nbsp
-				<div class="container" align="center">
-			<button type="submit" class="btn btn-primary">Crear Regla</button>
-		</div>
+		<div class="container" align="center">
+				<input type="button" class="btn btn-primary" onclick="pregunta()"
+					value="Enviar">
+			</div>
+		</form:form>
 		&nbsp
 	</sec:authorize>
 </body>

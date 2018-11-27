@@ -1,6 +1,9 @@
 package com.mkyong.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mkyong.users.model.DataModel;
+import com.mkyong.users.model.DataModelDecript;
 import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.Project;
@@ -93,11 +97,22 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value = "/selectProject", method = RequestMethod.GET)
-	public ModelAndView selectProject(ModelAndView model, @ModelAttribute("numberAt") int numberAt) {
+	public ModelAndView selectProject(HttpServletRequest request, ModelAndView model, @ModelAttribute("numberAt") int numberAt) {
 		int numerAtFor = numberAt;
+		ArrayList<String> listAttributes = new ArrayList<String>();
 		List<Project> projectList = projectService.getOpenProject();
 		model.addObject("projectList", projectList);
 		model.addObject("numerAtFor", numerAtFor);
+		int id_project = Integer.parseInt(request.getParameter("project"));
+		Project project = projectService.getProject(id_project);
+		System.out.println(project.getId_datamodel());
+		List<DataModelDecript> dataModelDecript = datamodelService.getDatamodelDescript(project.getId_datamodel());
+		for(int i= 0; i<dataModelDecript.size(); i++) {
+			DataModelDecript dmd = dataModelDecript.get(i);
+			String completo = dmd.getTable_name() + "." + dmd.getColumn_name();
+			listAttributes.add(completo);	
+		}
+		model.addObject("listAttributes", listAttributes);
 		model.setViewName("ruleForm");
 		return model;
 	}
