@@ -63,7 +63,16 @@
 							<li><a href="#">Modificar</a></li>
 						</ul></li>
 
-					<li><a href="#">Catalogo</a></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Catalogo <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="main/newCatalogue">Crear</a></li>
+							<li><a href="#">Asignar reglas a Catálogo</a></li>
+							<li><a href="#">Eliminar reglas de Catálogo</a></li>
+							<li><a href="#">Modificar Catálogo</a></li>
+							<li><a href="#">Eliminar Catálogo</a></li>
+						</ul></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
