@@ -93,7 +93,7 @@
 					<label class="control-label col-sm-2" align="right">Nombre
 						del Catalogo:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_catalogue" required
+						<input type="text" class="form-control" name="name" required
 							autocomplete="off" placeholder="Introduzca el nombre del catalogo">
 					</div>
 				</div>

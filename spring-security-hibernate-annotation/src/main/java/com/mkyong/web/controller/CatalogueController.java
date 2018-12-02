@@ -25,17 +25,18 @@ public class CatalogueController {
 		System.out.println("CatalogueController()");
 	}
 	@RequestMapping(value = "main/newCatalogue", method = RequestMethod.GET)
-	public ModelAndView newContact(ModelAndView model) {
+	public ModelAndView newCatalogue(ModelAndView model) {
 		model.setViewName("catalogueForm");
 		return model;
 	}
 
-	@RequestMapping(value = "main/saveCatalogue", method = RequestMethod.POST)
-	public ModelAndView newCatalogue(ModelAndView model,  HttpServletRequest request) {
+	@RequestMapping(value = "/saveCatalogue", method = RequestMethod.POST)
+	public ModelAndView saveCatalogue(ModelAndView model, HttpServletRequest request) {
 		int id_catalogue = 0;
-		String name_catalogue = request.getParameter("name_catalogue");
+		String name = request.getParameter("name");
 		String description = request.getParameter("description");
-		catalogueService.addCatalogue(id_catalogue, name_catalogue, description);
+		catalogueService.addCatalogue(id_catalogue, name, description);
+		model.setViewName("catalogueForm");
 		return model;
 	}
 }

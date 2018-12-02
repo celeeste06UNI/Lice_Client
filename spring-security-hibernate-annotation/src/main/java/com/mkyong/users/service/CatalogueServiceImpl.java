@@ -17,10 +17,9 @@ public class CatalogueServiceImpl implements CatalogueService{
 	String rutaServidor = "http://localhost:8080/SpringSecurityServer";
 
 	@Transactional
-	public void addCatalogue(int id_catalogue, String name_catalogue, String description) {
+	public void addCatalogue(int id_catalogue, String name, String description) {
 		String url = rutaServidor + "/catalogue/addCatalogue?" + "id_catalogue=" + id_catalogue 
-				+ "&name_catalogue=" + name_catalogue + "&description=" + description;
-
+				+ "&name=" + name + "&description=" + description;
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
 		Client client = Client.create(clientConfig);
