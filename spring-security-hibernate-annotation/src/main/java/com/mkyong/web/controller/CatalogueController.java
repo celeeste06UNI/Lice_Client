@@ -1,5 +1,7 @@
 package com.mkyong.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mkyong.users.model.Catalogue;
+import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.service.CatalogueService;
 
@@ -27,6 +31,14 @@ public class CatalogueController {
 	@RequestMapping(value = "main/newCatalogue", method = RequestMethod.GET)
 	public ModelAndView newCatalogue(ModelAndView model) {
 		model.setViewName("catalogueForm");
+		return model;
+	}
+	
+	@RequestMapping(value = "main/viewCatalogue", method = RequestMethod.GET)
+	public ModelAndView viewCatalogue(ModelAndView model) {
+		List<Catalogue> listCatalogue = catalogueService.getAllCatalogue();
+		model.addObject("listCatalogue", listCatalogue);
+		model.setViewName("catalogueList");
 		return model;
 	}
 

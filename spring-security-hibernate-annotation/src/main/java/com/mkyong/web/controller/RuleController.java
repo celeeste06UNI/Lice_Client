@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mkyong.users.model.Catalogue;
 import com.mkyong.users.model.DataModel;
 import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.Project;
+import com.mkyong.users.service.CatalogueService;
 import com.mkyong.users.service.ProjectService;
 
 
@@ -26,6 +28,8 @@ public class RuleController {
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private CatalogueService catalogueService;
 
 	public RuleController() {
 		System.out.println("RuleController()");
@@ -35,8 +39,10 @@ public class RuleController {
 	public ModelAndView newContact(ModelAndView model,  HttpServletRequest request) {
 		Integer numeroAtributos = (Integer) model.getModel().get("numberAt");
 		List<Project> projectList = projectService.getOpenProject();
+		List<Catalogue> catalogueList = catalogueService.getAllCatalogue();
 		model.addObject("numberContr", numeroAtributos);
 		model.addObject("projectList", projectList);
+		model.addObject("catalogueList", catalogueList);
 		model.setViewName("ruleForm");
 		return model;
 	}

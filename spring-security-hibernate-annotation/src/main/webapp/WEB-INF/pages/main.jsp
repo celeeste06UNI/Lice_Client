@@ -70,8 +70,7 @@
 							<li><a href="main/newCatalogue">Crear</a></li>
 							<li><a href="#">Asignar reglas a Catálogo</a></li>
 							<li><a href="#">Eliminar reglas de Catálogo</a></li>
-							<li><a href="#">Modificar Catálogo</a></li>
-							<li><a href="#">Eliminar Catálogo</a></li>
+							<li><a href="main/viewCatalogue">Eliminar/Modificar Catálogo</a></li>
 						</ul></li>
 				</ul>
 

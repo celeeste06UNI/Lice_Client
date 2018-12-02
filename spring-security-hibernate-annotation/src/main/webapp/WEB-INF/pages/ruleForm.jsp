@@ -295,8 +295,8 @@
 									<input type="text" class="form-control" name="valorAt${i}"
 										placeholder="indique el valor del atributo">
 								</div>
-								<div class="col-sm-2">									
-									<button type="button" onclick= "datos()" class="btn btn-info"> 
+								<div class="col-sm-2">
+									<button type="button" onclick="datos()" class="btn btn-info">
 										<span class="glyphicon glyphicon-info-sign"></span> Info
 									</button>
 
@@ -431,8 +431,9 @@
 							for="exampleFormControlSelect1" align="right">Catalogo:</label>
 						<div class="col-sm-10">
 							<select class="form-control" name=catalogo id="catalogo">
-								<option value="catalogo1">catalogo1</option>
-								<option value="catalogo2">catalogo2</option>
+								<c:forEach var="catalogue" items="${catalogueList}">
+									<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
+								</c:forEach>
 								<option value="catalogo-">-</option>
 							</select>
 						</div>
