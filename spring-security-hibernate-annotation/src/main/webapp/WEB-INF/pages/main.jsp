@@ -64,13 +64,14 @@
 						</ul></li>
 
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Catalogo <span
-							class="caret"></span></a>
+						data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/newCatalogue">Crear</a></li>
+							<li><a href="main/viewCatalogue">Eliminar/Modificar</a></li>
+							<li class="divider"></li>
 							<li><a href="#">Asignar reglas a Catálogo</a></li>
 							<li><a href="#">Eliminar reglas de Catálogo</a></li>
-							<li><a href="main/viewCatalogue">Eliminar/Modificar Catálogo</a></li>
+
 						</ul></li>
 				</ul>
 
@@ -148,7 +149,7 @@
 		</div>
 
 	</div>
-<!-- 	<!-- Left-aligned
+	<!-- 	<!-- Left-aligned
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4" >

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,5 +51,27 @@ public class CatalogueController {
 		catalogueService.addCatalogue(id_catalogue, name, description);
 		model.setViewName("catalogueForm");
 		return model;
+	}
+	
+	@RequestMapping(value = "/deleteCatalogue", method = RequestMethod.GET)
+	public ModelAndView deleteOrganization(HttpServletRequest request) {
+		Integer id_catalogue = Integer.parseInt(request.getParameter("id_catalogue"));
+		catalogueService.deleteCatalogue(id_catalogue);		
+		return new ModelAndView("redirect:/main");
+	}
+	
+	@RequestMapping(value = "/editCatalogue", method = RequestMethod.GET)
+	public ModelAndView editOrganization(ModelAndView model, HttpServletRequest request) {
+		Integer id_catalogue = Integer.parseInt(request.getParameter("id_catalogue"));
+		Catalogue catalogue = catalogueService.getCatalogue(id_catalogue);
+		model.addObject("catalogue", catalogue);
+		model.setViewName("catalogueUpdate");
+		return model;
+	}
+	
+	@RequestMapping(value = "/updateCatalogue", method = RequestMethod.POST)
+	public ModelAndView updateCatalogue(@ModelAttribute("catalogue") Catalogue catalogue) {
+		catalogueService.updateCatalogue(catalogue);
+		return new ModelAndView("redirect:/main");
 	}
 }

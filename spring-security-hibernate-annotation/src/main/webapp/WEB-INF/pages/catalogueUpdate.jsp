@@ -11,7 +11,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>nuevo catalogo</title>
+<title>editar catalogo</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -82,26 +82,29 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Nuevo Catálogo</h2>
+				<h2>Editar Catálogo</h2>
 			</div>
 
 		</div>
 		<div class="container" align="center">
-			<form:form action="${cp}/saveCatalogue" method="POST"
+			<form:form action="${cp}/updateCatalogue" method="POST"
 				modelAttribute="catalogue">
+				<input type="hidden" class="form-control" name="id_catalogue" required
+							autocomplete="off" value=${catalogue.id_catalogue}>
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Nombre
 						del Catalogo:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name" required
-							autocomplete="off" placeholder="Introduzca el nombre del catalogo">
+							autocomplete="off" value=${catalogue.name}>
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Descripcion:</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" rows="5" id="description" name="description"></textarea>
+						<textarea class="form-control" rows="5" id="description"
+							name="description">${catalogue.description}</textarea>
 					</div>
 				</div>
 				&nbsp

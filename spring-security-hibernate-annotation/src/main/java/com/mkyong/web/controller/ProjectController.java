@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mkyong.users.model.Catalogue;
 import com.mkyong.users.model.DataModel;
 import com.mkyong.users.model.DataModelDecript;
 import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.Project;
 import com.mkyong.users.model.ProjectForView;
+import com.mkyong.users.service.CatalogueService;
 import com.mkyong.users.service.DatamodelService;
 import com.mkyong.users.service.OrganizationService;
 import com.mkyong.users.service.PersonalService;
@@ -41,6 +43,8 @@ public class ProjectController {
 	private DatamodelService datamodelService;
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private CatalogueService catalogueService;
 
 	@RequestMapping(value = "main/newProject", method = RequestMethod.GET)
 	public ModelAndView newProject(ModelAndView model) {
@@ -66,7 +70,7 @@ public class ProjectController {
 		java.util.Date date = sdf1.parse(inicio);
 		java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
 		java.util.Date date1 = sdf1.parse(finalizar);
-		java.sql.Date sqlStartDate1 = new java.sql.Date(date.getTime()); 
+		java.sql.Date sqlStartDate1 = new java.sql.Date(date1.getTime()); 
 		
 		Organization organization = organizationService.getOrganization(id_organization);
 		String org_name = organization.getName_org();
@@ -76,6 +80,7 @@ public class ProjectController {
 		
 		String proj_name = org_name + "_" + dataModel_name + "_" + sqlStartDate;
 		System.out.println(proj_name);
+		
 		projectService.addProject(id,proj_name,id_personal, id_organization, id_datamodel, sqlStartDate,sqlStartDate1);
 		return new ModelAndView("redirect:/main");
 	}
@@ -101,6 +106,7 @@ public class ProjectController {
 		int numerAtFor = numberAt;
 		ArrayList<String> listAttributes = new ArrayList<String>();
 		List<Project> projectList = projectService.getOpenProject();
+		List<Catalogue> catalogueList = catalogueService.getAllCatalogue();
 		model.addObject("projectList", projectList);
 		model.addObject("numerAtFor", numerAtFor);
 		int id_project = Integer.parseInt(request.getParameter("project"));
@@ -113,6 +119,8 @@ public class ProjectController {
 			listAttributes.add(completo);	
 		}
 		model.addObject("listAttributes", listAttributes);
+		model.addObject("catalogueList", catalogueList);
+		model.addObject("id_project", id_project);
 		model.setViewName("ruleForm");
 		return model;
 	}

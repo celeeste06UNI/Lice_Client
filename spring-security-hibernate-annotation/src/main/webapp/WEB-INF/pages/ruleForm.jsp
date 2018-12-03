@@ -192,7 +192,8 @@
 					<div class="form-group">
 						<div class="col-sm-10">
 							<input id="bucle" type="hidden" class="form-control" name="bucle"
-								value="${numerAtFor}">
+								value="${numerAtFor}"> <input id="id_project" type="hidden"
+								class="form-control" name="id_project" value="${id_project}">
 						</div>
 					</div>
 					<c:forEach var="i" begin="1" end="${numerAtFor}">
@@ -228,39 +229,6 @@
 										onclick="PromptDemo()" value="Añadir valor" />
 								</div> --%>
 							</div>
-							&nbsp
-							<!-- <div class="container" align="center">
-								<input type="button" onclick="PromptDemo()" value="Añadir valor" />
-							</div> -->
-							<%-- 							&nbsp
-							<div id='fijo${i}' style='display: none;' class="form-group">
-								<label class="control-label col-sm-2" align="right">Valor
-									fijo:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="valorfijo${i}"
-										placeholder="indique el valor">
-								</div>
-							</div>
-
-							<div id='rango${i}' style='display: none;' class="form-group">
-								<label class="control-label col-sm-2" align="right">Rango
-									de valores:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="rangoIntro${i}"
-										placeholder="indique el valor">
-								</div>
-							</div>
-
-							<div id='expresion${i}' style='display: none;' class="form-group">
-								<label class="control-label col-sm-2" align="right">Expresion
-									regular:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="expresionIntro${i}"
-										placeholder="indique el valor">
-								</div>
-							</div> --%>
-
-
 							&nbsp
 							<div class="form-group">
 								<label class="control-label col-sm-2"
@@ -311,27 +279,6 @@
 					&nbsp
 				</div>
 			</div>
-			<%-- 			<div class="container" align="center">
-				<div class="w3-panel w3-border w3-round-xlarge">
-					&nbsp
-
-					<h4>
-						<strong>Visualice la regla</strong>
-					</h4>
-
-					<div class="form-group">
-						<div class="col-sm-2">
-							<button type="button" class="btn btn-primary">Cargar
-								regla</button>
-						</div>
-						<div class="col-sm-10">
-							<textarea class="form-control" rows="5" id="comment">${ completeRule}</textarea>
-						</div>
-					</div>
-					&nbsp
-				</div>
-			</div> --%>
-
 			<div class="container" align="center">
 				<div class="w3-panel w3-border w3-round-xlarge">
 					&nbsp
@@ -434,7 +381,7 @@
 								<c:forEach var="catalogue" items="${catalogueList}">
 									<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
 								</c:forEach>
-								<option value="catalogo-">-</option>
+								<option value="0">-</option>
 							</select>
 						</div>
 					</div>
