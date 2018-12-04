@@ -1,5 +1,7 @@
 package com.mkyong.users.service;
 
+import java.util.List;
+
 import com.mkyong.users.model.Attribute;
 import com.mkyong.users.model.Rule;
 import com.mkyong.users.model.RuleProj;
@@ -10,6 +12,8 @@ public interface RuleService {
 	public void addRule(Rule rule);
 	
 	public Rule getLastRule();
+	
+	public List<Rule> getAllRule();
 	
 	public void addRuleProj(RuleProj ruleProj);
 	

@@ -16,7 +16,7 @@ public class Rule implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_rule;
 
 	@Column

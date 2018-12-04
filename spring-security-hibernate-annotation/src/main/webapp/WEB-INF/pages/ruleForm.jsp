@@ -208,7 +208,7 @@
 								<label class="control-label col-sm-2" align="right">Cuantificadores:</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control"
-										name="cuantificador${i}" value="el campo"
+										name="cuantificador${i}" value="campo"
 										placeholder="el campo">
 								</div>
 							</div>

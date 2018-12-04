@@ -117,4 +117,29 @@ public class RuleServiceImpl implements RuleService {
 		return rule;
 	}
 
+	@Transactional
+	public List<Rule> getAllRule() {
+		String url = rutaServidor + "/rule/getAllRule";
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		Rule rule = new Rule();
+		List<Rule> list = new ArrayList<Rule>();
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Rule[].class));
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	
+	}
+
 }

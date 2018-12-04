@@ -40,6 +40,14 @@ public class RuleController {
 	public RuleController() {
 		System.out.println("RuleController()");
 	}
+	
+	@RequestMapping(value = "main/viewRule", method = RequestMethod.GET)
+	public ModelAndView viewRule(ModelAndView model) {
+		List<Rule> listRule = null;
+		model.addObject("listRule", listRule);
+		model.setViewName("ruleList");
+		return model;
+	}
 
 	@RequestMapping(value = "main/newRule", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model,  HttpServletRequest request) {
@@ -72,6 +80,7 @@ public class RuleController {
 		ruleService.addRule(rule);
 		//Recoger el id de la ultima regla insertada id_rule = getLastRule().getId_rule;
 		id_rule = ruleService.getLastRule().getId_rule();
+		//System.out.println("<<<<<"+id_rule);
 		RuleProj ruleProj = new RuleProj(id_rule, id_project);
 		//Insertar en la tabla para relacionar el proyecto con la regla
 		ruleService.addRuleProj(ruleProj);
