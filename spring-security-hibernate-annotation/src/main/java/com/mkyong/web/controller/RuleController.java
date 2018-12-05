@@ -36,6 +36,8 @@ public class RuleController {
 	private ProjectService projectService;
 	@Autowired
 	private RuleService ruleService;
+	@Autowired
+	private CatalogueService catalogueService;
 
 	public RuleController() {
 		System.out.println("RuleController()");
@@ -45,7 +47,7 @@ public class RuleController {
 	public ModelAndView viewRule(ModelAndView model) {
 		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
 		List<Rule> listRule = ruleService.getAllRule();
-
+		List<Catalogue> catalogueList = catalogueService.getAllCatalogue();
 		for (int i = 0; i < listRule.size(); i++) {
 			String cadenaFinal = "";
 			String operator = listRule.get(i).getOperator();
@@ -56,14 +58,14 @@ public class RuleController {
 			String version = listRule.get(i).getVersion();
 			int id_rule = listRule.get(i).getId_rule();
 			List<Attribute> listAttribute = ruleService.getAttributesByRule(id_rule);
-			System.out.println("__________" + listAttribute.size());
+			cadenaFinal = operator;
 			for (int j = 0; j < listAttribute.size(); j++) {
 				String modal_operator = listAttribute.get(j).getModal_operator();
 				String term = listAttribute.get(j).getTerm();
 				String verb = listAttribute.get(j).getVerb();
 				String logical_operator = listAttribute.get(j).getLogical_operator();
 				String term_value = listAttribute.get(j).getTerm_value();
-				cadenaFinal = cadenaFinal + " " + operator + " " + modal_operator + " " + term + " " + verb + " "
+				cadenaFinal = cadenaFinal  + " " + modal_operator + " " + term + " " + verb + " "
 						+ logical_operator + " " + term_value;
 				cadenaFinal = cadenaFinal + " y ";
 			}
@@ -76,6 +78,7 @@ public class RuleController {
 		}
 
 		model.addObject("listRuleView", listRuleView);
+		model.addObject("catalogueList", catalogueList);
 		model.setViewName("ruleList");
 		return model;
 	}

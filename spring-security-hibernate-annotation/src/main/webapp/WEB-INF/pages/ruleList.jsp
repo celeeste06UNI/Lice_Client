@@ -131,12 +131,15 @@
 		</div>
 		<div class="container">
 			<c:forEach var="rule" items="${listRuleView}">
-				<div class="titulo_boton">${rule.description}<a style='cursor: pointer;'
-						onClick="muestra_oculta('contenido')" title=""
+				<div class="titulo_boton">${rule.description}<a
+						style='cursor: pointer;'
+						onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
 						class="boton_mostrar">Mostrar / Ocultar</a>
 				</div>
+										&nbsp
+						&nbsp
 
-				<div id="contenido">
+				<div id="contenido${rule.id_rule}" style="display:none;">
 					<div class="row">
 						<div class="col-sm-12">
 							<p>Caracteristicas de la regla</p>
@@ -150,69 +153,87 @@
 								<label for="exampleFormControlSelect1" align="right">Propiedad
 									de la Calidad</label> <select class="form-control" name=propiedad
 									id="propiedad">
-									<option value="precisionsintactica">Precision
+									<option value="${rule.property}">${rule.property}</option>
+									<option value="Precision
+									sintactica">Precision
 										sintactica</option>
-									<option value="precisionsemantica">Precision semantica</option>
-									<option value="rangoprecision">Rango de precision</option>
-									<option value="completitudregistro">Completitud de
-										registro</option>
-									<option value="completitudfichero">Completitud de
-										fichero</option>
-									<option value="completitudvalores">Completitud de
-										valores de datos</option>
-									<option value="completitudfalsa">Completitud falsa de
-										ficheros</option>
-									<option value="consistenciaintegridad">Consistencia
+									<option value="Precision semantica">Precision
+										semantica</option>
+									<option value="Rango de precision">Rango de precision</option>
+									<option value="Completitud de
+									registro">Completitud
+										de registro</option>
+									<option value="Completitud de
+									fichero">Completitud
+										de fichero</option>
+									<option value="Completitud de
+									valores de datos">Completitud
+										de valores de datos</option>
+									<option value="Completitud falsa de
+									ficheros">Completitud
+										falsa de ficheros</option>
+									<option value="Consistencia
+									integridad referencial">Consistencia
 										integridad referencial</option>
-									<option value="consistenciaformato">Consistencia de
-										formato</option>
-									<option value="consistenciasemantica">Consistencia
+									<option value="Consistencia de
+									formato">Consistencia
+										de formato</option>
+									<option value="Consistencia
+									semántica">Consistencia
 										semántica</option>
-									<option value="inconsistencia">Riesgos de
-										inconsistencia</option>
-									<option value="credibilidadvalores">Credibilidad de
-										los valores de datos</option>
-									<option value="credibilidadfuente">Credibilidad de la
-										fuente de datos</option>
-									<option value="actualidadfrecuencia">Frecuencia de
-										actualizacion</option>
-									<option value="actualidadconveniencia">Conveniencia de
-										actualizacion</option>
+									<option value="Riesgos de
+									inconsistencia">Riesgos
+										de inconsistencia</option>
+									<option value="Credibilidad de los
+									valores de datos">Credibilidad
+										de los valores de datos</option>
+									<option value="Credibilidad de la
+									fuente de datos">Credibilidad
+										de la fuente de datos</option>
+									<option value="Frecuencia de
+									actualizacion">Frecuencia
+										de actualizacion</option>
+									<option value="Conveniencia de
+									actualizacion">Conveniencia
+										de actualizacion</option>
 								</select>
 							</div>
 							<div class="col-sm-4">
 								<label for="exampleFormControlSelect1" align="right">Estado</label>
 								<select class="form-control" name=estado id="estado">
-									<option value="elicitada">Elicitada</option>
-									<option value="validada">Validada</option>
-									<option value="evaluada">Evaluada</option>
-									<option value="validada">Cerrada</option>
+									<option value="${rule.state}">${rule.state}</option>
+									<option value="Elicitada">Elicitada</option>
+									<option value="Validada">Validada</option>
+									<option value="Evaluada">Evaluada</option>
+									<option value="Validada">Cerrada</option>
 								</select>
 							</div>
 							<div class="col-sm-4">
 								<label for="exampleFormControlSelect1" align="right">Criticidad</label>
 								<select class="form-control" name=criticidad id="criticidad">
-									<option value="c_muyalta">Muy alta</option>
-									<option value="c_alta">Alta</option>
-									<option value="c_baja">Baja</option>
-									<option value="c_muybaja">Muy baja</option>
+									<option value="${rule.criticity}">${rule.criticity}</option>
+									<option value="muy alta">Muy alta</option>
+									<option value="alta">Alta</option>
+									<option value="baja">Baja</option>
+									<option value="muy baja">Muy baja</option>
 								</select>
 							</div>
 							<div class="col-sm-4">
 								<label for="exampleFormControlSelect1" align="right">Prioridad</label>
 
 								<select class="form-control" name=prioridad id="prioridad">
-									<option value="p_muyalta">Muy alta</option>
-									<option value="p_alta">Alta</option>
-									<option value="p_media">Media</option>
-									<option value="p_baja">Baja</option>
-									<option value="p_muybaja">Muy baja</option>
+									<option value="${rule.priority}">${rule.priority}</option>
+									<option value="muy alta">Muy alta</option>
+									<option value="alta">Alta</option>
+									<option value="media">Media</option>
+									<option value="baja">Baja</option>
+									<option value="muy baja">Muy baja</option>
 								</select>
 
 							</div>
 							<div class="col-sm-4">
 								<label align="right">Version</label> <input type="number"
-									class="form-control" name="version"
+									class="form-control" name="version" value="${rule.version}"
 									placeholder="indique la version">
 							</div>
 							<div class="col-sm-4">
@@ -237,10 +258,12 @@
 
 
 						</form:form>
+						&nbsp &nbsp
 					</div>
 
 				</div>
 			</c:forEach>
+
 		</div>
 	</sec:authorize>
 </body>
