@@ -1,44 +1,21 @@
 package com.mkyong.users.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "RULE_TBL")
-public class Rule implements Serializable{
+public class RuleForView {
 	
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_rule;
-	
-	@Column
 	private String operator;
-
-	@Column
 	private String property;
-
-	@Column
 	private String state;
-
-	@Column
 	private String criticity;
-
-	@Column
 	private String priority;
-	
-	@Column
 	private String version;
-
-	public Rule(int id_rule, String operator, String property, String state, String criticity, String priority,
-			String version) {
+	private String description;
+	
+	public RuleForView(int id_rule, String operator, String property, String state, String criticity, String priority,
+			String version, String description) {
 		super();
 		this.id_rule = id_rule;
 		this.operator = operator;
@@ -47,9 +24,10 @@ public class Rule implements Serializable{
 		this.criticity = criticity;
 		this.priority = priority;
 		this.version = version;
+		this.description = description;
 	}
-
-	public Rule() {
+	
+	public RuleForView() {
 	}
 
 	public int getId_rule() {
@@ -59,7 +37,7 @@ public class Rule implements Serializable{
 	public void setId_rule(int id_rule) {
 		this.id_rule = id_rule;
 	}
-	
+
 	public String getOperator() {
 		return operator;
 	}
@@ -67,7 +45,6 @@ public class Rule implements Serializable{
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
-
 
 	public String getProperty() {
 		return property;
@@ -108,12 +85,19 @@ public class Rule implements Serializable{
 	public void setVersion(String version) {
 		this.version = version;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 	public String toString() {
 		return this.id_rule +" "+this.operator +" "+ this.state + this.property + this.criticity + this.priority 
-		+ this.version;
+		+ this.version +  this.description;
 		
 	}
-	
 
 }

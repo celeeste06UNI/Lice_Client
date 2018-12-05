@@ -19,6 +19,8 @@ public interface RuleService {
 	
 	public void addAttribute(Attribute attribute);
 	
+	public List<Attribute> getAttributesByRule(int id_rule);
+
 	public void addRuleProjCatalogue(RuleProjCatalogue ruleProjCatalogue);
 	
 

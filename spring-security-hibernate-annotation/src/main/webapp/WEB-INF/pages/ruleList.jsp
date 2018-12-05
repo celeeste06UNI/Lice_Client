@@ -125,120 +125,122 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Eliminar/Editar Organización</h2>
+				<h2>Eliminar/Editar Reglas</h2>
 			</div>
 
 		</div>
 		<div class="container">
-			<%-- <c:forEach var="rule" items="${listOrganization}"> --%>
-			<div class="titulo_boton">
-				Descripcion de la regla <a style='cursor: pointer;'
-					onClick="muestra_oculta('contenido')" title=""
-					class="boton_mostrar">Mostrar / Ocultar</a>
-			</div>
-
-			<div id="contenido">
-				<div class="row">
-					<div class="col-sm-12">
-						<p>Caracteristicas de la regla</p>
-					</div>
+			<c:forEach var="rule" items="${listRuleView}">
+				<div class="titulo_boton">${rule.description}<a style='cursor: pointer;'
+						onClick="muestra_oculta('contenido')" title=""
+						class="boton_mostrar">Mostrar / Ocultar</a>
 				</div>
 
-				<div class="row">
-					<form:form action="${cp}/updateRule" method="POST"
-						modelAttribute="catalogue">
-						<div class="col-sm-4">
-							<label for="exampleFormControlSelect1" align="right">Propiedad
-								de la Calidad</label> <select class="form-control" name=propiedad
-								id="propiedad">
-								<option value="precisionsintactica">Precision
-									sintactica</option>
-								<option value="precisionsemantica">Precision semantica</option>
-								<option value="rangoprecision">Rango de precision</option>
-								<option value="completitudregistro">Completitud de
-									registro</option>
-								<option value="completitudfichero">Completitud de
-									fichero</option>
-								<option value="completitudvalores">Completitud de
-									valores de datos</option>
-								<option value="completitudfalsa">Completitud falsa de
-									ficheros</option>
-								<option value="consistenciaintegridad">Consistencia
-									integridad referencial</option>
-								<option value="consistenciaformato">Consistencia de
-									formato</option>
-								<option value="consistenciasemantica">Consistencia
-									semántica</option>
-								<option value="inconsistencia">Riesgos de
-									inconsistencia</option>
-								<option value="credibilidadvalores">Credibilidad de los
-									valores de datos</option>
-								<option value="credibilidadfuente">Credibilidad de la
-									fuente de datos</option>
-								<option value="actualidadfrecuencia">Frecuencia de
-									actualizacion</option>
-								<option value="actualidadconveniencia">Conveniencia de
-									actualizacion</option>
-							</select>
+				<div id="contenido">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>Caracteristicas de la regla</p>
 						</div>
-						<div class="col-sm-4">
-							<label for="exampleFormControlSelect1" align="right">Estado</label>
-							<select class="form-control" name=estado id="estado">
-								<option value="elicitada">Elicitada</option>
-								<option value="validada">Validada</option>
-								<option value="evaluada">Evaluada</option>
-								<option value="validada">Cerrada</option>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<label for="exampleFormControlSelect1" align="right">Criticidad</label>
-							<select class="form-control" name=criticidad id="criticidad">
-								<option value="c_muyalta">Muy alta</option>
-								<option value="c_alta">Alta</option>
-								<option value="c_baja">Baja</option>
-								<option value="c_muybaja">Muy baja</option>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<label for="exampleFormControlSelect1" align="right">Prioridad</label>
+					</div>
 
-							<select class="form-control" name=prioridad id="prioridad">
-								<option value="p_muyalta">Muy alta</option>
-								<option value="p_alta">Alta</option>
-								<option value="p_media">Media</option>
-								<option value="p_baja">Baja</option>
-								<option value="p_muybaja">Muy baja</option>
-							</select>
+					<div class="row">
+						<form:form action="${cp}/updateRule" method="POST"
+							modelAttribute="catalogue">
+							<div class="col-sm-4">
+								<label for="exampleFormControlSelect1" align="right">Propiedad
+									de la Calidad</label> <select class="form-control" name=propiedad
+									id="propiedad">
+									<option value="precisionsintactica">Precision
+										sintactica</option>
+									<option value="precisionsemantica">Precision semantica</option>
+									<option value="rangoprecision">Rango de precision</option>
+									<option value="completitudregistro">Completitud de
+										registro</option>
+									<option value="completitudfichero">Completitud de
+										fichero</option>
+									<option value="completitudvalores">Completitud de
+										valores de datos</option>
+									<option value="completitudfalsa">Completitud falsa de
+										ficheros</option>
+									<option value="consistenciaintegridad">Consistencia
+										integridad referencial</option>
+									<option value="consistenciaformato">Consistencia de
+										formato</option>
+									<option value="consistenciasemantica">Consistencia
+										semántica</option>
+									<option value="inconsistencia">Riesgos de
+										inconsistencia</option>
+									<option value="credibilidadvalores">Credibilidad de
+										los valores de datos</option>
+									<option value="credibilidadfuente">Credibilidad de la
+										fuente de datos</option>
+									<option value="actualidadfrecuencia">Frecuencia de
+										actualizacion</option>
+									<option value="actualidadconveniencia">Conveniencia de
+										actualizacion</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<label for="exampleFormControlSelect1" align="right">Estado</label>
+								<select class="form-control" name=estado id="estado">
+									<option value="elicitada">Elicitada</option>
+									<option value="validada">Validada</option>
+									<option value="evaluada">Evaluada</option>
+									<option value="validada">Cerrada</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<label for="exampleFormControlSelect1" align="right">Criticidad</label>
+								<select class="form-control" name=criticidad id="criticidad">
+									<option value="c_muyalta">Muy alta</option>
+									<option value="c_alta">Alta</option>
+									<option value="c_baja">Baja</option>
+									<option value="c_muybaja">Muy baja</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<label for="exampleFormControlSelect1" align="right">Prioridad</label>
 
-						</div>
-						<div class="col-sm-4">
-							<label align="right">Version</label> <input type="number"
-								class="form-control" name="version"
-								placeholder="indique la version">
-						</div>
-						<div class="col-sm-4">
-							<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
+								<select class="form-control" name=prioridad id="prioridad">
+									<option value="p_muyalta">Muy alta</option>
+									<option value="p_alta">Alta</option>
+									<option value="p_media">Media</option>
+									<option value="p_baja">Baja</option>
+									<option value="p_muybaja">Muy baja</option>
+								</select>
 
-							<select class="form-control" name=catalogo id="catalogo">
-								<c:forEach var="catalogue" items="${catalogueList}">
-									<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
-								</c:forEach>
-								<option value="0">-</option>
-							</select>
-						</div>
+							</div>
+							<div class="col-sm-4">
+								<label align="right">Version</label> <input type="number"
+									class="form-control" name="version"
+									placeholder="indique la version">
+							</div>
+							<div class="col-sm-4">
+								<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
+
+								<select class="form-control" name=catalogo id="catalogo">
+									<c:forEach var="catalogue" items="${catalogueList}">
+										<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
+									</c:forEach>
+									<option value="0">-</option>
+								</select>
+							</div>
 						&nbsp
 						<div class="row">
-							<div class="col-sm-12" align="center">
-								<button type="submit" class="btn btn-primary">Actualizar</button>
+								<div class="col-sm-12" align="center">
+									<button type="submit" class="btn btn-primary">Actualizar</button>
+									&nbsp
+									<button type="button" class="btn btn-primary">Eliminar
+										Regla</button>
+								</div>
 							</div>
-						</div>
 
 
-					</form:form>
+						</form:form>
+					</div>
+
 				</div>
-
-			</div>
-			<%-- 	</c:forEach> --%>
+			</c:forEach>
 		</div>
 	</sec:authorize>
 </body>

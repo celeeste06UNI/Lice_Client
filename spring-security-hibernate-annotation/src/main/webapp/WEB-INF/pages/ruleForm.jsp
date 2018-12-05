@@ -181,19 +181,21 @@
 							Modales:</label>
 						<div class="col-sm-10">
 							<select class="form-control" name=operador id="operador">
-								<option value="oligatorio">Es obligatorio que...</option>
-								<option value="necesario">Es necesario que...</option>
-								<option value="imposible">Es imposible que...</option>
-								<option value="puede">Puede que...</option>
-								<option value="paratodo">Para todo registro que...</option>
+								<option value="Es oligatorio que">Es obligatorio que...</option>
+								<option value="Es necesario que">Es necesario que...</option>
+								<option value="Es imposible que">Es imposible que...</option>
+								<option value="Puede que">Puede que...</option>
+								<option value="Para todo registro que">Para todo
+									registro que...</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-10">
 							<input id="bucle" type="hidden" class="form-control" name="bucle"
-								value="${numerAtFor}"> <input id="id_project" type="hidden"
-								class="form-control" name="id_project" value="${id_project}">
+								value="${numerAtFor}"> <input id="id_project"
+								type="hidden" class="form-control" name="id_project"
+								value="${id_project}">
 						</div>
 					</div>
 					<c:forEach var="i" begin="1" end="${numerAtFor}">
@@ -208,7 +210,7 @@
 								<label class="control-label col-sm-2" align="right">Cuantificadores:</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control"
-										name="cuantificador${i}" value="campo"
+										name="cuantificador${i}" value="el campo"
 										placeholder="el campo">
 								</div>
 							</div>
@@ -224,10 +226,6 @@
 										</c:forEach>
 									</select>
 								</div>
-								<%-- <div class="col-sm-2">
-									<input id="añadirValor${i}" type="button" class="btn btn-primary"
-										onclick="PromptDemo()" value="Añadir valor" />
-								</div> --%>
 							</div>
 							&nbsp
 							<div class="form-group">
@@ -236,10 +234,12 @@
 								<div class="col-sm-10">
 									<select class="form-control" name="verbo${i}" id="project">
 										<option value="sea">sea</option>
-										<option value="tomevalor">Tome el valor...</option>
-										<option value="tomevalores">Tome los valores...</option>
-										<option value="expresion">Tenga una expresión regular
-											definida como...</option>
+										<option value="tome el valor">Tome el valor...</option>
+										<option value="tome los valores">Tome los valores...</option>
+										<option
+											value="tenga una expresión regular
+											definida como">Tenga
+											una expresión regular definida como...</option>
 									</select>
 								</div>
 							</div>
@@ -251,7 +251,7 @@
 								<div class="col-sm-10">
 									<select class="form-control" name="operadorLogi${i}" id="no">
 										<option value="no">no</option>
-										<option value="operalodorLo-">-</option>
+										<option value="-">-</option>
 									</select>
 								</div>
 							</div>
@@ -293,34 +293,47 @@
 							de la Calidad:</label>
 						<div class="col-sm-10">
 							<select class="form-control" name=propiedad id="propiedad">
-								<option value="precisionsintactica">Precision
+								<option value="Precision
+									sintactica">Precision
 									sintactica</option>
-								<option value="precisionsemantica">Precision semantica</option>
-								<option value="rangoprecision">Rango de precision</option>
-								<option value="completitudregistro">Completitud de
-									registro</option>
-								<option value="completitudfichero">Completitud de
-									fichero</option>
-								<option value="completitudvalores">Completitud de
-									valores de datos</option>
-								<option value="completitudfalsa">Completitud falsa de
-									ficheros</option>
-								<option value="consistenciaintegridad">Consistencia
+								<option value="Precision semantica">Precision semantica</option>
+								<option value="Rango de precision">Rango de precision</option>
+								<option value="Completitud de
+									registro">Completitud
+									de registro</option>
+								<option value="Completitud de
+									fichero">Completitud
+									de fichero</option>
+								<option value="Completitud de
+									valores de datos">Completitud
+									de valores de datos</option>
+								<option value="Completitud falsa de
+									ficheros">Completitud
+									falsa de ficheros</option>
+								<option value="Consistencia
+									integridad referencial">Consistencia
 									integridad referencial</option>
-								<option value="consistenciaformato">Consistencia de
-									formato</option>
-								<option value="consistenciasemantica">Consistencia
+								<option value="Consistencia de
+									formato">Consistencia
+									de formato</option>
+								<option value="Consistencia
+									semántica">Consistencia
 									semántica</option>
-								<option value="inconsistencia">Riesgos de
-									inconsistencia</option>
-								<option value="credibilidadvalores">Credibilidad de los
-									valores de datos</option>
-								<option value="credibilidadfuente">Credibilidad de la
-									fuente de datos</option>
-								<option value="actualidadfrecuencia">Frecuencia de
-									actualizacion</option>
-								<option value="actualidadconveniencia">Conveniencia de
-									actualizacion</option>
+								<option value="Riesgos de
+									inconsistencia">Riesgos
+									de inconsistencia</option>
+								<option value="Credibilidad de los
+									valores de datos">Credibilidad
+									de los valores de datos</option>
+								<option value="Credibilidad de la
+									fuente de datos">Credibilidad
+									de la fuente de datos</option>
+								<option value="Frecuencia de
+									actualizacion">Frecuencia
+									de actualizacion</option>
+								<option value="Conveniencia de
+									actualizacion">Conveniencia
+									de actualizacion</option>
 							</select>
 						</div>
 					</div>
@@ -330,10 +343,10 @@
 							for="exampleFormControlSelect1" align="right">Estado:</label>
 						<div class="col-sm-10">
 							<select class="form-control" name=estado id="estado">
-								<option value="elicitada">Elicitada</option>
-								<option value="validada">Validada</option>
-								<option value="evaluada">Evaluada</option>
-								<option value="validada">Cerrada</option>
+								<option value="Elicitada">Elicitada</option>
+								<option value="Validada">Validada</option>
+								<option value="Evaluada">Evaluada</option>
+								<option value="Validada">Cerrada</option>
 							</select>
 						</div>
 					</div>
@@ -343,10 +356,10 @@
 							for="exampleFormControlSelect1" align="right">Criticidad:</label>
 						<div class="col-sm-10">
 							<select class="form-control" name=criticidad id="criticidad">
-								<option value="c_muyalta">Muy alta</option>
-								<option value="c_alta">Alta</option>
-								<option value="c_baja">Baja</option>
-								<option value="c_muybaja">Muy baja</option>
+								<option value="muy alta">Muy alta</option>
+								<option value="alta">Alta</option>
+								<option value="baja">Baja</option>
+								<option value="muy baja">Muy baja</option>
 							</select>
 						</div>
 					</div>
@@ -356,11 +369,11 @@
 							for="exampleFormControlSelect1" align="right">Prioridad:</label>
 						<div class="col-sm-10">
 							<select class="form-control" name=prioridad id="prioridad">
-								<option value="p_muyalta">Muy alta</option>
-								<option value="p_alta">Alta</option>
-								<option value="p_media">Media</option>
-								<option value="p_baja">Baja</option>
-								<option value="p_muybaja">Muy baja</option>
+								<option value="muy alta">Muy alta</option>
+								<option value="alta">Alta</option>
+								<option value="media">Media</option>
+								<option value="baja">Baja</option>
+								<option value="muy baja">Muy baja</option>
 							</select>
 						</div>
 					</div>

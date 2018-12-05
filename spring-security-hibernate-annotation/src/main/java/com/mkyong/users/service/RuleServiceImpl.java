@@ -1,6 +1,7 @@
 package com.mkyong.users.service;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mkyong.users.model.Attribute;
@@ -30,9 +32,16 @@ public class RuleServiceImpl implements RuleService {
 
 	@Transactional
 	public void addRule(Rule rule) {
-		String url = rutaServidor + "/rule/addRule?" + "id_rule=" + rule.getId_rule() + "&property="
-				+ rule.getProperty() + "&state=" + rule.getState() + "&criticity=" + rule.getCriticity() + "&priority="
-				+ rule.getPriority() + "&version=" + rule.getVersion();
+		String operator = URLEncoder.encode(rule.getOperator());
+		String property = URLEncoder.encode(rule.getProperty());
+		String state = URLEncoder.encode(rule.getState());
+		String criticity = URLEncoder.encode(rule.getCriticity());
+		String priority = URLEncoder.encode(rule.getPriority());
+		String version = URLEncoder.encode(rule.getVersion());
+
+		String url = rutaServidor + "/rule/addRule?" + "id_rule=" + rule.getId_rule() + "&operator=" + operator
+				+ "&property=" + property + "&state=" + state + "&criticity=" + criticity + "&priority=" + priority
+				+ "&version=" + version;
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -59,10 +68,16 @@ public class RuleServiceImpl implements RuleService {
 
 	@Transactional
 	public void addAttribute(Attribute attribute) {
+
+		String modal_operator = URLEncoder.encode(attribute.getModal_operator());
+		String term = URLEncoder.encode(attribute.getTerm());
+		String verb = URLEncoder.encode(attribute.getVerb());
+		String logical_operator = URLEncoder.encode(attribute.getLogical_operator());
+		String term_value = URLEncoder.encode(attribute.getTerm_value());
+
 		String url = rutaServidor + "/rule/addAttribute?" + "id_attribute=" + attribute.getId_attribute() + "&id_rule="
-				+ attribute.getId_rule() + "&modal_operator=" + attribute.getModal_operator() + "&term="
-				+ attribute.getTerm() + "&verb=" + attribute.getVerb() + "&logical_operator="
-				+ attribute.getLogical_operator() + "&term_value=" + attribute.getTerm_value();
+				+ attribute.getId_rule() + "&modal_operator=" + modal_operator + "&term=" + term + "&verb=" + verb
+				+ "&logical_operator=" + logical_operator + "&term_value=" + term_value;
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -110,10 +125,8 @@ public class RuleServiceImpl implements RuleService {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < list.size(); i++) {
-			rule = list.get(i);
-		}
-
+		rule = list.get(0);
+		
 		return rule;
 	}
 
@@ -139,7 +152,30 @@ public class RuleServiceImpl implements RuleService {
 			e.printStackTrace();
 		}
 		return list;
-	
+
+	}
+
+	public List<Attribute> getAttributesByRule(int id_rule) {
+		String url = rutaServidor + "/rule/getAttributesByRule?" + "id_rule=" + id_rule;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<Attribute> list = new ArrayList<Attribute>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Attribute[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }
