@@ -155,6 +155,7 @@ public class RuleServiceImpl implements RuleService {
 
 	}
 
+	@Transactional
 	public List<Attribute> getAttributesByRule(int id_rule) {
 		String url = rutaServidor + "/rule/getAttributesByRule?" + "id_rule=" + id_rule;
 		ClientConfig clientConfig = new DefaultClientConfig();
@@ -176,6 +177,43 @@ public class RuleServiceImpl implements RuleService {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	@Transactional
+	public void deleteRule(int id_rule) {
+		String url = rutaServidor + "/rule/deleteRule?" + "id_rule=" + id_rule;
+
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.post(ClientResponse.class);
+		
+	}
+	
+	@Transactional
+	public void updateRule(int id_rule, String operator, String property, String state, String criticity,
+			String priority, String version, int id_catalogue) {
+		String operator1 = URLEncoder.encode(operator);
+		String property1 = URLEncoder.encode(property);
+		String state1 = URLEncoder.encode(state);
+		String criticity1 = URLEncoder.encode(criticity);
+		String priority1 = URLEncoder.encode(priority);
+		String version1 = URLEncoder.encode(version);
+		
+		String url = rutaServidor + "/rule/updateRule?" + "id_rule=" + id_rule + "&operator=" + operator1
+				+ "&property=" + property1 + "&state=" + state1 + "&criticity=" + criticity1 + "&priority=" + priority1
+				+ "&version=" + version1 + "&id_catalogue=" + id_catalogue;
+
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.post(ClientResponse.class);
+		
+		
 	}
 
 }

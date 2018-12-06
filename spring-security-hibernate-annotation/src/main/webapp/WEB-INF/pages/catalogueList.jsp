@@ -21,6 +21,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 
@@ -65,10 +66,14 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newRule">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="viewRule">Visualizar</a></li>
 					</ul></li>
-				<li><a href="#">Catalogo</a></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="newCatalogue">Crear</a></li>
+							<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+						</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -89,11 +94,12 @@
 		</div>
 		<div class="container" align="left">
 			<table class="table table-hover">
-				<p>Busque el catalogo que desee y pulse "Eliminar" o
-					"Editar" en el caso que quiera cambiar algún dato</p>
+				<p>Busque el catalogo que desee y pulse "Eliminar" o "Editar" en
+					el caso que quiera cambiar algún dato</p>
 				<!-- <th>Id</th> -->
 				<th>Nombre</th>
 				<th>Descripcion</th>
+				<th>Reglas Asociadas</th>
 				<th>Acción</th>
 
 
@@ -101,6 +107,7 @@
 					<tr>
 						<td>${catalogue.name}</td>
 						<td>${catalogue.description}</td>
+						<td>0</td>
 						<td><a
 							href="<c:url value='/editCatalogue?id_catalogue=${catalogue.id_catalogue}' />">Editar</a>
 							- <a

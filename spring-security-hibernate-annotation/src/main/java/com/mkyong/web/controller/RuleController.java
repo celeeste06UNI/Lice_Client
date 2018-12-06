@@ -65,8 +65,8 @@ public class RuleController {
 				String verb = listAttribute.get(j).getVerb();
 				String logical_operator = listAttribute.get(j).getLogical_operator();
 				String term_value = listAttribute.get(j).getTerm_value();
-				cadenaFinal = cadenaFinal  + " " + modal_operator + " " + term + " " + verb + " "
-						+ logical_operator + " " + term_value;
+				cadenaFinal = cadenaFinal + " " + modal_operator + " " + term + " " + verb + " " + logical_operator
+						+ " " + term_value;
 				cadenaFinal = cadenaFinal + " y ";
 			}
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
@@ -136,6 +136,24 @@ public class RuleController {
 
 		model.setViewName("ruleForm");
 		return model;
+	}
+
+	@RequestMapping(value = "/deleteRule", method = RequestMethod.GET)
+	public ModelAndView deleteRule(HttpServletRequest request) {
+		Integer id_rule = Integer.parseInt(request.getParameter("id_rule"));
+		System.out.println("Goooooood Morning everybody" + id_rule);
+		ruleService.deleteRule(id_rule);
+		return new ModelAndView("redirect:/main");
+	}
+
+	@RequestMapping(value = "/updateRule", method = RequestMethod.POST)
+	public ModelAndView updateRule(@ModelAttribute("id_rule") int id_rule, @ModelAttribute("operator") String operator,
+			@ModelAttribute("propiedad") String property, @ModelAttribute("estado") String state,
+			@ModelAttribute("criticidad") String criticity, @ModelAttribute("prioridad") String priority,
+			@ModelAttribute("version") String version, @ModelAttribute("catalogo") int id_catalogue) {
+		System.out.println("Estadoooooooo"+state);
+		ruleService.updateRule(id_rule, operator, property, state, criticity, priority, version, id_catalogue);
+		return new ModelAndView("redirect:/main");
 	}
 
 }

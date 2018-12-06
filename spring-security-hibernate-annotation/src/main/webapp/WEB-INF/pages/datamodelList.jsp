@@ -21,6 +21,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 
@@ -65,10 +66,14 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newRule">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="viewRule">Visualizar</a></li>
 					</ul></li>
-				<li><a href="#">Catalogo</a></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCatalogue">Crear</a></li>
+						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span

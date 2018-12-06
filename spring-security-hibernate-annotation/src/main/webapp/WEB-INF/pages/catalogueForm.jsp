@@ -20,7 +20,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -64,10 +64,21 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newRule">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="viewRule">Eliminar/Editar</a></li>
 					</ul></li>
-				<li><a href="#">Catalogo</a></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCatalogue">Crear</a></li>
+						<li><a href="viewCatalogue">Visualizar</a></li>
+					</ul></li>
+
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Generar codigo <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Regla</a></li>
+						<li><a href="#">Tabla</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -94,14 +105,16 @@
 						del Catalogo:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="name" required
-							autocomplete="off" placeholder="Introduzca el nombre del catalogo">
+							autocomplete="off"
+							placeholder="Introduzca el nombre del catalogo">
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Descripcion:</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" rows="5" id="description" name="description"></textarea>
+						<textarea class="form-control" rows="5" id="description"
+							name="description"></textarea>
 					</div>
 				</div>
 				&nbsp

@@ -23,37 +23,6 @@
 		alert("Valores posibles: NULL, UNIQUE, {1,2}");
 	}
 </script>
-<!-- <script type="text/javascript">
-	function mostrar() {
-		document.getElementById('oculto').style.display = 'block';
-	}
-</script> -->
-<!-- <script type="text/javascript">
-	function PromptDemo() {	   
-		//var bucle = document.getElementById('bucle').value;
-		//Ingresamos un mensaje a mostrar
-		var cadena = prompt("Escriba: fijo/rango/termino.{numeroAtributo}. Ejemplo: fijo.1", "");
-		separador = ".", // un espacio en blanco
-		limite = 2,
-		arregloDeSubCadenas = cadena.split(separador, limite);
-		var eleccion = arregloDeSubCadenas[0];	
-		var numero = arregloDeSubCadenas[1];
-		//Detectamos si el usuario ingreso un valor
-		if (eleccion != null) {
-			if(eleccion.localeCompare("fijo") || eleccion.localeCompare("rango") || eleccion.localeCompare("termino") || 
-					eleccion.localeCompare("expresion")){
-				document.getElementById(eleccion+numero).style.display = 'block';
-				document.getElementById('añadirValor'+numero).disabled=true;
-			}else{
-				alert("No has seleccionado ninguna de las opciones correctas");
-			}
-		}
-		//Detectamos si el usuario NO ingreso un valor
-		else {
-			alert("Ningun valor introducido");
-		}
-	}
-</script> -->
 <title>nueva regla</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,6 +32,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
@@ -108,10 +78,14 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newRule">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="viewRule">Visualizar</a></li>
 					</ul></li>
-				<li><a href="#">Catalogo</a></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCatalogue">Crear</a></li>
+						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span

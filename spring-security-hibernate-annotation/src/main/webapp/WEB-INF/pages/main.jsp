@@ -15,7 +15,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -59,8 +59,7 @@
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/newRule">Crear</a></li>
-							<li><a href="#">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
+							<li><a href="main/viewRule">Visualizar</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a class="dropdown-toggle"
@@ -68,10 +67,14 @@
 						<ul class="dropdown-menu">
 							<li><a href="main/newCatalogue">Crear</a></li>
 							<li><a href="main/viewCatalogue">Eliminar/Modificar</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Asignar reglas a Catálogo</a></li>
-							<li><a href="#">Eliminar reglas de Catálogo</a></li>
+						</ul></li>
 
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Generar codigo <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Regla</a></li>
+							<li><a href="#">Tabla</a></li>
 						</ul></li>
 				</ul>
 

@@ -15,18 +15,19 @@
 .titulo_boton {
 	float: left;
 	padding: 5px;
-	background-color: #e6e6e6;
+	background-color: #c2d7e1;
 	width: 100%;
 	font-family: helvetica;
 	font-size: 16px;
-	font-weight: bold;
+	/* font-weight: bold; */
+	/* 	font-style: italic; */
 }
 
 .boton_mostrar {
 	float: right;
-	font-size: 12px;
-	line-height: 20px;
-	color: #DE7217;
+	font-size: 18px;
+	line-height: 30px;
+	color: #046392;
 }
 
 #contenido {
@@ -52,6 +53,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript">
 	function muestra_oculta(id) {
 		if (document.getElementById) { //se obtiene el id
@@ -107,10 +109,14 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newRule">Crear</a></li>
-						<li><a href="#">Eliminar</a></li>
-						<li><a href="#">Modificar</a></li>
+						<li><a href="viewRule">Visualizar</a></li>
 					</ul></li>
-				<li><a href="#">Catalogo</a></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCatalogue">Crear</a></li>
+						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -131,24 +137,45 @@
 		</div>
 		<div class="container">
 			<c:forEach var="rule" items="${listRuleView}">
-				<div class="titulo_boton">${rule.description}<a
-						style='cursor: pointer;'
-						onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
-						class="boton_mostrar">Mostrar / Ocultar</a>
-				</div>
-										&nbsp
-						&nbsp
+				<div class="titulo_boton" style="border: 2px solid #e6e6e6;">
+					<div class="row">
+						<div class="col-sm-11">${rule.description}</div>
+						<div class="col-sm-1">
 
-				<div id="contenido${rule.id_rule}" style="display:none;">
+							<a style='cursor: pointer;'
+								onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
+								class="boton_mostrar"><span
+								class="glyphicon glyphicon-plus-sign"></span></a> <a
+								href="<c:url value='/deleteRule?id_rule=${rule.id_rule}'/>"
+								class="boton_mostrar"> <span
+								class="glyphicon glyphicon-trash"></span>
+							</a>
+
+
+
+
+						</div>
+					</div>
+
+
+				</div>
+				&nbsp
+				&nbsp
+
+				<div id="contenido${rule.id_rule}" style="display: none;">
 					<div class="row">
 						<div class="col-sm-12">
-							<p>Caracteristicas de la regla</p>
+							<h4>Caracteristicas de la regla</h4>
 						</div>
 					</div>
 
 					<div class="row">
 						<form:form action="${cp}/updateRule" method="POST"
-							modelAttribute="catalogue">
+							modelAttribute="rule">
+							<input id="id_rule" type="hidden" class="form-control"
+								name="id_rule" value="${rule.id_rule}">
+							<input id="operator" type="hidden" class="form-control"
+								name="operator" value="${rule.operator}">
 							<div class="col-sm-4">
 								<label for="exampleFormControlSelect1" align="right">Propiedad
 									de la Calidad</label> <select class="form-control" name=propiedad
@@ -205,7 +232,7 @@
 									<option value="Elicitada">Elicitada</option>
 									<option value="Validada">Validada</option>
 									<option value="Evaluada">Evaluada</option>
-									<option value="Validada">Cerrada</option>
+									<option value="Cerrada">Cerrada</option>
 								</select>
 							</div>
 							<div class="col-sm-4">
@@ -251,12 +278,8 @@
 								<div class="col-sm-12" align="center">
 									<button type="submit" class="btn btn-primary">Actualizar</button>
 									&nbsp
-									<button type="button" class="btn btn-primary">Eliminar
-										Regla</button>
 								</div>
 							</div>
-
-
 						</form:form>
 						&nbsp &nbsp
 					</div>
