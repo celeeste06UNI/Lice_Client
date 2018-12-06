@@ -140,7 +140,6 @@ public class RuleServiceImpl implements RuleService {
 		ClientResponse response = webResource.accept("application/json").type("application/json")
 				.get(ClientResponse.class);
 
-		Rule rule = new Rule();
 		List<Rule> list = new ArrayList<Rule>();
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -214,6 +213,55 @@ public class RuleServiceImpl implements RuleService {
 				.post(ClientResponse.class);
 		
 		
+	}
+	
+	@Transactional
+	public List<RuleProj> getRulesByProject(int id_project) {
+		String url = rutaServidor + "/rule/getRulesByProject?" + "id_project=" + id_project;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<RuleProj> list = new ArrayList<RuleProj>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), RuleProj[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		
+		return list;
+	}
+
+	@Transactional
+	public Rule getRule(int id_rule) {
+		String url = rutaServidor + "/rule/getRule?"+ "id_rule=" + id_rule;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<Rule> list = new ArrayList<Rule>();
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Rule[].class));
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list.get(0);
 	}
 
 }

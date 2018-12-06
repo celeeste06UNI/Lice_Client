@@ -65,8 +65,13 @@ public class RuleController {
 				String verb = listAttribute.get(j).getVerb();
 				String logical_operator = listAttribute.get(j).getLogical_operator();
 				String term_value = listAttribute.get(j).getTerm_value();
-				cadenaFinal = cadenaFinal + " " + modal_operator + " " + term + " " + verb + " " + logical_operator
-						+ " " + term_value;
+				if (logical_operator.equals("-")) {
+					cadenaFinal = cadenaFinal + " " + modal_operator + " " + term + " " + verb + " " + term_value;
+				} else {
+					cadenaFinal = cadenaFinal + " " + modal_operator + " " + term + " " + verb + " " + logical_operator
+							+ " " + term_value;
+				}
+
 				cadenaFinal = cadenaFinal + " y ";
 			}
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
@@ -87,10 +92,8 @@ public class RuleController {
 	public ModelAndView newContact(ModelAndView model, HttpServletRequest request) {
 		Integer numeroAtributos = (Integer) model.getModel().get("numberAt");
 		List<Project> projectList = projectService.getOpenProject();
-
 		model.addObject("numberContr", numeroAtributos);
 		model.addObject("projectList", projectList);
-
 		model.setViewName("ruleForm");
 		return model;
 	}
@@ -151,7 +154,6 @@ public class RuleController {
 			@ModelAttribute("propiedad") String property, @ModelAttribute("estado") String state,
 			@ModelAttribute("criticidad") String criticity, @ModelAttribute("prioridad") String priority,
 			@ModelAttribute("version") String version, @ModelAttribute("catalogo") int id_catalogue) {
-		System.out.println("Estadoooooooo"+state);
 		ruleService.updateRule(id_rule, operator, property, state, criticity, priority, version, id_catalogue);
 		return new ModelAndView("redirect:/main");
 	}

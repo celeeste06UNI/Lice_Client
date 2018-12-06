@@ -14,6 +14,10 @@ public interface RuleService {
 	public Rule getLastRule();
 
 	public List<Rule> getAllRule();
+	
+	public Rule getRule(int id_rule);
+	
+	public List<RuleProj> getRulesByProject(int id_project);
 
 	public void deleteRule(int id_rule);
 
