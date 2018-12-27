@@ -74,7 +74,7 @@
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/newCode">Regla</a></li>
-							<li><a href="#">Tabla</a></li>
+							<li><a href="main/newCodeTable">Tabla</a></li>
 						</ul></li>
 				</ul>
 

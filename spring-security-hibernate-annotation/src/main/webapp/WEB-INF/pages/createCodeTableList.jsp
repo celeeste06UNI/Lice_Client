@@ -44,7 +44,7 @@
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Creación de Código por Regla</title>
+<title>Creación de Código por Tabla</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -139,7 +139,7 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Creación de Código</h2>
+				<h2>Creación de Código por Tabla</h2>
 			</div>
 		</div>
 
@@ -149,7 +149,7 @@
 				<h4>
 					<strong>Informacion principal</strong>
 				</h4>
-				<form:form name='cargarForm' action="${cp}/viewRuleCode"
+				<form:form name='cargarForm' action="${cp}/viewTable"
 					method="GET">
 					<div class="form-group">
 						<label class="control-label col-sm-2"
@@ -165,11 +165,93 @@
 				&nbsp
 				<div class="container" align="center">
 						<button type="submit" class="btn btn-primary">Cargar
-							datos</button>
+							tablas</button>
 					</div>
 				&nbsp
 				</form:form>
 			</div>
+			<div class="w3-panel w3-border w3-round-xlarge">
+				&nbsp
+				<h4>
+					<strong>Tabla y Propiedad</strong>
+				</h4>
+				<form:form name='cargarForm' action="${cp}/viewRuleCodeByProperty"
+					method="GET">
+					
+					<input id="proj_id" type="hidden" class="form-control" name="proj_id"
+								value="${proj_id}">
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Tabla:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=project id="project">
+								<c:forEach var="dmd" items="${dmdList}">
+									<option value="${dmd.column_name}">${dmd.column_name}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Propiedad
+							de la Calidad:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=propiedad id="propiedad">
+								<option value="Precision
+									sintactica">Precision
+									sintactica</option>
+								<option value="Precision semantica">Precision semantica</option>
+								<option value="Rango de precision">Rango de precision</option>
+								<option value="Completitud de
+									registro">Completitud
+									de registro</option>
+								<option value="Completitud de
+									fichero">Completitud
+									de fichero</option>
+								<option value="Completitud de
+									valores de datos">Completitud
+									de valores de datos</option>
+								<option value="Completitud falsa de
+									ficheros">Completitud
+									falsa de ficheros</option>
+								<option value="Consistencia
+									integridad referencial">Consistencia
+									integridad referencial</option>
+								<option value="Consistencia de
+									formato">Consistencia
+									de formato</option>
+								<option value="Consistencia
+									semántica">Consistencia
+									semántica</option>
+								<option value="Riesgos de
+									inconsistencia">Riesgos
+									de inconsistencia</option>
+								<option value="Credibilidad de los
+									valores de datos">Credibilidad
+									de los valores de datos</option>
+								<option value="Credibilidad de la
+									fuente de datos">Credibilidad
+									de la fuente de datos</option>
+								<option value="Frecuencia de
+									actualizacion">Frecuencia
+									de actualizacion</option>
+								<option value="Conveniencia de
+									actualizacion">Conveniencia
+									de actualizacion</option>
+							</select>
+						</div>
+					</div>
+				&nbsp
+				<div class="container" align="center">
+						<button type="submit" class="btn btn-primary">Cargar
+							reglas</button>
+					</div>
+				&nbsp
+				</form:form>
+			</div>
+			
 		</div>
 
 		<div class="container">
@@ -187,8 +269,8 @@
 				&nbsp
 				&nbsp
 			</c:forEach>
+
 		</div>
-		
 	</sec:authorize>
 </body>
 
