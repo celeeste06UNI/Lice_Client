@@ -208,7 +208,10 @@
 								<div class="col-sm-10">
 									<select class="form-control" name="verbo${i}" id="project">
 										<option value="sea">sea</option>
+										<option value="sea igual que">sea igual que...</option>
+										<option value="tenga una longitud">Tenga una longitud...</option>
 										<option value="tome el valor">Tome el valor...</option>
+										<option value="tome alguno de los valores">Tome alguno de los valores...</option>
 										<option value="tome los valores">Tome los valores...</option>
 										<option
 											value="tenga una expresión regular
