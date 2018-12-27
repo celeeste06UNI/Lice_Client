@@ -181,6 +181,7 @@ public class CodeController {
 	public ModelAndView generateCode(ModelAndView model, HttpServletRequest request) {
 		Integer id_rule = Integer.parseInt(request.getParameter("id_rule"));
 		System.out.println(id_rule);
+		Rule rule = ruleService.getRule(id_rule);
 		/*model.addObject("personal", personal);
 		model.setViewName("personalUpdate");*/
 		return model;
