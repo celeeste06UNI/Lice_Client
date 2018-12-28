@@ -213,14 +213,20 @@ public class CodeController {
 		}
 		
 		sql = sql + " WHERE";
-		
-		
 		System.out.println("+++++++++++++" + sql);
+		
+		sql = verbAnalysis(attributeList);
+		System.out.println("+++++++++++++" + sql);
+		
 		model.setViewName("createCodeList");
 		return model;
 	}
 	
-	public String verbAnalysis() {
+	public String verbAnalysis(List<Attribute> attributeList) {
+		for(int i = 0; i<attributeList.size(); i++) {
+			
+			
+		}
 		return null;
 		
 	}
