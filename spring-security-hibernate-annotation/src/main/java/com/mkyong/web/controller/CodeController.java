@@ -41,7 +41,7 @@ public class CodeController {
 	public CodeController() {
 		System.out.println("CodeController()");
 	}
-	
+
 	@RequestMapping(value = "main/newCode", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model, HttpServletRequest request) {
 		List<Project> projectList = projectService.getOpenProject();
@@ -57,9 +57,9 @@ public class CodeController {
 		List<Rule> listRule = new ArrayList<Rule>();
 		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
 		List<RuleProj> listRuleProj = ruleService.getRulesByProject(id_project);
-		
-		for(int z = 0; z<listRuleProj.size(); z++) {
-			
+
+		for (int z = 0; z < listRuleProj.size(); z++) {
+
 			int id_r = listRuleProj.get(z).getId_rule();
 			Rule rule = ruleService.getRule(id_r);
 			listRule.add(rule);
@@ -103,6 +103,7 @@ public class CodeController {
 		model.setViewName("createCodeList");
 		return model;
 	}
+
 	@RequestMapping(value = "main/newCodeTable", method = RequestMethod.GET)
 	public ModelAndView newCodeTable(ModelAndView model, HttpServletRequest request) {
 		List<Project> projectList = projectService.getOpenProject();
@@ -110,19 +111,20 @@ public class CodeController {
 		model.setViewName("createCodeTableList");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/viewTable", method = RequestMethod.GET)
 	public ModelAndView viewTable(ModelAndView model, HttpServletRequest request) {
 		int id_project = Integer.parseInt(request.getParameter("project"));
 		Project project = projectService.getProject(id_project);
 		int id_datamodel = project.getId_datamodel();
 		List<DataModelDecript> dmdList = datamodelService.getDatamodelDescript(id_datamodel);
-		
+
 		model.addObject("proj_id", id_project);
 		model.addObject("dmdList", dmdList);
 		model.setViewName("createCodeTableList");
 		return model;
 	}
+
 	@RequestMapping(value = "/viewRuleCodeByProperty", method = RequestMethod.GET)
 	public ModelAndView viewRuleCodeByProperty(ModelAndView model, HttpServletRequest request) {
 		List<Project> projectList = projectService.getOpenProject();
@@ -130,9 +132,9 @@ public class CodeController {
 		List<Rule> listRule = new ArrayList<Rule>();
 		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
 		List<RuleProj> listRuleProj = ruleService.getRulesByProject(id_project);
-		
-		for(int z = 0; z<listRuleProj.size(); z++) {
-			
+
+		for (int z = 0; z < listRuleProj.size(); z++) {
+
 			int id_r = listRuleProj.get(z).getId_rule();
 			Rule rule = ruleService.getRule(id_r);
 			listRule.add(rule);
@@ -165,7 +167,7 @@ public class CodeController {
 				cadenaFinal = cadenaFinal + " y ";
 			}
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
-			
+
 			RuleForView ruleView = new RuleForView(id_rule, operator, property, state, criticity, priority, version,
 					cadenaFinal);
 
@@ -176,14 +178,50 @@ public class CodeController {
 		model.setViewName("createCodeList");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/generateCode", method = RequestMethod.GET)
 	public ModelAndView generateCode(ModelAndView model, HttpServletRequest request) {
+		int contador = 0;
 		Integer id_rule = Integer.parseInt(request.getParameter("id_rule"));
 		System.out.println(id_rule);
-		Rule rule = ruleService.getRule(id_rule);
-		/*model.addObject("personal", personal);
-		model.setViewName("personalUpdate");*/
+		List<Attribute> attributeList = ruleService.getAttributesByRule(id_rule);
+		String sql = "SELECT COUNT(*) FROM ";
+		for (int i = 0; i < attributeList.size(); i++) {
+			String tabla = "";
+			String atributoYTabla = attributeList.get(i).getTerm();
+			String[] partes = atributoYTabla.split("\\.");
+			
+			if (i != 0) {
+				contador = 0;
+				String atributoYTablaAux ;
+				String[] partesAux;
+				String tablaAux ="";
+				for(int j = 0; j<attributeList.size() - 1; j++) {
+					atributoYTablaAux = attributeList.get(j).getTerm();
+					partesAux = atributoYTablaAux.split("\\.");
+					tablaAux = partesAux[0];
+					if(!tablaAux.equals(partes[0])) {
+						contador = contador + 1;
+					}
+				}
+				if(contador != 0) {
+					sql = sql + ", " + partes[0];
+				}
+			}else {
+				sql = sql + partes[0] + " ";
+			}
+		}
+		
+		sql = sql + " WHERE";
+		
+		
+		System.out.println("+++++++++++++" + sql);
+		model.setViewName("createCodeList");
 		return model;
+	}
+	
+	public String verbAnalysis() {
+		return null;
+		
 	}
 }
