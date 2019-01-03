@@ -49,6 +49,8 @@ public class CodeController {
 		model.setViewName("createCodeList");
 		return model;
 	}
+	
+
 
 	@RequestMapping(value = "/viewRuleCode", method = RequestMethod.GET)
 	public ModelAndView viewRule(ModelAndView model, HttpServletRequest request) {
@@ -181,6 +183,7 @@ public class CodeController {
 
 	@RequestMapping(value = "/generateCode", method = RequestMethod.GET)
 	public ModelAndView generateCode(ModelAndView model, HttpServletRequest request) {
+		String sqlUnion;
 		int contador = 0;
 		Integer id_rule = Integer.parseInt(request.getParameter("id_rule"));
 		System.out.println(id_rule);
@@ -212,22 +215,52 @@ public class CodeController {
 			}
 		}
 		
+		sqlUnion = sql;
 		sql = sql + " WHERE";
 		System.out.println("+++++++++++++" + sql);
 		
-		sql = verbAnalysis(attributeList);
+		sql += " " + verbAnalysis(attributeList);
 		System.out.println("+++++++++++++" + sql);
 		
-		model.setViewName("createCodeList");
+		sql += " UNION " + sqlUnion;
+		sql += ";";
+		System.out.println("+++++++++++++" + sql);
+		
+		model.addObject("sql", sql);
+		model.setViewName("preview");
 		return model;
 	}
 	
 	public String verbAnalysis(List<Attribute> attributeList) {
+		String sql = "";
+		String sqlAux = "";
 		for(int i = 0; i<attributeList.size(); i++) {
+			String term = attributeList.get(i).getTerm();
+			String verb = attributeList.get(i).getVerb();
+			String term_value = attributeList.get(i).getTerm_value();
+			String logical_operator = attributeList.get(i).getLogical_operator();
+			switch(verb) {
+			case "sea":
+				if(term_value.equals("NULL")) {
+					if(logical_operator.equals("no")) {
+						sqlAux = term + " IS NOT NULL";
+					}else {
+						sqlAux = term + " IS NULL";
+					}
+				}
+				break;
 			
+			default:
+				System.out.println("Ningun caso");
+				break;
+			}
 			
+			sql +=  sqlAux + " AND ";
 		}
-		return null;
+		
+		//Eliminar ultimo AND
+		sql = sql.substring(0, sql.length() - 5);
+		return sql;
 		
 	}
 }
