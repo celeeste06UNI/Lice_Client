@@ -1,13 +1,21 @@
 package com.mkyong.web.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,9 +33,15 @@ import com.mkyong.users.service.DatamodelService;
 import com.mkyong.users.service.ProjectService;
 import com.mkyong.users.service.RuleService;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
 @Controller
 public class CodeController {
 
+	public static String donwloadDirectory = System.getProperty("user.home") + "/download";
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
 	private ProjectService projectService;
@@ -49,8 +63,33 @@ public class CodeController {
 		model.setViewName("createCodeList");
 		return model;
 	}
+
+	@RequestMapping(value = "/saveSql", method = RequestMethod.POST)
+	public void saveSql(ModelAndView model, HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("regla") String regla) throws IOException, DocumentException {
+		
+		String ruta = donwloadDirectory + "/archivo.pdf";
+		Document documento = new Document();
+		FileOutputStream ficheroPdf = new FileOutputStream(ruta);
+		PdfWriter.getInstance(documento,ficheroPdf).setInitialLeading(20);
+		documento.open();
+		documento.add(new Paragraph(regla));
+		documento.close();
+
 	
 
+		FileInputStream ficheroInput = new FileInputStream(ruta);
+		int tamanoInput = ficheroInput.available();
+		byte[] datosPDF = new byte[tamanoInput];
+		ficheroInput.read(datosPDF, 0, tamanoInput);
+		response.setHeader("Content-disposition", "inline; filename=archivo.pdf");
+		response.setContentType("application/pdf");
+		response.setContentLength(tamanoInput);
+		response.getOutputStream().write(datosPDF);
+		ficheroInput.close();
+	
+	}
+	
 
 	@RequestMapping(value = "/viewRuleCode", method = RequestMethod.GET)
 	public ModelAndView viewRule(ModelAndView model, HttpServletRequest request) {
@@ -193,74 +232,74 @@ public class CodeController {
 			String tabla = "";
 			String atributoYTabla = attributeList.get(i).getTerm();
 			String[] partes = atributoYTabla.split("\\.");
-			
+
 			if (i != 0) {
 				contador = 0;
-				String atributoYTablaAux ;
+				String atributoYTablaAux;
 				String[] partesAux;
-				String tablaAux ="";
-				for(int j = 0; j<attributeList.size() - 1; j++) {
+				String tablaAux = "";
+				for (int j = 0; j < attributeList.size() - 1; j++) {
 					atributoYTablaAux = attributeList.get(j).getTerm();
 					partesAux = atributoYTablaAux.split("\\.");
 					tablaAux = partesAux[0];
-					if(!tablaAux.equals(partes[0])) {
+					if (!tablaAux.equals(partes[0])) {
 						contador = contador + 1;
 					}
 				}
-				if(contador != 0) {
+				if (contador != 0) {
 					sql = sql + ", " + partes[0];
 				}
-			}else {
+			} else {
 				sql = sql + partes[0] + " ";
 			}
 		}
-		
+
 		sqlUnion = sql;
 		sql = sql + " WHERE";
 		System.out.println("+++++++++++++" + sql);
-		
+
 		sql += " " + verbAnalysis(attributeList);
 		System.out.println("+++++++++++++" + sql);
-		
+
 		sql += " UNION " + sqlUnion;
 		sql += ";";
 		System.out.println("+++++++++++++" + sql);
-		
+
 		model.addObject("sql", sql);
 		model.setViewName("preview");
 		return model;
 	}
-	
+
 	public String verbAnalysis(List<Attribute> attributeList) {
 		String sql = "";
 		String sqlAux = "";
-		for(int i = 0; i<attributeList.size(); i++) {
+		for (int i = 0; i < attributeList.size(); i++) {
 			String term = attributeList.get(i).getTerm();
 			String verb = attributeList.get(i).getVerb();
 			String term_value = attributeList.get(i).getTerm_value();
 			String logical_operator = attributeList.get(i).getLogical_operator();
-			switch(verb) {
+			switch (verb) {
 			case "sea":
-				if(term_value.equals("NULL")) {
-					if(logical_operator.equals("no")) {
+				if (term_value.equals("NULL")) {
+					if (logical_operator.equals("no")) {
 						sqlAux = term + " IS NOT NULL";
-					}else {
+					} else {
 						sqlAux = term + " IS NULL";
 					}
 				}
 				break;
-			
+
 			default:
 				System.out.println("Ningun caso");
 				break;
 			}
-			
-			sql +=  sqlAux + " AND ";
+
+			sql += sqlAux + " AND ";
 		}
-		
-		//Eliminar ultimo AND
+
+		// Eliminar ultimo AND
 		sql = sql.substring(0, sql.length() - 5);
 		return sql;
-		
+
 	}
 }

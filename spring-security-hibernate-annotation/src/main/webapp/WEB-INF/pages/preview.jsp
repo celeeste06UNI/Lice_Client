@@ -87,15 +87,27 @@
 		<div class="page-header">
 			<div class="container">
 				<h2>Vista previa del Código generado</h2>
+				<p>Script Sql generado para la regla de negocio</p>
 			</div>
 
 		</div>
 		<div class="container" align="left">
-			<p>Script Sql generado para la regla de negocio</p>
-			<div class="form-group">
-				<textarea class="form-control" rows="7" id="regla">${sql}</textarea>
-			</div>
+			<form:form action="${cp}/saveSql" method="POST">
 
+				<div class="form-group">
+					<textarea class="form-control" rows="7" id="regla" name="regla">${sql}</textarea>
+				</div>
+				&nbsp
+				<div class="container" align="right">
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+
+			</form:form>
+
+
+
+			<a href="<c:url value='/guardar' />">Guardar</a> <input type="button"
+				name="imprimir" value="Imprimir" onclick="window.print();">
 
 		</div>
 	</sec:authorize>
