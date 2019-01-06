@@ -158,7 +158,8 @@ public class CodeController {
 		int id_project = Integer.parseInt(request.getParameter("project"));
 		Project project = projectService.getProject(id_project);
 		int id_datamodel = project.getId_datamodel();
-		List<DataModelDecript> dmdList = datamodelService.getDatamodelDescript(id_datamodel);
+		//List<DataModelDecript> dmdList = datamodelService.getDatamodelDescript(id_datamodel);
+		List<String> dmdList = datamodelService.getNameTableDescript(id_datamodel);
 
 		model.addObject("proj_id", id_project);
 		model.addObject("dmdList", dmdList);

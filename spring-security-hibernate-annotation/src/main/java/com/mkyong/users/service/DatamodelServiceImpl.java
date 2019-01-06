@@ -193,12 +193,34 @@ public class DatamodelServiceImpl implements DatamodelService{
 		ClientResponse response = webResource.accept("application/json").type("application/json")
 				.get(ClientResponse.class);
 
-		DataModelDecript dataModelDecript = new DataModelDecript();
 		List<DataModelDecript> list = new ArrayList<DataModelDecript>();
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
 			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), DataModelDecript[].class));
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	
+	public List<String> getNameTableDescript(int id_datamodel) {
+		String url = rutaServidor + "/datam/getNameTableDescript?" + "id_datamodel=" + id_datamodel;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<String> list = new ArrayList<String>();
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), String[].class));
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -270,47 +270,21 @@
 							de la Calidad:</label>
 						<div class="col-sm-10">
 							<select class="form-control" name=propiedad id="propiedad">
-								<option value="Precision
-									sintactica">Precision
-									sintactica</option>
+								<option value="Precision sintactica">Precision sintactica</option>
 								<option value="Precision semantica">Precision semantica</option>
 								<option value="Rango de precision">Rango de precision</option>
-								<option value="Completitud de
-									registro">Completitud
-									de registro</option>
-								<option value="Completitud de
-									fichero">Completitud
-									de fichero</option>
-								<option value="Completitud de
-									valores de datos">Completitud
-									de valores de datos</option>
-								<option value="Completitud falsa de
-									ficheros">Completitud
-									falsa de ficheros</option>
-								<option value="Consistencia
-									integridad referencial">Consistencia
-									integridad referencial</option>
-								<option value="Consistencia de
-									formato">Consistencia
-									de formato</option>
-								<option value="Consistencia
-									semántica">Consistencia
-									semántica</option>
-								<option value="Riesgos de
-									inconsistencia">Riesgos
-									de inconsistencia</option>
-								<option value="Credibilidad de los
-									valores de datos">Credibilidad
-									de los valores de datos</option>
-								<option value="Credibilidad de la
-									fuente de datos">Credibilidad
-									de la fuente de datos</option>
-								<option value="Frecuencia de
-									actualizacion">Frecuencia
-									de actualizacion</option>
-								<option value="Conveniencia de
-									actualizacion">Conveniencia
-									de actualizacion</option>
+								<option value="Completitud de registro">Completitud de registro</option>
+								<option value="Completitud de fichero">Completitud de fichero</option>
+								<option value="Completitud de valores de datos">Completitud de valores de datos</option>
+								<option value="Completitud falsa de ficheros">Completitud falsa de ficheros</option>
+								<option value="Consistencia integridad referencial">Consistencia integridad referencial</option>
+								<option value="Consistencia de formato">Consistencia de formato</option>
+								<option value="Consistencia semántica">Consistencia semántica</option>
+								<option value="Riesgos de inconsistencia">Riesgos de inconsistencia</option>
+								<option value="Credibilidad de los valores de datos">Credibilidad de los valores de datos</option>
+								<option value="Credibilidad de la fuente de datos">Credibilidad de la fuente de datos</option>
+								<option value="Frecuencia de actualizacion">Frecuencia de actualizacion</option>
+								<option value="Conveniencia de actualizacion">Conveniencia de actualizacion</option>
 							</select>
 						</div>
 					</div>

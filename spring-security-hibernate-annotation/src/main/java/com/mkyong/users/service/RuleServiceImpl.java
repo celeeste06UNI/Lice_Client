@@ -38,6 +38,8 @@ public class RuleServiceImpl implements RuleService {
 		String criticity = URLEncoder.encode(rule.getCriticity());
 		String priority = URLEncoder.encode(rule.getPriority());
 		String version = URLEncoder.encode(rule.getVersion());
+		
+		System.out.println("????????????"+property);
 
 		String url = rutaServidor + "/rule/addRule?" + "id_rule=" + rule.getId_rule() + "&operator=" + operator
 				+ "&property=" + property + "&state=" + state + "&criticity=" + criticity + "&priority=" + priority

@@ -23,6 +23,7 @@ public interface DatamodelService {
 	public DataModel getDataModel(Integer id);
 
 	public List<DataModelDecript> getDatamodelDescript(int id_datamodel);
-
+	
+	public List<String> getNameTableDescript(int id_datamodel);
 
 }
