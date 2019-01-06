@@ -289,6 +289,58 @@ public class CodeController {
 		model.setViewName("preview");
 		return model;
 	}
+	
+	@RequestMapping(value = "/generateCodeTable", method = RequestMethod.GET)
+	public ModelAndView generateCodeTable(ModelAndView model, HttpServletRequest request) {
+		String sqlUnion;
+		int contador = 0;
+		//List<RuleForView> listRuleView = new ArrayList<RuleForView>();
+		//listRuleView = request.getParameter("listRuleView");
+		Integer id_rule = Integer.parseInt(request.getParameter("id_rule"));
+		System.out.println(id_rule);
+		List<Attribute> attributeList = ruleService.getAttributesByRule(id_rule);
+		String sql = "SELECT COUNT(*) FROM ";
+		for (int i = 0; i < attributeList.size(); i++) {
+			String tabla = "";
+			String atributoYTabla = attributeList.get(i).getTerm();
+			String[] partes = atributoYTabla.split("\\.");
+
+			if (i != 0) {
+				contador = 0;
+				String atributoYTablaAux;
+				String[] partesAux;
+				String tablaAux = "";
+				for (int j = 0; j < attributeList.size() - 1; j++) {
+					atributoYTablaAux = attributeList.get(j).getTerm();
+					partesAux = atributoYTablaAux.split("\\.");
+					tablaAux = partesAux[0];
+					if (!tablaAux.equals(partes[0])) {
+						contador = contador + 1;
+					}
+				}
+				if (contador != 0) {
+					sql = sql + ", " + partes[0];
+				}
+			} else {
+				sql = sql + partes[0] + " ";
+			}
+		}
+
+		sqlUnion = sql;
+		sql = sql + " WHERE";
+		System.out.println("+++++++++++++" + sql);
+
+		sql += " " + verbAnalysis(attributeList);
+		System.out.println("+++++++++++++" + sql);
+
+		sql += " UNION " + sqlUnion;
+		sql += ";";
+		System.out.println("+++++++++++++" + sql);
+
+		model.addObject("sql", sql);
+		model.setViewName("preview");
+		return model;
+	}
 
 	public String verbAnalysis(List<Attribute> attributeList) {
 		String sql = "";
