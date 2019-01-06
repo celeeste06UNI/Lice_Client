@@ -185,7 +185,7 @@
 						<label class="control-label col-sm-2"
 							for="exampleFormControlSelect1" align="right">Tabla:</label>
 						<div class="col-sm-10">
-							<select class="form-control" name=project id="project">
+							<select class="form-control" name=table id="table">
 								<c:forEach var="dmd" items="${dmdList}">
 									<option value="${dmd}">${dmd}</option>
 								</c:forEach>
@@ -232,17 +232,16 @@
 			<c:forEach var="rule" items="${listRuleView}">
 				<div class="titulo_boton" style="border-bottom: 2px solid #e6e6e6;">
 					<div class="row">
-						<div class="col-sm-11">${rule.description}</div>
-						<div class="col-sm-1">
-							<a href="<c:url value='/generateCode?id_rule=${rule.id_rule}'/>"
-								class="boton_mostrar">Generar</span>
-							</a>
-						</div>
+						<div class="col-sm-12">${rule.description}</div>
 					</div>
 				</div>
 				&nbsp
 				&nbsp
 			</c:forEach>
+			&nbsp
+			<a href="<c:url value='/generateCodeTable?listRuleView=${listRuleView}'/>"
+				class="boton_mostrar">Generar</span>
+			</a>
 
 		</div>
 	</sec:authorize>
