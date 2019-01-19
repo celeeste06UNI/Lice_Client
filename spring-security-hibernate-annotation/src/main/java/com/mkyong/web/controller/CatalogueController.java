@@ -1,5 +1,6 @@
 package com.mkyong.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mkyong.users.model.Catalogue;
+import com.mkyong.users.model.CatalogueForView;
 import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.service.CatalogueService;
@@ -37,8 +39,16 @@ public class CatalogueController {
 	
 	@RequestMapping(value = "main/viewCatalogue", method = RequestMethod.GET)
 	public ModelAndView viewCatalogue(ModelAndView model) {
+		int num_rules = 0;
 		List<Catalogue> listCatalogue = catalogueService.getAllCatalogue();
-		model.addObject("listCatalogue", listCatalogue);
+		List<CatalogueForView> listCatalogueForView = new ArrayList<CatalogueForView>();
+		for(int i = 0; i< listCatalogue.size(); i++) {
+			num_rules = catalogueService.getRuleProjCatalogue(listCatalogue.get(i).getId_catalogue());
+			CatalogueForView catalogueForView = new CatalogueForView(listCatalogue.get(i).getId_catalogue(), listCatalogue.get(i).getName(),
+					listCatalogue.get(i).getDescription(), num_rules);
+			listCatalogueForView.add(catalogueForView);
+		}
+		model.addObject("listCatalogue", listCatalogueForView);
 		model.setViewName("catalogueList");
 		return model;
 	}

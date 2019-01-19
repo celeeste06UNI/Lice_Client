@@ -168,7 +168,7 @@
 					<tr>
 						<td>${catalogue.name}</td>
 						<td>${catalogue.description}</td>
-						<td>0</td>
+						<td>${catalogue.num_rules}</td>
 						<td><a
 							href="<c:url value='/editCatalogue?id_catalogue=${catalogue.id_catalogue}' />">Editar</a>
 							- <a

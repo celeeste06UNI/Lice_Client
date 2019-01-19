@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mkyong.users.model.Catalogue;
 import com.mkyong.users.model.Organization;
+import com.mkyong.users.model.RuleProjCatalogue;
 
 public interface CatalogueService {
 	
@@ -17,4 +18,5 @@ public interface CatalogueService {
 	
 	public void updateCatalogue(Catalogue catalogue);
 
+	public int getRuleProjCatalogue(Integer id_catalogue);
 }

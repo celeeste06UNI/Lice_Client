@@ -1,6 +1,7 @@
 package com.mkyong.users.service;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mkyong.users.model.Catalogue;
 import com.mkyong.users.model.Organization;
+import com.mkyong.users.model.RuleProjCatalogue;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -28,8 +30,12 @@ public class CatalogueServiceImpl implements CatalogueService {
 
 	@Transactional
 	public void addCatalogue(int id_catalogue, String name, String description) {
+		
+		
+		
 		String url = rutaServidor + "/catalogue/addCatalogue?" + "id_catalogue=" + id_catalogue + "&name=" + name
-				+ "&description=" + description;
+				+ "&description=" + URLEncoder.encode(description);
+		
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
 		Client client = Client.create(clientConfig);
@@ -78,7 +84,6 @@ public class CatalogueServiceImpl implements CatalogueService {
 
 	@Transactional
 	public Catalogue getCatalogue(Integer id_catalogue) {
-		System.out.println(id_catalogue);
 		String url = rutaServidor + "/catalogue/getCatalogue?" + "id_catalogue=" + id_catalogue;
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -107,7 +112,6 @@ public class CatalogueServiceImpl implements CatalogueService {
 	}
 
 	public void updateCatalogue(Catalogue catalogue) {
-		System.out.println("<<<<<<<<<"+catalogue.getId_catalogue());
 		String url = rutaServidor + "/catalogue/updateCatalogue?" + "id_catalogue=" + catalogue.getId_catalogue()
 				+ "&name=" + catalogue.getName()+ "&description="+ catalogue.getDescription();
 
@@ -120,5 +124,30 @@ public class CatalogueServiceImpl implements CatalogueService {
 
 		
 	}
+	
+	@Transactional
+	public int getRuleProjCatalogue(Integer id_catalogue) {
+		String url = rutaServidor + "/catalogue/getRuleProjCatalogue?" + "id_catalogue=" + id_catalogue;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<RuleProjCatalogue> list = new ArrayList<RuleProjCatalogue>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), RuleProjCatalogue[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list.size();
+	}
+	
 
 }
