@@ -23,7 +23,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-	<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
+	<%-- <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')"> --%>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -71,6 +72,13 @@
 					<ul class="dropdown-menu">
 						<li><a href="newCatalogue">Crear</a></li>
 						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Generar codigo <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCode">Regla</a></li>
+						<li><a href="newCodeTable">Tabla</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

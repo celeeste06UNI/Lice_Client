@@ -122,8 +122,8 @@
 					data-toggle="dropdown" href="#">Generar codigo <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Regla</a></li>
-						<li><a href="#">Tabla</a></li>
+						<li><a href="newCode">Regla</a></li>
+						<li><a href="newCodeTable">Tabla</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

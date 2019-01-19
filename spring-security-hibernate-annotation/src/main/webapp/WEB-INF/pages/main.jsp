@@ -92,51 +92,51 @@
 	</sec:authorize>
 
 	<sec:authorize access="hasRole('ROLE_USER')">
-		<nav class="navbar navbar-inverse">
+				<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">LiceDQTool</a>
+					<a class="navbar-brand" href="/SpringSecurity/main">LiceDQTool</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<!-- <li class="active"><a href="#">Home</a></li> -->
-					<!-- 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Crear</a></li>
-							<li><a href="#">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
-						</ul></li> -->
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Organizaciones <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Crear</a></li>
-							<li><a href="#">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
-						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Crear</a></li>
-							<li><a href="#">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
+							<li><a href="main/newProject">Crear</a></li>
+							<li><a href="main/viewOpenProject">Proyectos activos</a></li>
+							<li><a href="main/viewCloseProject">Proyectos cerrados</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Modelo de Datos <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Crear</a></li>
-							<li><a href="#">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
+							<li><a href="main/viewUpload">Crear</a></li>
+							<li><a href="main/viewDatamodel">Visualizar</a></li>
+							<li><a href="main/deleteDataModel">Eliminar</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Reglas de Negocio <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Crear</a></li>
-							<li><a href="#">Eliminar</a></li>
-							<li><a href="#">Modificar</a></li>
+							<li><a href="main/newRule">Crear</a></li>
+							<li><a href="main/viewRule">Visualizar</a></li>
 						</ul></li>
+
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="main/newCatalogue">Crear</a></li>
+							<li><a href="main/viewCatalogue">Eliminar/Modificar</a></li>
+						</ul></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="${cp}/logout"><span
+							class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a><span class="glyphicon glyphicon-user"> </span>
+							${pageContext.request.userPrincipal.name}</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -148,45 +148,10 @@
 			<h1>Trabajo de Fin de Grado</h1>
 			<p>Herramienta de soporte al ciclo de vida de la evaluación de la
 				calidad de datos.</p>
-			<!-- <h6>Celeste López Garrido</h6> -->
+			<h6>Celeste López Garrido</h6>
 		</div>
 
 	</div>
-	<!-- 	<!-- Left-aligned
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-4" >
-				<div class="media-left">
-					<img src="foto.jpg" class="media-object" style="width: 60px">
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading">Celeste López Garrido</h4>
-					<p>Alumno</p>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="media-left">
-					<img src="foto.jpg" class="media-object" style="width: 60px">
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading">Ismael Caballero</h4>
-					<p>Director</p>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="media-left">
-					<img src="foto.jpg" class="media-object" style="width: 60px">
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading">Fernando Gualo</h4>
-					<p>Tutor</p>
-				</div>
-			</div>
-		</div>
-
-	</div>
-
- -->
 
 </body>
 

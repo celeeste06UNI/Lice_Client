@@ -72,6 +72,13 @@
 							<li><a href="main/newCatalogue">Crear</a></li>
 							<li><a href="main/viewCatalogue">Eliminar/Modificar</a></li>
 						</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Generar codigo <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="main/newCode">Regla</a></li>
+						<li><a href="main/newCodeTable">Tabla</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span

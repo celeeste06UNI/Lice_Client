@@ -67,11 +67,19 @@
 						<li><a href="viewRule">Visualizarr</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="newCatalogue">Crear</a></li>
-							<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
-						</ul></li>
+					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCatalogue">Crear</a></li>
+						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
+
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Generar codigo <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCode">Regla</a></li>
+						<li><a href="newCodeTable">Tabla</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -83,7 +91,60 @@
 			</ul>
 		</div>
 		</nav>
+	</sec:authorize>
 
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/SpringSecurity/main">LiceDQTool</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newProject">Crear</a></li>
+						<li><a href="viewOpenProject">Proyectos activos</a></li>
+						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Modelo de Datos <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="viewUpload">Crear</a></li>
+						<li><a href="viewDatamodel">Visualizar</a></li>
+						<li><a href="deleteDataModel">Eliminar</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Reglas de Negocio <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newRule">Crear</a></li>
+						<li><a href="viewRule">Visualizar</a></li>
+					</ul></li>
+
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCatalogue">Crear</a></li>
+						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="${cp}/logout"><span
+						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a><span class="glyphicon glyphicon-user"> </span>
+						${pageContext.request.userPrincipal.name}</a></li>
+			</ul>
+		</div>
+		</nav>
+	</sec:authorize>
+
+	<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
 		<div class="page-header">
 			<div class="container">
 				<h2>Editar Catálogo</h2>
@@ -93,8 +154,8 @@
 		<div class="container" align="center">
 			<form:form action="${cp}/updateCatalogue" method="POST"
 				modelAttribute="catalogue">
-				<input type="hidden" class="form-control" name="id_catalogue" required
-							autocomplete="off" value=${catalogue.id_catalogue}>
+				<input type="hidden" class="form-control" name="id_catalogue"
+					required autocomplete="off" value=${catalogue.id_catalogue}>
 				<div class="form-group">
 					<label class="control-label col-sm-2" align="right">Nombre
 						del Catalogo:</label>
@@ -120,5 +181,6 @@
 			</form:form>
 		</div>
 	</sec:authorize>
+
 </body>
 </html>

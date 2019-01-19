@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-	<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -71,6 +71,13 @@
 					<ul class="dropdown-menu">
 						<li><a href="newCatalogue">Crear</a></li>
 						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Generar codigo <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCode">Regla</a></li>
+						<li><a href="newCodeTable">Tabla</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -155,72 +162,131 @@
 				</div>
 			</form:form>
 		</div>
+	</sec:authorize>
 
-		<%-- <div class="container" align="center">
-			<form:form action="${cp}/saveOrganization" method="POST"
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/SpringSecurity/main">LiceDQTool</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newProject">Crear</a></li>
+						<li><a href="viewOpenProject">Proyectos activos</a></li>
+						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Modelo de Datos <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="viewUpload">Crear</a></li>
+						<li><a href="viewDatamodel">Visualizar</a></li>
+						<li><a href="deleteDataModel">Eliminar</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Reglas de Negocio <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newRule">Crear</a></li>
+						<li><a href="viewRule">Visualizar</a></li>
+					</ul></li>
+
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCatalogue">Crear</a></li>
+						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
+					
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="${cp}/logout"><span
+						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a><span class="glyphicon glyphicon-user"> </span>
+						${pageContext.request.userPrincipal.name}</a></li>
+			</ul>
+		</div>
+		</nav>
+		<div class="page-header">
+			<div class="container">
+				<h2>Nuevo Proyecto</h2>
+			</div>
+		</div>
+
+
+		<div class="container" align="center">
+			<form:form action="${cp}/saveProject" method="POST"
 				modelAttribute="organization">
-				<!-- 				<div class="form-group">
-					<label class="control-label col-sm-2">id:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="id"
-							placeholder="Introduzca el cif de la organización">
-					</div>
-				</div> -->
 				<div class="form-group">
-					<label class="control-label col-sm-2">CIF:</label>
+					<label class="control-label col-sm-2"
+						for="exampleFormControlSelect1" align="right">Organización:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="cif"
-							placeholder="Introduzca el cif de la organización">
+						<select class="form-control" name="organization" id="organization">
+							<c:forEach var="organization" items="${organizationList}">
+								<option value="${organization.id}">${organization.name_org}</option>
+							</c:forEach>
+						</select>
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Nombre:</label>
+					<label class="control-label col-sm-2"
+						for="exampleFormControlSelect1" align="right">Modelo de
+						Datos:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_org"
-							placeholder="Introduzca el nombre de la organización">
+						<select class="form-control" name="datamodel" id="datamodel">
+							<c:forEach var="datamodel" items="${datamodelList}">
+								<option value="${datamodel.id_datamodel}">${datamodel.database_name}</option>
+							</c:forEach>
+						</select>
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Razón Social:</label>
+					<label class="control-label col-sm-2"
+						for="exampleFormControlSelect1" align="right">Consultor
+						asociado:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_trade"
-							placeholder="Introduzca la razón social">
+						<select class="form-control" name="personal" id="personal">
+							<c:forEach var="personal" items="${personalList}">
+								<option value="${personal.id}">${personal.username}</option>
+							</c:forEach>
+						</select>
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Persona de Contacto:</label>
+					<label class="control-label col-sm-2" align="right">Fecha
+						de Inicio:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="name_contact"
-							placeholder="Introduzca el nombre de la persona de contacto">
+						<input type="text" class="form-control" name="start_date" required
+							autocomplete="off" placeholder="yyyy/MM/dd">
 					</div>
 				</div>
 				&nbsp
 				<div class="form-group">
-					<label class="control-label col-sm-2">Rol del Contacto:</label>
+					<label class="control-label col-sm-2" align="right">Fecha
+						de Fin Estimada:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="role_contact"
-							placeholder="Introduzca el rol de la persona de contacto">
+						<input type="text" class="form-control" name="finish_date"
+							required autocomplete="off" placeholder="yyyy/MM/dd">
 					</div>
-				</div>
-				&nbsp
-				<div class="form-group">
-					<label class="control-label col-sm-2">Teléfono de Contacto:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="telephone_contact"
-							placeholder="Introduzca el teléfono de la persona de contacto">
-					</div>
-				</div>
+				</div>		
 				&nbsp
 				<div class="container" align="center">
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</div>
-
-
 			</form:form>
-		</div> --%>
+		</div>
 	</sec:authorize>
+
+
 </body>
 </html>
