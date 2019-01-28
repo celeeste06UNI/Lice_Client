@@ -172,7 +172,7 @@
 				<h4>
 					<strong>Informacion principal</strong>
 				</h4>
-				<form:form name='cargarForm' action="${cp}/selectProject"
+				<form:form name='cargarForm' action="${cp}/main/selectProject"
 					method="GET">
 					<div class="form-group">
 						<label class="control-label col-sm-2"
@@ -271,14 +271,13 @@
 									<select class="form-control" name="verbo${i}" id="project">
 										<option value="sea">sea</option>
 										<option value="sea igual que">sea igual que...</option>
-										<option value="tenga una longitud">Tenga una longitud...</option>
-										<option value="tome el valor">Tome el valor...</option>
-										<option value="tome alguno de los valores">Tome alguno de los valores...</option>
-										<option value="tome los valores">Tome los valores...</option>
-										<option
-											value="tenga una expresión regular
-											definida como">Tenga
-											una expresión regular definida como...</option>
+										<option value="sea mayor que">sea mayor que...</option>
+										<option value="sea menor que">sea menor que...</option>
+										<option value="tenga una longitud">tenga una longitud...</option>
+										<option value="tome el valor">tome el valor...</option>
+										<option value="tome alguno de los valores">tome alguno de los valores...</option>
+										<option value="tome los valores">tome los valores...</option>
+										<option value="tenga una expresión regular definida como">Tenga una expresión regular definida como...</option>
 									</select>
 								</div>
 							</div>

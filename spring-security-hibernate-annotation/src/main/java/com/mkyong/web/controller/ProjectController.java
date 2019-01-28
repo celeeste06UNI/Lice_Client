@@ -101,7 +101,7 @@ public class ProjectController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/selectProject", method = RequestMethod.GET)
+	@RequestMapping(value = "main/selectProject", method = RequestMethod.GET)
 	public ModelAndView selectProject(HttpServletRequest request, ModelAndView model, @ModelAttribute("numberAt") int numberAt) {
 		int numerAtFor = numberAt;
 		ArrayList<String> listAttributes = new ArrayList<String>();

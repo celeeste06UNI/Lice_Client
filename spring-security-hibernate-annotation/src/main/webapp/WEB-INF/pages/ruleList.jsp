@@ -270,8 +270,8 @@
 								<select class="form-control" name=criticidad id="criticidad">
 									<option value="${rule.criticity}">${rule.criticity}</option>
 									<option value="muy alta">muy alta</option>
-									<option value="alta">mlta</option>
-									<option value="baja">maja</option>
+									<option value="alta">alta</option>
+									<option value="baja">baja</option>
 									<option value="muy baja">muy baja</option>
 								</select>
 							</div>
@@ -297,6 +297,7 @@
 								<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
 
 								<select class="form-control" name=catalogo id="catalogo">
+									<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
 									<c:forEach var="catalogue" items="${catalogueList}">
 										<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
 									</c:forEach>

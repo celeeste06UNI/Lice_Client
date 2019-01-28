@@ -17,5 +17,7 @@ public interface ProjectService {
 	public List<Project> getOpenProject();
 
 	public Project getProject(Integer id_project);
+
+	public Integer getProjectByRule(int id_rule);
 	
 }

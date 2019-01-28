@@ -18,6 +18,7 @@ import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.model.Project;
 import com.mkyong.users.model.ProjectForView;
+import com.mkyong.users.model.RuleProj;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -141,6 +142,35 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 
 		return project;
+	}
+
+	@Override
+	public Integer getProjectByRule(int id_rule) {
+		String url = rutaServidor + "/project/getProjectByRule?" + "id_rule=" + id_rule;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		RuleProj project = new RuleProj();
+		List<RuleProj> list = new ArrayList<RuleProj>();
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), RuleProj[].class));
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < list.size(); i++) {
+			project = list.get(i);
+		}
+
+		return project.getId_project();
 	}
 	
 	

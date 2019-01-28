@@ -48,6 +48,7 @@ public class RuleController {
 		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
 		List<Rule> listRule = ruleService.getAllRule();
 		List<Catalogue> catalogueList = catalogueService.getAllCatalogue();
+
 		for (int i = 0; i < listRule.size(); i++) {
 			String cadenaFinal = "";
 			String operator = listRule.get(i).getOperator();
@@ -57,6 +58,9 @@ public class RuleController {
 			String priority = listRule.get(i).getPriority();
 			String version = listRule.get(i).getVersion();
 			int id_rule = listRule.get(i).getId_rule();
+			Integer id_project = projectService.getProjectByRule(id_rule);
+			
+			
 			List<Attribute> listAttribute = ruleService.getAttributesByRule(id_rule);
 			cadenaFinal = operator;
 			for (int j = 0; j < listAttribute.size(); j++) {
@@ -75,7 +79,6 @@ public class RuleController {
 				cadenaFinal = cadenaFinal + " y ";
 			}
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
-			System.out.println(cadenaFinal);
 			RuleForView ruleView = new RuleForView(id_rule, operator, property, state, criticity, priority, version,
 					cadenaFinal);
 
