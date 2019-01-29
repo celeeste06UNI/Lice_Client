@@ -19,4 +19,6 @@ public interface CatalogueService {
 	public void updateCatalogue(Catalogue catalogue);
 
 	public int getRuleProjCatalogue(Integer id_catalogue);
+
+	public RuleProjCatalogue getListRuleProjCatalogue(int id_rule, Integer id_project);
 }

@@ -6,6 +6,7 @@ public class RuleForView {
 	
 
 	private int id_rule;
+	private int id_project;
 	private String operator;
 	private String property;
 	private String state;
@@ -13,6 +14,20 @@ public class RuleForView {
 	private String priority;
 	private String version;
 	private String description;
+	
+	public RuleForView(int id_rule, int id_project, String operator, String property, String state, String criticity, String priority,
+			String version, String description) {
+		super();
+		this.id_rule = id_rule;
+		this.id_project = id_project;
+		this.operator = operator;
+		this.property = property;
+		this.state = state;
+		this.criticity = criticity;
+		this.priority = priority;
+		this.version = version;
+		this.description = description;
+	}
 	
 	public RuleForView(int id_rule, String operator, String property, String state, String criticity, String priority,
 			String version, String description) {
@@ -27,9 +42,14 @@ public class RuleForView {
 		this.description = description;
 	}
 	
+	
 	public RuleForView() {
 	}
 
+	public int getId_project() {
+		return id_project;
+	}
+	
 	public int getId_rule() {
 		return id_rule;
 	}

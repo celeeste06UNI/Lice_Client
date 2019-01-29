@@ -193,7 +193,7 @@ public class RuleServiceImpl implements RuleService {
 	}
 	
 	@Transactional
-	public void updateRule(int id_rule, String operator, String property, String state, String criticity,
+	public void updateRule(int id_rule,int id_project, String operator, String property, String state, String criticity,
 			String priority, String version, int id_catalogue) {
 		String operator1 = URLEncoder.encode(operator);
 		String property1 = URLEncoder.encode(property);
@@ -202,7 +202,7 @@ public class RuleServiceImpl implements RuleService {
 		String priority1 = URLEncoder.encode(priority);
 		String version1 = URLEncoder.encode(version);
 		
-		String url = rutaServidor + "/rule/updateRule?" + "id_rule=" + id_rule + "&operator=" + operator1
+		String url = rutaServidor + "/rule/updateRule?" + "id_rule=" + id_rule + "&id_project=" + id_project + "&operator=" + operator1
 				+ "&property=" + property1 + "&state=" + state1 + "&criticity=" + criticity1 + "&priority=" + priority1
 				+ "&version=" + version1 + "&id_catalogue=" + id_catalogue;
 

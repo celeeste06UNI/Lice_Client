@@ -59,7 +59,14 @@ public class RuleController {
 			String version = listRule.get(i).getVersion();
 			int id_rule = listRule.get(i).getId_rule();
 			Integer id_project = projectService.getProjectByRule(id_rule);
-			
+			/*
+			 * Integer id_project = projectService.getProjectByRule(id_rule); Integer
+			 * id_catalogo; Catalogue catalogo;
+			 * if(catalogueService.getListRuleProjCatalogue(id_rule, id_project) != null) {
+			 * id_catalogo = catalogueService.getListRuleProjCatalogue(id_rule,
+			 * id_project).getId_catalogue(); catalogo =
+			 * catalogueService.getCatalogue(id_catalogo); }
+			 */
 			
 			List<Attribute> listAttribute = ruleService.getAttributesByRule(id_rule);
 			cadenaFinal = operator;
@@ -79,7 +86,7 @@ public class RuleController {
 				cadenaFinal = cadenaFinal + " y ";
 			}
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
-			RuleForView ruleView = new RuleForView(id_rule, operator, property, state, criticity, priority, version,
+			RuleForView ruleView = new RuleForView(id_rule, id_project, operator, property, state, criticity, priority, version,
 					cadenaFinal);
 
 			listRuleView.add(ruleView);
@@ -153,11 +160,11 @@ public class RuleController {
 	}
 
 	@RequestMapping(value = "/updateRule", method = RequestMethod.POST)
-	public ModelAndView updateRule(@ModelAttribute("id_rule") int id_rule, @ModelAttribute("operator") String operator,
+	public ModelAndView updateRule(@ModelAttribute("id_rule") int id_rule, @ModelAttribute("id_project") int id_project, @ModelAttribute("operator") String operator,
 			@ModelAttribute("propiedad") String property, @ModelAttribute("estado") String state,
 			@ModelAttribute("criticidad") String criticity, @ModelAttribute("prioridad") String priority,
 			@ModelAttribute("version") String version, @ModelAttribute("catalogo") int id_catalogue) {
-		ruleService.updateRule(id_rule, operator, property, state, criticity, priority, version, id_catalogue);
+		ruleService.updateRule(id_rule, id_project, operator, property, state, criticity, priority, version, id_catalogue);
 		return new ModelAndView("redirect:/main");
 	}
 

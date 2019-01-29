@@ -166,11 +166,9 @@ public class ProjectServiceImpl implements ProjectService{
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < list.size(); i++) {
-			project = list.get(i);
-		}
 
-		return project.getId_project();
+
+		return list.get(0).getId_project();
 	}
 	
 	

@@ -232,6 +232,8 @@
 							modelAttribute="rule">
 							<input id="id_rule" type="hidden" class="form-control"
 								name="id_rule" value="${rule.id_rule}">
+							<input id="id_project" type="hidden" class="form-control"
+								name="id_project" value="${rule.id_project}">
 							<input id="operator" type="hidden" class="form-control"
 								name="operator" value="${rule.operator}">
 							<div class="col-sm-4">

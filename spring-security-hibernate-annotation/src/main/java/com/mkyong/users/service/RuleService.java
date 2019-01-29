@@ -21,7 +21,7 @@ public interface RuleService {
 
 	public void deleteRule(int id_rule);
 
-	public void updateRule(int id_rule, String operator, String property, String state, String criticity,
+	public void updateRule(int id_rule, int id_project, String operator, String property, String state, String criticity,
 			String priority, String version, int id_catalogue);
 
 	public void addRuleProj(RuleProj ruleProj);
