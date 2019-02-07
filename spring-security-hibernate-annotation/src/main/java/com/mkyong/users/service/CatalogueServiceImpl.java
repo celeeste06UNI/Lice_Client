@@ -178,9 +178,31 @@ public class CatalogueServiceImpl implements CatalogueService {
 		}else {
 			return list.get(0);
 		}
-		
-		
-		
+	}
+
+	@Override
+	public List<Catalogue> getCatalogues(int id_rule, Integer id_project) {
+		String url = rutaServidor + "/catalogue/getCatalogues?"+ "id_rule=" + id_rule + "&id_project=" + id_project;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<Catalogue> list = new ArrayList<Catalogue>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Catalogue[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	
 	}
 	
 

@@ -45,6 +45,7 @@ public class RuleController {
 
 	@RequestMapping(value = "main/viewRule", method = RequestMethod.GET)
 	public ModelAndView viewRule(ModelAndView model) {
+		List<Catalogue> listaCatalogos = new ArrayList<Catalogue>();
 		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
 		List<Rule> listRule = ruleService.getAllRule();
 		List<Catalogue> catalogueList = catalogueService.getAllCatalogue();
@@ -59,6 +60,7 @@ public class RuleController {
 			String version = listRule.get(i).getVersion();
 			int id_rule = listRule.get(i).getId_rule();
 			Integer id_project = projectService.getProjectByRule(id_rule);
+			listaCatalogos = catalogueService.getCatalogues(id_rule,id_project);
 			/*
 			 * Integer id_project = projectService.getProjectByRule(id_rule); Integer
 			 * id_catalogo; Catalogue catalogo;
@@ -87,11 +89,11 @@ public class RuleController {
 			}
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
 			RuleForView ruleView = new RuleForView(id_rule, id_project, operator, property, state, criticity, priority, version,
-					cadenaFinal);
+					cadenaFinal, listaCatalogos);
 
 			listRuleView.add(ruleView);
 		}
-
+		
 		model.addObject("listRuleView", listRuleView);
 		model.addObject("catalogueList", catalogueList);
 		model.setViewName("ruleList");

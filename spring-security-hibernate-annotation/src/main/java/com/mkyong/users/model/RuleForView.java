@@ -1,5 +1,7 @@
 package com.mkyong.users.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 
 public class RuleForView {
@@ -14,6 +16,7 @@ public class RuleForView {
 	private String priority;
 	private String version;
 	private String description;
+	private List<Catalogue> lista;
 	
 	public RuleForView(int id_rule, int id_project, String operator, String property, String state, String criticity, String priority,
 			String version, String description) {
@@ -29,6 +32,29 @@ public class RuleForView {
 		this.description = description;
 	}
 	
+	public RuleForView(int id_rule, int id_project, String operator, String property, String state, String criticity, String priority,
+			String version, String description,  List<Catalogue> lista) {
+		super();
+		this.id_rule = id_rule;
+		this.id_project = id_project;
+		this.operator = operator;
+		this.property = property;
+		this.state = state;
+		this.criticity = criticity;
+		this.priority = priority;
+		this.version = version;
+		this.description = description;
+		this.lista = lista;
+	}
+	
+	public List<Catalogue> getLista() {
+		return lista;
+	}
+
+	public void setLista(List<Catalogue> lista) {
+		this.lista = lista;
+	}
+
 	public RuleForView(int id_rule, String operator, String property, String state, String criticity, String priority,
 			String version, String description) {
 		super();

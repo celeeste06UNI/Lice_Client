@@ -298,12 +298,15 @@
 							<div class="col-sm-4">
 								<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
 
-								<select class="form-control" name=catalogo id="catalogo">
-									<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
+								<select class="form-control" name=catalogue id="catalogue">
+									<c:forEach var="catalogoAso" items="${rule.lista}">
+										<option value="${catalogoAso.id_catalogue}" disabled >${catalogoAso.name}</option>
+									</c:forEach>
+									<option value="0">-</option>
 									<c:forEach var="catalogue" items="${catalogueList}">
 										<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
 									</c:forEach>
-									<option value="0">-</option>
+									
 								</select>
 							</div>
 						&nbsp

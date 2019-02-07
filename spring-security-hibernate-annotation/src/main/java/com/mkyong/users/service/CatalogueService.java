@@ -3,7 +3,6 @@ package com.mkyong.users.service;
 import java.util.List;
 
 import com.mkyong.users.model.Catalogue;
-import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.RuleProjCatalogue;
 
 public interface CatalogueService {
@@ -21,4 +20,6 @@ public interface CatalogueService {
 	public int getRuleProjCatalogue(Integer id_catalogue);
 
 	public RuleProjCatalogue getListRuleProjCatalogue(int id_rule, Integer id_project);
+
+	public List<Catalogue> getCatalogues(int id_rule, Integer id_project);
 }
