@@ -19,5 +19,9 @@ public interface ProjectService {
 	public Project getProject(Integer id_project);
 
 	public Integer getProjectByRule(int id_rule);
+
+	public List<ProjectForView> getOpenProjectUserForView(String username);
+
+	public List<ProjectForView> getCloseProjectUserForView(String username);
 	
 }

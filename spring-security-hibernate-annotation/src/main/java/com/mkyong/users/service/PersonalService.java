@@ -30,6 +30,8 @@ public interface PersonalService {
 	public void updatePersonal(Personal personal);
 
 	public Personal getPersonal(Integer id);
+
+	public Personal getPersonalByUsername(String username);
 	
 
 

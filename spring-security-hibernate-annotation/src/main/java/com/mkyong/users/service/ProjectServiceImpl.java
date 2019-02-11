@@ -166,9 +166,55 @@ public class ProjectServiceImpl implements ProjectService{
 			e.printStackTrace();
 		}
 
-
-
 		return list.get(0).getId_project();
+	}
+
+	@Override
+	public List<ProjectForView> getOpenProjectUserForView(String username) {
+		String url = rutaServidor + "/project/getOpenProjectUserForView?" + "username=" + username;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<ProjectForView> list = new ArrayList<ProjectForView>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), ProjectForView[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<ProjectForView> getCloseProjectUserForView(String username) {
+		String url = rutaServidor + "/project/getCloseProjectUserForView?" + "username=" + username;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<ProjectForView> list = new ArrayList<ProjectForView>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), ProjectForView[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	

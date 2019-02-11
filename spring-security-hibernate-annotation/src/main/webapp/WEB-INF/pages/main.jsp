@@ -102,8 +102,8 @@
 						data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/newProject">Crear</a></li>
-							<li><a href="main/viewOpenProject">Proyectos activos</a></li>
-							<li><a href="main/viewCloseProject">Proyectos cerrados</a></li>
+							<li><a href="<c:url value='main/viewOpenProjectUser?username=${pageContext.request.userPrincipal.name}' />">Proyectos activos</a></li>
+							<li><a href="<c:url value='main/viewCloseProjectUser?username=${pageContext.request.userPrincipal.name}' />">Proyectos cerrados</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Modelo de Datos <span

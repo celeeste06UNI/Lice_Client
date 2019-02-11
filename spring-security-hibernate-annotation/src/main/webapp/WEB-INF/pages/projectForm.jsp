@@ -222,7 +222,7 @@
 
 
 		<div class="container" align="center">
-			<form:form action="${cp}/saveProject" method="POST"
+			<form:form action="${cp}/saveProjectUser" method="POST"
 				modelAttribute="organization">
 				<div class="form-group">
 					<label class="control-label col-sm-2"
@@ -255,9 +255,7 @@
 						asociado:</label>
 					<div class="col-sm-10">
 						<select class="form-control" name="personal" id="personal">
-							<c:forEach var="personal" items="${personalList}">
-								<option value="${personal.id}">${personal.username}</option>
-							</c:forEach>
+							<option value="${pageContext.request.userPrincipal.name}">${pageContext.request.userPrincipal.name}</option>
 						</select>
 					</div>
 				</div>

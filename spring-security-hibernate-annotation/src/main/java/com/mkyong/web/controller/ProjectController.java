@@ -85,6 +85,35 @@ public class ProjectController {
 		return new ModelAndView("redirect:/main");
 	}
 	
+	@RequestMapping(value = "/saveProjectUser", method = RequestMethod.POST)
+	public ModelAndView saveProjectUser(@ModelAttribute("organization") int id_organization,
+			@ModelAttribute("datamodel") int id_datamodel,
+			@ModelAttribute("personal") String username,
+			@ModelAttribute("start_date") String inicio, 
+			@ModelAttribute("finish_date") String finalizar) throws ParseException {
+	
+		int id = 0;
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date date = sdf1.parse(inicio);
+		java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+		java.util.Date date1 = sdf1.parse(finalizar);
+		java.sql.Date sqlStartDate1 = new java.sql.Date(date1.getTime()); 
+		
+		Organization organization = organizationService.getOrganization(id_organization);
+		String org_name = organization.getName_org();
+		
+		DataModel dataModel = datamodelService.getDataModel(id_datamodel);
+		String dataModel_name = dataModel.getDatabase_name();
+		
+		String proj_name = org_name + "_" + dataModel_name + "_" + sqlStartDate;
+		System.out.println(proj_name);
+		
+		Personal p = personalService.getPersonalByUsername(username);
+		int id_personal = p.getId();
+		projectService.addProject(id,proj_name,id_personal, id_organization, id_datamodel, sqlStartDate,sqlStartDate1);
+		return new ModelAndView("redirect:/main");
+	}
+	
 	@RequestMapping(value = "main/viewOpenProject", method = RequestMethod.GET)
 	public ModelAndView viewOpenProject(ModelAndView model) {
 		List<ProjectForView> listOpenProject = projectService.getOpenProjectForView();
@@ -93,9 +122,29 @@ public class ProjectController {
 		return model;
 	}
 	
+	@RequestMapping(value = "main/viewOpenProjectUser", method = RequestMethod.GET)
+	public ModelAndView viewOpenProjectUser(ModelAndView model, HttpServletRequest request) {
+		String username = request.getParameter("username");
+
+		List<ProjectForView> listOpenProject = projectService.getOpenProjectUserForView(username);
+		model.addObject("listOpenProject", listOpenProject);
+		model.setViewName("openProjectList");
+		return model;
+	}
+	
 	@RequestMapping(value = "main/viewCloseProject", method = RequestMethod.GET)
 	public ModelAndView viewCloseProject(ModelAndView model) {
 		List<ProjectForView> listCloseProject = projectService.getCloseProjectForView();
+		model.addObject("listCloseProject", listCloseProject);
+		model.setViewName("closeProjectList");
+		return model;
+	}
+	
+	@RequestMapping(value = "main/viewCloseProjectUser", method = RequestMethod.GET)
+	public ModelAndView viewCloseProjectUser(ModelAndView model, HttpServletRequest request) {
+		String username = request.getParameter("username");
+		
+		List<ProjectForView> listCloseProject = projectService.getCloseProjectUserForView(username);
 		model.addObject("listCloseProject", listCloseProject);
 		model.setViewName("closeProjectList");
 		return model;

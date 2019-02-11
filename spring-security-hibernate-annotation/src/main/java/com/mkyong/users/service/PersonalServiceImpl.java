@@ -169,17 +169,34 @@ public class PersonalServiceImpl implements PersonalService {
 
 		return personal;
 	}
-	
-	
-	
 
-	/*
-	 * public User getUser(int userId) { return userDao.getUser(userId); }
-	 * 
-	 * public User updateUser(User user) { // TODO Auto-generated method stub return
-	 * userDao.updateUser(user); }
-	 * 
-	 * public void setEmployeeDAO(UserDao userDao) { this.userDao = userDao; }
-	 */
+	@Override
+	public Personal getPersonalByUsername(String username) {
+		String url = rutaServidor + "/personal/getPersonalByUsername?" + "username=" + username;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+		
+		Personal personal = new Personal();
+		List<Personal> list = new ArrayList<Personal>();
+		ObjectMapper mapper = new ObjectMapper();
 
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Personal[].class));
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < list.size(); i++) {
+			personal = list.get(i);
+		}
+
+		return personal;
+	}
+	
 }
