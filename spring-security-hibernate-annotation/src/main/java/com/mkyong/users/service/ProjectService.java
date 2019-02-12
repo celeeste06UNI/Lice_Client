@@ -23,5 +23,7 @@ public interface ProjectService {
 	public List<ProjectForView> getOpenProjectUserForView(String username);
 
 	public List<ProjectForView> getCloseProjectUserForView(String username);
+
+	public List<Project> getOpenProjectUser(String username);
 	
 }

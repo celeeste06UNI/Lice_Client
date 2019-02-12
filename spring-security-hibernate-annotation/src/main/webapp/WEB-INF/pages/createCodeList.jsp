@@ -149,7 +149,7 @@
 				<h4>
 					<strong>Informacion principal</strong>
 				</h4>
-				<form:form name='cargarForm' action="${cp}/viewRuleCode"
+				<form:form name='cargarForm' action="${cp}/main/viewRuleCode"
 					method="GET">
 					<div class="form-group">
 						<label class="control-label col-sm-2"

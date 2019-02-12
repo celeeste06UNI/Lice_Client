@@ -216,6 +216,30 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 		return list;
 	}
+
+	@Override
+	public List<Project> getOpenProjectUser(String username) {
+		String url = rutaServidor + "/project/getOpenProjectUser?" + "username=" + username;
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.get(ClientResponse.class);
+
+		List<Project> list = new ArrayList<Project>();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			list = Arrays.asList(mapper.readValue(response.getEntityInputStream(), Project[].class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	
 

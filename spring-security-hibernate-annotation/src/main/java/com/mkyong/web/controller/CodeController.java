@@ -91,7 +91,7 @@ public class CodeController {
 	}
 	
 
-	@RequestMapping(value = "/viewRuleCode", method = RequestMethod.GET)
+	@RequestMapping(value = "main/viewRuleCode", method = RequestMethod.GET)
 	public ModelAndView viewRule(ModelAndView model, HttpServletRequest request) {
 		List<Project> projectList = projectService.getOpenProject();
 		int id_project = Integer.parseInt(request.getParameter("project"));

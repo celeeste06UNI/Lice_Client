@@ -105,8 +105,7 @@
 		</div>
 		</nav>
 	</sec:authorize>
-	
-	
+
 	<sec:authorize access="hasRole('ROLE_USER')">
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -159,7 +158,7 @@
 	</sec:authorize>
 
 
-	<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<div class="page-header">
 			<div class="container">
 				<h2>Nueva Regla</h2>
@@ -423,6 +422,268 @@
 		&nbsp
 	</sec:authorize>
 	
-	
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<div class="page-header">
+			<div class="container">
+				<h2>Nueva Regla</h2>
+			</div>
+
+		</div>
+		<div class="container" align="center">
+			<div class="w3-panel w3-border w3-round-xlarge">
+				&nbsp
+				<h4>
+					<strong>Informacion principal</strong>
+				</h4>
+				<form:form name='cargarForm' action="${cp}/main/selectProject"
+					method="GET">
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Proyecto:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=project id="project">
+								<c:forEach var="project" items="${projectList}">
+									<option value="${project.id}">${project.proj_name}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+				&nbsp
+				<div class="form-group">
+						<label class="control-label col-sm-2" align="right">Numero
+							de atributos:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="numberAt" required
+								autocomplete="off" placeholder="Nº de atributos en la regla">
+						</div>
+					</div>
+				&nbsp
+				<div class="container" align="center">
+						<button type="submit" class="btn btn-primary">Cargar
+							datos</button>
+					</div>
+				&nbsp
+				</form:form>
+			</div>
+		</div>
+		<form:form name='pruebaForm' action="${cp}/saveRule" method="GET">
+
+			<div class="container" align="center">
+				<div class="w3-panel w3-border w3-round-xlarge">
+					&nbsp
+					<h4>
+						<strong>Construya la regla</strong>
+					</h4>
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Operadores
+							Modales:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=operador id="operador">
+								<option value="Es oligatorio que">Es obligatorio que...</option>
+								<option value="Es necesario que">Es necesario que...</option>
+								<option value="Es imposible que">Es imposible que...</option>
+								<option value="Puede que">Puede que...</option>
+								<option value="Para todo registro que">Para todo
+									registro que...</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10">
+							<input id="bucle" type="hidden" class="form-control" name="bucle"
+								value="${numerAtFor}"> <input id="id_project"
+								type="hidden" class="form-control" name="id_project"
+								value="${id_project}">
+						</div>
+					</div>
+					<c:forEach var="i" begin="1" end="${numerAtFor}">
+         			&nbsp
+         			<div class="w3-panel w3-leftbar w3-border-blue">
+							&nbsp
+							<h6>
+								<strong>Atributo ${i}</strong>
+							</h6>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2" align="right">Cuantificadores:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control"
+										name="cuantificador${i}" value="el campo"
+										placeholder="el campo">
+								</div>
+							</div>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2"
+									for="exampleFormControlSelect1" align="right">Terminos:</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="termino${i}"
+										id="termino${i}">
+										<c:forEach var="dataModelDec" items="${listAttributes}">
+											<option value="${dataModelDec}">${dataModelDec}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2"
+									for="exampleFormControlSelect1" align="right">Verbos:</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="verbo${i}" id="project">
+										<option value="sea">sea</option>
+										<option value="sea igual que">sea igual que...</option>
+										<option value="sea mayor que">sea mayor que...</option>
+										<option value="sea menor que">sea menor que...</option>
+										<option value="tenga una longitud">tenga una longitud...</option>
+										<option value="tome el valor">tome el valor...</option>
+										<option value="tome alguno de los valores">tome alguno de los valores...</option>
+										<option value="tome los valores">tome los valores...</option>
+										<option value="tenga una expresión regular definida como">Tenga una expresión regular definida como...</option>
+									</select>
+								</div>
+							</div>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2"
+									for="exampleFormControlSelect1" align="right">Operadores
+									Lógicos:</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="operadorLogi${i}" id="no">
+										<option value="no">no</option>
+										<option value="-">-</option>
+									</select>
+								</div>
+							</div>
+							&nbsp
+							<div class="form-group">
+								<label class="control-label col-sm-2" align="right">Valor
+									del Termino:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="valorAt${i}"
+										placeholder="indique el valor del atributo">
+								</div>
+								<div class="col-sm-2">
+									<button type="button" onclick="datos()" class="btn btn-info">
+										<span class="glyphicon glyphicon-info-sign"></span> Info
+									</button>
+
+								</div>
+							</div>
+							&nbsp
+						</div>
+					&nbsp
+				</c:forEach>
+
+
+					&nbsp
+				</div>
+			</div>
+			<div class="container" align="center">
+				<div class="w3-panel w3-border w3-round-xlarge">
+					&nbsp
+
+					<h4>
+						<strong>Información adicional</strong>
+					</h4>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Propiedad
+							de la Calidad:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=propiedad id="propiedad">
+								<option value="Precision sintactica">Precision sintactica</option>
+								<option value="Precision semantica">Precision semantica</option>
+								<option value="Rango de precision">Rango de precision</option>
+								<option value="Completitud de registro">Completitud de registro</option>
+								<option value="Completitud de fichero">Completitud de fichero</option>
+								<option value="Completitud de valores de datos">Completitud de valores de datos</option>
+								<option value="Completitud falsa de ficheros">Completitud falsa de ficheros</option>
+								<option value="Consistencia integridad referencial">Consistencia integridad referencial</option>
+								<option value="Consistencia de formato">Consistencia de formato</option>
+								<option value="Consistencia semántica">Consistencia semántica</option>
+								<option value="Riesgos de inconsistencia">Riesgos de inconsistencia</option>
+								<option value="Credibilidad de los valores de datos">Credibilidad de los valores de datos</option>
+								<option value="Credibilidad de la fuente de datos">Credibilidad de la fuente de datos</option>
+								<option value="Frecuencia de actualizacion">Frecuencia de actualizacion</option>
+								<option value="Conveniencia de actualizacion">Conveniencia de actualizacion</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Estado:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=estado id="estado">
+								<option value="Elicitada">Elicitada</option>
+								<option value="Validada">Validada</option>
+								<option value="Evaluada">Evaluada</option>
+								<option value="Validada">Cerrada</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Criticidad:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=criticidad id="criticidad">
+								<option value="muy alta">Muy alta</option>
+								<option value="alta">Alta</option>
+								<option value="baja">Baja</option>
+								<option value="muy baja">Muy baja</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Prioridad:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=prioridad id="prioridad">
+								<option value="muy alta">Muy alta</option>
+								<option value="alta">Alta</option>
+								<option value="media">Media</option>
+								<option value="baja">Baja</option>
+								<option value="muy baja">Muy baja</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2" align="right">Version:</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" name="version"
+								placeholder="indique la version">
+						</div>
+					</div>
+					&nbsp
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Catalogo:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=catalogo id="catalogo">
+								<c:forEach var="catalogue" items="${catalogueList}">
+									<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
+								</c:forEach>
+								<option value="0">-</option>
+							</select>
+						</div>
+					</div>
+					&nbsp
+
+				</div>
+			</div>
+		&nbsp
+		<div class="container" align="center">
+				<input type="button" class="btn btn-primary" onclick="pregunta()"
+					value="Enviar">
+			</div>
+		</form:form>
+		&nbsp
+	</sec:authorize>
 </body>
 </html>

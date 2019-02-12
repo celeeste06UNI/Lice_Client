@@ -34,43 +34,51 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newEmployee">Crear</a></li>
-						<li><a href="viewEmployee">Eliminar/Editar</a></li>
+						<li><a href="main/newEmployee">Crear</a></li>
+						<li><a href="main/viewEmployee">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Organizaciones <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newOrganization">Crear</a></li>
-						<li><a href="viewOrganization">Eliminar/Editar</a></li>
+						<li><a href="main/newOrganization">Crear</a></li>
+						<li><a href="main/viewOrganization">Eliminar/Editar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newProject">Crear</a></li>
-						<li><a href="viewOpenProject">Proyectos activos</a></li>
-						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
+						<li><a href="main/newProject">Crear</a></li>
+						<li><a href="main/viewOpenProject">Proyectos activos</a></li>
+						<li><a href="main/viewCloseProject">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="viewUpload">Crear</a></li>
-						<li><a href="viewDatamodel">Visualizar</a></li>
-						<li><a href="deleteDataModel">Eliminar</a></li>
+						<li><a href="main/viewUpload">Crear</a></li>
+						<li><a href="main/viewDatamodel">Visualizar</a></li>
+						<li><a href="main/deleteDataModel">Eliminar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newRule">Crear</a></li>
-						<li><a href="viewRule">Visualizar</a></li>
+						<li><a href="main/newRule">Crear</a></li>
+						<li><a href="main/viewRule">Visualizar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newCatalogue">Crear</a></li>
-						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
+						<li><a href="main/newCatalogue">Crear</a></li>
+						<li><a href="main/viewCatalogue">Eliminar/Modificar</a></li>
+					</ul></li>
+					
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Generar codigo <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="main/newCode">Regla</a></li>
+						<li><a href="main/newCodeTable">Tabla</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -104,10 +112,8 @@
 
 			</form:form>
 
-
-
-			<a href="<c:url value='/guardar' />">Guardar</a> <input type="button"
-				name="imprimir" value="Imprimir" onclick="window.print();">
+			<%-- <a href="<c:url value='/guardar' />">Guardar</a> <input type="button"
+				name="imprimir" value="Imprimir" onclick="window.print();"> --%>
 
 		</div>
 	</sec:authorize>

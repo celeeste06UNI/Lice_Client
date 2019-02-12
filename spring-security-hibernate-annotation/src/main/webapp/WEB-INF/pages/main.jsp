@@ -117,8 +117,8 @@
 						data-toggle="dropdown" href="#">Reglas de Negocio <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="main/newRule">Crear</a></li>
-							<li><a href="main/viewRule">Visualizar</a></li>
+							<li><a href="<c:url value='main/newRuleUser?username=${pageContext.request.userPrincipal.name}' />">Crear</a></li>
+							<li><a href="<c:url value='main/viewRuleUser?username=${pageContext.request.userPrincipal.name}' />">Visualizar</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a class="dropdown-toggle"
