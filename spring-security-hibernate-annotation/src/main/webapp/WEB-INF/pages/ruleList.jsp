@@ -232,8 +232,8 @@
 							modelAttribute="rule">
 							<input id="id_rule" type="hidden" class="form-control"
 								name="id_rule" value="${rule.id_rule}">
-							<input id="id_project" type="hidden" class="form-control"
-								name="id_project" value="${rule.id_project}">
+							<%-- <input id="id_project" type="hidden" class="form-control"
+								name="id_project" value="${rule.id_project}"> --%>
 							<input id="operator" type="hidden" class="form-control"
 								name="operator" value="${rule.operator}">
 							<div class="col-sm-4">
@@ -298,12 +298,8 @@
 							<div class="col-sm-4">
 								<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
 
-								<select class="form-control" name=catalogue id="catalogue">
-									<c:forEach var="catalogoAso" items="${rule.lista}">
-										<option value="${catalogoAso.id_catalogue}" disabled >${catalogoAso.name}</option>
-									</c:forEach>
-									<option value="0">-</option>
-									<c:forEach var="catalogue" items="${catalogueList}">
+								<select class="form-control" name=catalogo id="catalogo">
+									<c:forEach var="catalogo" items="${catalogueList}">
 										<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
 									</c:forEach>
 									
