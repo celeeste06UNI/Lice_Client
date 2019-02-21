@@ -38,7 +38,6 @@ public class RuleServiceImpl implements RuleService {
 		String criticity = URLEncoder.encode(rule.getCriticity());
 		String priority = URLEncoder.encode(rule.getPriority());
 		String version = URLEncoder.encode(rule.getVersion());
-		
 
 		String url = rutaServidor + "/rule/addRule?" + "id_rule=" + rule.getId_rule() + "&operator=" + operator
 				+ "&property=" + property + "&state=" + state + "&criticity=" + criticity + "&priority=" + priority
@@ -127,7 +126,7 @@ public class RuleServiceImpl implements RuleService {
 		}
 
 		rule = list.get(0);
-		
+
 		return rule;
 	}
 
@@ -178,7 +177,7 @@ public class RuleServiceImpl implements RuleService {
 		}
 		return list;
 	}
-	
+
 	@Transactional
 	public void deleteRule(int id_rule) {
 		String url = rutaServidor + "/rule/deleteRule?" + "id_rule=" + id_rule;
@@ -189,11 +188,11 @@ public class RuleServiceImpl implements RuleService {
 		WebResource webResource = client.resource(url);
 		ClientResponse response = webResource.accept("application/json").type("application/json")
 				.post(ClientResponse.class);
-		
+
 	}
-	
+
 	@Transactional
-	public void updateRule(int id_rule,int id_project, String operator, String property, String state, String criticity,
+	public void updateRule(int id_rule, String operator, String property, String state, String criticity,
 			String priority, String version, int id_catalogue) {
 		String operator1 = URLEncoder.encode(operator);
 		String property1 = URLEncoder.encode(property);
@@ -201,10 +200,10 @@ public class RuleServiceImpl implements RuleService {
 		String criticity1 = URLEncoder.encode(criticity);
 		String priority1 = URLEncoder.encode(priority);
 		String version1 = URLEncoder.encode(version);
-		
-		String url = rutaServidor + "/rule/updateRule?" + "id_rule=" + id_rule + "&id_project=" + id_project + "&operator=" + operator1
-				+ "&property=" + property1 + "&state=" + state1 + "&criticity=" + criticity1 + "&priority=" + priority1
-				+ "&version=" + version1 + "&id_catalogue=" + id_catalogue;
+
+		String url = rutaServidor + "/rule/updateRule?" + "id_rule=" + id_rule + "&operator=" + operator1 + "&property="
+				+ property1 + "&state=" + state1 + "&criticity=" + criticity1 + "&priority=" + priority1 + "&version="
+				+ version1 + "&id_catalogue=" + id_catalogue;
 
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -212,10 +211,9 @@ public class RuleServiceImpl implements RuleService {
 		WebResource webResource = client.resource(url);
 		ClientResponse response = webResource.accept("application/json").type("application/json")
 				.post(ClientResponse.class);
-		
-		
+
 	}
-	
+
 	@Transactional
 	public List<RuleProj> getRulesByProject(int id_project) {
 		String url = rutaServidor + "/rule/getRulesByProject?" + "id_project=" + id_project;
@@ -238,13 +236,12 @@ public class RuleServiceImpl implements RuleService {
 			e.printStackTrace();
 		}
 
-		
 		return list;
 	}
 
 	@Transactional
 	public Rule getRule(int id_rule) {
-		String url = rutaServidor + "/rule/getRule?"+ "id_rule=" + id_rule;
+		String url = rutaServidor + "/rule/getRule?" + "id_rule=" + id_rule;
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
 		Client client = Client.create(clientConfig);

@@ -117,13 +117,6 @@
 						<li><a href="newCatalogue">Crear</a></li>
 						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
 					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Generar codigo <span
-						class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="newCode">Regla</a></li>
-						<li><a href="newCodeTable">Tabla</a></li>
-					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -135,64 +128,7 @@
 			</ul>
 		</div>
 		</nav>
-	</sec:authorize>
-	
-	
-	
-	<sec:authorize access="hasRole('ROLE_USER')">
-		<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/SpringSecurity/main">LiceDQTool</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="newProject">Crear</a></li>
-						<li><a href="viewOpenProject">Proyectos activos</a></li>
-						<li><a href="viewCloseProject">Proyectos cerrados</a></li>
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Modelo de Datos <span
-						class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="viewUpload">Crear</a></li>
-						<li><a href="viewDatamodel">Visualizar</a></li>
-						<li><a href="deleteDataModel">Eliminar</a></li>
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Reglas de Negocio <span
-						class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="newRule">Crear</a></li>
-						<li><a href="viewRule">Visualizar</a></li>
-					</ul></li>
 
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="newCatalogue">Crear</a></li>
-						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
-					</ul></li>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${cp}/logout"><span
-						class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li><a><span class="glyphicon glyphicon-user"> </span>
-						${pageContext.request.userPrincipal.name}</a></li>
-			</ul>
-		</div>
-		</nav>
-	</sec:authorize>
-
-
-	<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
-	
 		<div class="page-header">
 			<div class="container">
 				<h2>Eliminar/Editar Reglas</h2>
@@ -214,8 +150,14 @@
 								class="boton_mostrar"> <span
 								class="glyphicon glyphicon-trash"></span>
 							</a>
+
+
+
+
 						</div>
 					</div>
+
+
 				</div>
 				&nbsp
 				&nbsp
@@ -232,29 +174,55 @@
 							modelAttribute="rule">
 							<input id="id_rule" type="hidden" class="form-control"
 								name="id_rule" value="${rule.id_rule}">
-							<%-- <input id="id_project" type="hidden" class="form-control"
-								name="id_project" value="${rule.id_project}"> --%>
 							<input id="operator" type="hidden" class="form-control"
 								name="operator" value="${rule.operator}">
 							<div class="col-sm-4">
 								<label for="exampleFormControlSelect1" align="right">Propiedad
 									de la Calidad</label> <select class="form-control" name=propiedad
 									id="propiedad">
-									<option value="Precision sintactica">Precision sintactica</option>
-									<option value="Precision semantica">Precision semantica</option>
+									<option value="${rule.property}">${rule.property}</option>
+									<option value="Precision
+									sintactica">Precision
+										sintactica</option>
+									<option value="Precision semantica">Precision
+										semantica</option>
 									<option value="Rango de precision">Rango de precision</option>
-									<option value="Completitud de registro">Completitud de registro</option>
-									<option value="Completitud de fichero">Completitud de fichero</option>
-									<option value="Completitud de valores de datos">Completitud de valores de datos</option>
-									<option value="Completitud falsa de ficheros">Completitud falsa de ficheros</option>
-									<option value="Consistencia integridad referencial">Consistencia integridad referencial</option>
-									<option value="Consistencia de formato">Consistencia de formato</option>
-									<option value="Consistencia semántica">Consistencia semántica</option>
-									<option value="Riesgos de inconsistencia">Riesgos de inconsistencia</option>
-									<option value="Credibilidad de los valores de datos">Credibilidad de los valores de datos</option>
-									<option value="Credibilidad de la fuente de datos">Credibilidad de la fuente de datos</option>
-									<option value="Frecuencia de actualizacion">Frecuencia de actualizacion</option>
-									<option value="Conveniencia de actualizacion">Conveniencia de actualizacion</option>
+									<option value="Completitud de
+									registro">Completitud
+										de registro</option>
+									<option value="Completitud de
+									fichero">Completitud
+										de fichero</option>
+									<option value="Completitud de
+									valores de datos">Completitud
+										de valores de datos</option>
+									<option value="Completitud falsa de
+									ficheros">Completitud
+										falsa de ficheros</option>
+									<option value="Consistencia
+									integridad referencial">Consistencia
+										integridad referencial</option>
+									<option value="Consistencia de
+									formato">Consistencia
+										de formato</option>
+									<option value="Consistencia
+									semántica">Consistencia
+										semántica</option>
+									<option value="Riesgos de
+									inconsistencia">Riesgos
+										de inconsistencia</option>
+									<option value="Credibilidad de los
+									valores de datos">Credibilidad
+										de los valores de datos</option>
+									<option value="Credibilidad de la
+									fuente de datos">Credibilidad
+										de la fuente de datos</option>
+									<option value="Frecuencia de
+									actualizacion">Frecuencia
+										de actualizacion</option>
+									<option value="Conveniencia de
+									actualizacion">Conveniencia
+										de actualizacion</option>
 								</select>
 							</div>
 							<div class="col-sm-4">
@@ -271,10 +239,10 @@
 								<label for="exampleFormControlSelect1" align="right">Criticidad</label>
 								<select class="form-control" name=criticidad id="criticidad">
 									<option value="${rule.criticity}">${rule.criticity}</option>
-									<option value="muy alta">muy alta</option>
-									<option value="alta">alta</option>
-									<option value="baja">baja</option>
-									<option value="muy baja">muy baja</option>
+									<option value="muy alta">Muy alta</option>
+									<option value="alta">Alta</option>
+									<option value="baja">Baja</option>
+									<option value="muy baja">Muy baja</option>
 								</select>
 							</div>
 							<div class="col-sm-4">
@@ -282,11 +250,11 @@
 
 								<select class="form-control" name=prioridad id="prioridad">
 									<option value="${rule.priority}">${rule.priority}</option>
-									<option value="muy alta">muy alta</option>
-									<option value="alta">alta</option>
-									<option value="media">media</option>
-									<option value="baja">baja</option>
-									<option value="muy baja">muy baja</option>
+									<option value="muy alta">Muy alta</option>
+									<option value="alta">Alta</option>
+									<option value="media">Media</option>
+									<option value="baja">Baja</option>
+									<option value="muy baja">Muy baja</option>
 								</select>
 
 							</div>
@@ -299,10 +267,10 @@
 								<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
 
 								<select class="form-control" name=catalogo id="catalogo">
-									<c:forEach var="catalogo" items="${catalogueList}">
+									<c:forEach var="catalogue" items="${catalogueList}">
 										<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
 									</c:forEach>
-									
+									<option value="0">-</option>
 								</select>
 							</div>
 						&nbsp
@@ -320,10 +288,7 @@
 			</c:forEach>
 
 		</div>
-	
 	</sec:authorize>
-	
-	
 </body>
 
 </html>
