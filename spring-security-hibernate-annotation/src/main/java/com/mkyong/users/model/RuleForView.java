@@ -71,6 +71,21 @@ public class RuleForView {
 		this.description = cadenaFinal;
 		this.catalogueL = catalogueL;
 	}
+	
+	public RuleForView(int id_rule, int id_project, String operator, String property, String state, String criticity, String priority,
+			String version, String description,  List<Catalogue> catalogueL) {
+		super();
+		this.id_rule = id_rule;
+		this.id_project = id_project;
+		this.operator = operator;
+		this.property = property;
+		this.state = state;
+		this.criticity = criticity;
+		this.priority = priority;
+		this.version = version;
+		this.description = description;
+		this.catalogueL = catalogueL;
+	}
 
 	public int getId_project() {
 		return id_project;
