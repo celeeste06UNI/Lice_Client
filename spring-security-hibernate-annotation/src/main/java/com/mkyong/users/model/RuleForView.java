@@ -18,28 +18,9 @@ public class RuleForView {
 	private String description;
 	private List<Catalogue> catalogueL;
 	
-	public RuleForView(int id_rule, int id_project, String operator, String property, String state, String criticity, String priority,
-			String version, String description) {
-		super();
-		this.id_rule = id_rule;
-		this.id_project = id_project;
-		this.operator = operator;
-		this.property = property;
-		this.state = state;
-		this.criticity = criticity;
-		this.priority = priority;
-		this.version = version;
-		this.description = description;
+	public RuleForView() {
 	}
 	
-	
-	public List<Catalogue> getCatalogueL() {
-		return catalogueL;
-	}
-
-	public void setCatalogueL(List<Catalogue> catalogueL) {
-		this.catalogueL = catalogueL;
-	}
 
 	public RuleForView(int id_rule, String operator, String property, String state, String criticity, String priority,
 			String version, String description) {
@@ -54,9 +35,7 @@ public class RuleForView {
 		this.description = description;
 	}
 	
-	
-	public RuleForView() {
-	}
+
 
 	public RuleForView(int id_rule2, String operator2, String property2, String state2, String criticity2,
 			String priority2, String version2, String cadenaFinal, List<Catalogue> catalogueL) {
@@ -86,6 +65,29 @@ public class RuleForView {
 		this.description = description;
 		this.catalogueL = catalogueL;
 	}
+	
+	public RuleForView(int id_rule, int id_project, String operator, String property, String state, String criticity, String priority,
+			String version, String description) {
+		super();
+		this.id_rule = id_rule;
+		this.id_project = id_project;
+		this.operator = operator;
+		this.property = property;
+		this.state = state;
+		this.criticity = criticity;
+		this.priority = priority;
+		this.version = version;
+		this.description = description;
+	}
+	
+	public List<Catalogue> getCatalogueL() {
+		return catalogueL;
+	}
+
+	public void setCatalogueL(List<Catalogue> catalogueL) {
+		this.catalogueL = catalogueL;
+	}
+
 
 	public int getId_project() {
 		return id_project;

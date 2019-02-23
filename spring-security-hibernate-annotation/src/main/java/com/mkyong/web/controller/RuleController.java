@@ -143,7 +143,7 @@ public class RuleController {
 		}
 		
 		model.addObject("listRuleView", listRuleView);
-		model.addObject("catalogueList", catalogueList);
+		//model.addObject("catalogueList", catalogueList);
 		model.setViewName("ruleList");
 		return model;
 	}
@@ -207,7 +207,10 @@ public class RuleController {
 			RuleProjCatalogue ruleProjectCatalogue = new RuleProjCatalogue(id_rule, id_project, id_catalogue);
 			ruleService.addRuleProjCatalogue(ruleProjectCatalogue);
 		}
-
+		/*
+		 * List<Project> projectList = projectService.getOpenProject();
+		 * model.addObject("projectList", projectList);
+		 */
 		model.setViewName("ruleForm");
 		return model;
 	}
