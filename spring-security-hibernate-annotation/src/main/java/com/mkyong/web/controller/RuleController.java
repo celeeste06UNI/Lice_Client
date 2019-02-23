@@ -90,6 +90,54 @@ public class RuleController {
 		return model;
 	}
 	
+	@RequestMapping(value = "main/viewRuleCatalogue", method = RequestMethod.GET)
+	public ModelAndView viewRuleCatalogue(ModelAndView model) {
+		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
+		List<Rule> listRule = ruleService.getAllRule();
+		//List<Catalogue> catalogueList = new ArrayList<Catalogue>();
+		
+		for (int i = 0; i < listRule.size(); i++) {
+			String cadenaFinal = "";
+			String operator = listRule.get(i).getOperator();
+			String property = listRule.get(i).getProperty();
+			String state = listRule.get(i).getState();
+			String criticity = listRule.get(i).getCriticity();
+			String priority = listRule.get(i).getPriority();
+			String version = listRule.get(i).getVersion();
+			int id_rule = listRule.get(i).getId_rule();
+			int id_project = projectService.getProjectByRule(id_rule);
+			List<Catalogue> catalogueList = catalogueService.getCatalogues(id_rule, id_project);
+			List<Attribute> listAttribute = ruleService.getAttributesByRule(id_rule);
+			cadenaFinal = operator;
+			for (int j = 0; j < listAttribute.size(); j++) {
+				String modal_operator = listAttribute.get(j).getModal_operator();
+				String term = listAttribute.get(j).getTerm();
+				String verb = listAttribute.get(j).getVerb();
+				String logical_operator = listAttribute.get(j).getLogical_operator();
+				String term_value = listAttribute.get(j).getTerm_value();
+				if (logical_operator.equals("-")) {
+					cadenaFinal = cadenaFinal + " " + modal_operator + " " + term + " " + verb + " " + term_value;
+				} else {
+					cadenaFinal = cadenaFinal + " " + modal_operator + " " + term + " " + verb + " " + logical_operator
+							+ " " + term_value;
+				}
+
+				cadenaFinal = cadenaFinal + " y ";
+			}
+			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
+			
+			RuleForView ruleView = new RuleForView(id_rule, operator, property, state, criticity, priority, version,
+					cadenaFinal, catalogueList);
+
+			listRuleView.add(ruleView);
+		}
+
+		model.addObject("listRuleView", listRuleView);
+		//model.addObject("catalogueList", catalogueList);
+		model.setViewName("ruleListManageCatalogue");
+		return model;
+	}
+	
 	@RequestMapping(value = "main/viewRuleUser", method = RequestMethod.GET)
 	public ModelAndView viewRuleUser(ModelAndView model, HttpServletRequest request) {
 		String username = request.getParameter("username");
@@ -207,12 +255,9 @@ public class RuleController {
 			RuleProjCatalogue ruleProjectCatalogue = new RuleProjCatalogue(id_rule, id_project, id_catalogue);
 			ruleService.addRuleProjCatalogue(ruleProjectCatalogue);
 		}
-		/*
-		 * List<Project> projectList = projectService.getOpenProject();
-		 * model.addObject("projectList", projectList);
-		 */
-		model.setViewName("ruleForm");
-		return model;
+
+		return new ModelAndView("redirect:/main/newRule");
+	
 	}
 
 	@RequestMapping(value = "/deleteRule", method = RequestMethod.GET)
@@ -223,7 +268,7 @@ public class RuleController {
 	}
 
 	@RequestMapping(value = "/updateRule", method = RequestMethod.POST)
-	public ModelAndView updateRule(@ModelAttribute("id_rule") int id_rule, @ModelAttribute("operator") String operator,
+	public ModelAndView updateRule(ModelAndView model,@ModelAttribute("id_rule") int id_rule, @ModelAttribute("operator") String operator,
 			@ModelAttribute("propiedad") String property, @ModelAttribute("estado") String state,
 			@ModelAttribute("criticidad") String criticity, @ModelAttribute("prioridad") String priority,
 			@ModelAttribute("version") String version, @ModelAttribute("catalogo") int id_catalogue) {

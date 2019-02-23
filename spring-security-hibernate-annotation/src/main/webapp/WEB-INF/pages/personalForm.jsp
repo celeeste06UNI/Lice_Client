@@ -11,6 +11,11 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">
+	function datos() {
+		alert("Adminitrador o usuario");
+	}
+</script>
 <title>nuevo usuario</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,11 +149,17 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2"
 						for="exampleFormControlSelect1" align="right">Rol:</label>
-					<div class="col-sm-10">
+					<div class="col-sm-8">
 						<select class="form-control" name="role" id="role">
 							<option value="ROLE_ADMIN">ADMIN</option>
 							<option value="ROLE_USER">USER</option>
 						</select>
+					</div>
+					<div class="col-sm-2" align="right">
+						<button type="button" onclick="datos()" class="btn btn-info">
+							<span class="glyphicon glyphicon-info-sign"></span> Info
+						</button>
+
 					</div>
 				</div>
 				&nbsp

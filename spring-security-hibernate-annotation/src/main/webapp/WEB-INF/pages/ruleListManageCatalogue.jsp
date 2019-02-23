@@ -138,26 +138,33 @@
 
 		<div class="page-header">
 			<div class="container">
-				<h2>Eliminar/Editar Reglas</h2>
+				<h2>Gestión de Reglas en Catálogos</h2>
+				<p>Busque la regla que desee gestionar. Pulse + si desea añadir la regla a un catalogo o por el contrario pulse la papelera si desea eliminar la regla de algún catálogo</p>
 			</div>
+			
 
 		</div>
 		<div class="container">
 			<c:forEach var="rule" items="${listRuleView}">
-				<div class="titulo_boton" style="border: 2px solid #e6e6e6;">
-					<div class="row">
-						<div class="col-sm-11">${rule.description}</div>
-						<div class="col-sm-1">
-
+				
+				<div class="row" style="border-left: 3px solid #045FB4;">
+				
+					
+					<div class="col-sm-10">${rule.description}</div>
+					
+					<div class="col-sm-2">
+					
+					<a style='cursor: pointer;'
+								onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
+								class="boton_mostrar"><span
+								class="glyphicon glyphicon-trash"></span></a>
 							<a style='cursor: pointer;'
 								onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
 								class="boton_mostrar"><span
-								class="glyphicon glyphicon-plus-sign"></span></a> <a
-								href="<c:url value='/deleteRule?id_rule=${rule.id_rule}'/>"
-								class="boton_mostrar"> <span
-								class="glyphicon glyphicon-trash"></span>
-							</a>
-						</div>
+								class="glyphicon glyphicon-plus-sign"></span> </a>
+					
+					
+							
 					</div>
 
 
@@ -240,15 +247,14 @@
 									placeholder="indique la version">
 							</div>
 							<div class="col-sm-4">
-									<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
-	
-									<select class="form-control" name=catalogo id="catalogo">
-										<c:forEach var="catalogue" items="${catalogueList}">
-											<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
-										</c:forEach>
-										<option value="0">-</option>
-									</select>
-								
+								<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
+
+								<select class="form-control" name=catalogo id="catalogo">
+									<c:forEach var="catalogue" items="${catalogueList}">
+										<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
+									</c:forEach>
+									<option value="0">-</option>
+								</select>
 							</div>
 						&nbsp
 						<div class="row">
@@ -330,24 +336,14 @@
 			<c:forEach var="rule" items="${listRuleView}">
 				<div class="titulo_boton" style="border: 2px solid #e6e6e6;">
 					<div class="row">
-						<div class="col-sm-11">${rule.description}</div>
-						<div class="col-sm-1">
-
-							<a style='cursor: pointer;'
-								onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
-								class="boton_mostrar"><span
-								class="glyphicon glyphicon-plus-sign"></span></a> <a
-								href="<c:url value='/deleteRule?id_rule=${rule.id_rule}'/>"
-								class="boton_mostrar"> <span
-								class="glyphicon glyphicon-trash"></span>
-							</a>
-
-
-
-
+						<div class="col-sm-8">${rule.description}</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-success">Añadir a...</button>
+						</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-success">Eliminar de...</button>
 						</div>
 					</div>
-
 
 				</div>
 				&nbsp

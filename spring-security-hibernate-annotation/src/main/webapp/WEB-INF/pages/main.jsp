@@ -60,17 +60,19 @@
 						<ul class="dropdown-menu">
 							<li><a href="main/newRule">Crear</a></li>
 							<li><a href="main/viewRule">Visualizar</a></li>
+							<li><a href="main/viewRuleCatalogue">Añadir a un catálogo</a></li>
+							<li><a href="#">Eliminar de un catálogo</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Catalogo <span class="caret"></span></a>
+						data-toggle="dropdown" href="#">Catálogo <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/newCatalogue">Crear</a></li>
 							<li><a href="main/viewCatalogue">Eliminar/Modificar</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Generar codigo <span
+						data-toggle="dropdown" href="#">Generar código <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="main/newCode">Regla</a></li>

@@ -105,8 +105,8 @@
 					data-toggle="dropdown" href="#">Proyectos <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newProject">Crear</a></li>
-						<li><a href="<c:url value='/viewOpenProjectUser?username=${pageContext.request.userPrincipal.name}' />">Proyectos activos</a></li>
-						<li><a href="<c:url value='/viewCloseProjectUser?username=${pageContext.request.userPrincipal.name}' />">Proyectos cerrados</a></li>
+						<li><a href="<c:url value='viewOpenProjectUser?username=${pageContext.request.userPrincipal.name}' />">Proyectos activos</a></li>
+						<li><a href="<c:url value='viewCloseProjectUser?username=${pageContext.request.userPrincipal.name}' />">Proyectos cerrados</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Modelo de Datos <span
@@ -120,8 +120,8 @@
 					data-toggle="dropdown" href="#">Reglas de Negocio <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newRule">Crear</a></li>
-						<li><a href="viewRule">Visualizar</a></li>
+						<li><a href="<c:url value='newRuleUser?username=${pageContext.request.userPrincipal.name}' />">Crear</a></li>
+						<li><a href="<c:url value='viewRuleUser?username=${pageContext.request.userPrincipal.name}' />">Visualizar</a></li>
 					</ul></li>
 
 				<li class="dropdown"><a class="dropdown-toggle"
