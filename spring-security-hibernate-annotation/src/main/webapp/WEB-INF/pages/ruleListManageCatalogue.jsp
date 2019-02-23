@@ -153,18 +153,11 @@
 					<div class="col-sm-10">${rule.description}</div>
 					
 					<div class="col-sm-2">
+						<a href="<c:url value='/editPersonal?id=${employee.id}&username=${employee.username}' />"><span
+									class="glyphicon glyphicon-plus-sign"></span></a>
+						<a href="<c:url value='/editPersonal?id=${employee.id}&username=${employee.username}' />"><span
+									class="glyphicon glyphicon-trash"></span></a>
 					
-					<a style='cursor: pointer;'
-								onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
-								class="boton_mostrar"><span
-								class="glyphicon glyphicon-trash"></span></a>
-							<a style='cursor: pointer;'
-								onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
-								class="boton_mostrar"><span
-								class="glyphicon glyphicon-plus-sign"></span> </a>
-					
-					
-							
 					</div>
 
 
