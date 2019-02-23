@@ -46,7 +46,8 @@ public class RuleController {
 	public ModelAndView viewRule(ModelAndView model) {
 		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
 		List<Rule> listRule = ruleService.getAllRule();
-		List<Catalogue> catalogueList = catalogueService.getAllCatalogue();
+		//List<Catalogue> catalogueList = new ArrayList<Catalogue>();
+		
 		for (int i = 0; i < listRule.size(); i++) {
 			String cadenaFinal = "";
 			String operator = listRule.get(i).getOperator();
@@ -56,6 +57,8 @@ public class RuleController {
 			String priority = listRule.get(i).getPriority();
 			String version = listRule.get(i).getVersion();
 			int id_rule = listRule.get(i).getId_rule();
+			int id_project = projectService.getProjectByRule(id_rule);
+			List<Catalogue> catalogueList = catalogueService.getCatalogues(id_rule, id_project);
 			List<Attribute> listAttribute = ruleService.getAttributesByRule(id_rule);
 			cadenaFinal = operator;
 			for (int j = 0; j < listAttribute.size(); j++) {
@@ -76,13 +79,13 @@ public class RuleController {
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
 			
 			RuleForView ruleView = new RuleForView(id_rule, operator, property, state, criticity, priority, version,
-					cadenaFinal);
+					cadenaFinal, catalogueList);
 
 			listRuleView.add(ruleView);
 		}
 
 		model.addObject("listRuleView", listRuleView);
-		model.addObject("catalogueList", catalogueList);
+		//model.addObject("catalogueList", catalogueList);
 		model.setViewName("ruleList");
 		return model;
 	}

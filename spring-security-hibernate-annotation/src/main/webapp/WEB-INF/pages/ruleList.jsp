@@ -267,10 +267,9 @@
 								<label for="exampleFormControlSelect1" align="right">Catalogo:</label>
 
 								<select class="form-control" name=catalogo id="catalogo">
-									<c:forEach var="catalogue" items="${catalogueList}">
-										<option value="${catalogue.id_catalogue}">${catalogue.name}</option>
+									<c:forEach var="catalogue" items="${rule.catalogueL}">
+										<option value="${catalogue.id_catalogue}" disabled>${catalogue.name}</option>
 									</c:forEach>
-									<option value="0">-</option>
 								</select>
 							</div>
 						&nbsp
