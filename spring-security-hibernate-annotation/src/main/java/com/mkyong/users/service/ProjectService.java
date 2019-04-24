@@ -1,3 +1,4 @@
+
 package com.mkyong.users.service;
 
 import java.sql.Date;
@@ -27,3 +28,4 @@ public interface ProjectService {
 	public List<Project> getOpenProjectUser(String username);
 	
 }
+

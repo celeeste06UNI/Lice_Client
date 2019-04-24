@@ -9,12 +9,6 @@ import com.mkyong.users.model.User;
 
 public interface PersonalService {
 	
-/*
-	public void deleteUser(Integer userId);
-
-	public User getUser(int userId);
-
-	public User updateUser(User user);*/
 	public List<Personal> getAllPersonal();
 	
 	public void addPersonal(Personal personal, String passNoEncryp);
@@ -33,6 +27,6 @@ public interface PersonalService {
 
 	public Personal getPersonalByUsername(String username);
 	
-
-
 }
+
+

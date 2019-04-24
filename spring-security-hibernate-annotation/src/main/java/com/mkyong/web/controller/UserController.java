@@ -23,25 +23,10 @@ public class UserController {
 	private static final Logger logger = Logger.getLogger(UserController.class);
 
 	public UserController() {
-		System.out.println("EmployeeController()");
 	}
 
 	@Autowired
 	private PersonalService personalService;
-
-	/*
-	 * @RequestMapping(value = "/") public ModelAndView listEmployee(ModelAndView
-	 * model) throws IOException { //List<Employee> listEmployee =
-	 * employeeService.getAllEmployees(); //model.addObject("listEmployee",
-	 * listEmployee); model.setViewName("home"); return model; }
-	 */
-
-	/*
-	 * @RequestMapping(value = "/inicio") public ModelAndView inicio(ModelAndView
-	 * model) throws IOException { //List<Employee> listEmployee =
-	 * employeeService.getAllEmployees(); //model.addObject("listEmployee",
-	 * listEmployee); model.setViewName("inicio"); return model; }
-	 */
 
 	@RequestMapping(value = "main/newEmployee", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
@@ -54,17 +39,12 @@ public class UserController {
 	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
 	public ModelAndView saveEmployee(@ModelAttribute("personal") Personal personal,
 			@ModelAttribute("role") String role) {
-		
-
 		String password = role + ((int)(Math.random() * 50) + 1);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordEncriptada = passwordEncoder.encode(password);
 		User user = new User(personal.getUsername(), passwordEncriptada, true);
-		
 		personalService.addPersonal(personal, password);
 		personalService.addUserRole(user, role);
-		
-
 		return new ModelAndView("redirect:/main");
 	}
 
