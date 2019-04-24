@@ -29,7 +29,7 @@
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="main/newEmployee">Crear</a></li>
+							<li><a href="main/newEmployee" name ="crearU">Crear</a></li>
 							<li><a href="main/viewEmployee">Eliminar/Editar</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"

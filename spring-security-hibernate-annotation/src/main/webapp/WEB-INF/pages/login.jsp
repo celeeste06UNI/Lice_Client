@@ -148,7 +148,7 @@ body#LoginForm {
 					<!-- 					<div class="forgot">
 						<a href="reset.html">Forgot password?</a>
 					</div> -->
-					<button type="submit" class="btn btn-primary">Acceder</button>
+					<button type="submit" class="btn btn-primary" name="boton">Acceder</button>
 
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
