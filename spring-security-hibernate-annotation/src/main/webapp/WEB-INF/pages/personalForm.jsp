@@ -164,7 +164,7 @@
 				</div>
 				&nbsp
 				<div class="container" align="center">
-					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button type="submit" class="btn btn-primary" name="guardar">Guardar</button>
 				</div>
 
 
