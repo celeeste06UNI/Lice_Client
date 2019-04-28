@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class Test_IT6_DataModel {
-	
+
 	private WebDriver driver;
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -27,62 +27,55 @@ public class Test_IT6_DataModel {
 	}
 
 	@Test
-	public void testInferirModelo() throws Exception {
+	public void test1InferirModelo() throws Exception {
 		driver.get("http://localhost:8080/SpringSecurity/login");
 		driver.findElement(By.name("username")).sendKeys("celeste");
 		driver.findElement(By.name("password")).sendKeys("123456");
 		driver.findElement(By.name("boton")).click();
-		
-		
-		driver.get("http://localhost:8080/SpringSecurity/main/newProject");
-		driver.findElement(By.name("organization")).sendKeys("1");
-		driver.findElement(By.name("datamodel")).sendKeys("16");
-		driver.findElement(By.name("personal")).sendKeys("31");
-		driver.findElement(By.name("start_date")).sendKeys("2018-03-04");
-		driver.findElement(By.name("finish_date")).sendKeys("2018-04-04");
+
+		driver.get("http://localhost:8080/SpringSecurity/main/viewUpload");
+		driver.findElement(By.name("sistemabbdd")).sendKeys("mysql");
+		driver.findElement(By.name("version")).sendKeys("2");
+		driver.findElement(By.id("archivo")).sendKeys("/Users/celeste/upload/mysql2.xml");
+
 		Thread.sleep(200);
-		driver.findElement(By.name("guardarProj")).click();
+		driver.findElement(By.name("uploadFile")).click();
 		driver.close();
 
 	}
 
 	@Test
-	public void testEliminarModelo() throws Exception {
+	public void test2EliminarModelo() throws Exception {
 		driver.get("http://localhost:8080/SpringSecurity/login");
 		driver.findElement(By.name("username")).sendKeys("celeste");
 		driver.findElement(By.name("password")).sendKeys("123456");
 		driver.findElement(By.name("boton")).click();
-		
-		
-		driver.get("http://localhost:8080/SpringSecurity/main/viewOpenProject");
-		Thread.sleep(2000);
-		driver.close();
-	}
-
-	@Test
-	public void testVisualizarTablas() throws Exception {
-		driver.get("http://localhost:8080/SpringSecurity/login");
-		driver.findElement(By.name("username")).sendKeys("celeste");
-		driver.findElement(By.name("password")).sendKeys("123456");
-		driver.findElement(By.name("boton")).click();
-		
-		
-		driver.get("http://localhost:8080/SpringSecurity/main/viewCloseProject");
+		driver.get("http://localhost:8080/SpringSecurity/actionDelete?database_name=classicmodels&version=2");
 		Thread.sleep(200);
 		driver.close();
 	}
 	
+
 	@Test
-	public void testVisualizarAtributos() throws Exception {
+	public void test3VisualizarTablas() throws Exception {
 		driver.get("http://localhost:8080/SpringSecurity/login");
 		driver.findElement(By.name("username")).sendKeys("celeste");
 		driver.findElement(By.name("password")).sendKeys("123456");
 		driver.findElement(By.name("boton")).click();
-		
-		driver.get("http://localhost:8080/SpringSecurity/main/viewCloseProject");
+		driver.get("http://localhost:8080/SpringSecurity/main/viewTable?id_datamodel=16");
 		Thread.sleep(200);
 		driver.close();
 	}
 
+	@Test
+	public void test4VisualizarAtributos() throws Exception {
+		driver.get("http://localhost:8080/SpringSecurity/login");
+		driver.findElement(By.name("username")).sendKeys("celeste");
+		driver.findElement(By.name("password")).sendKeys("123456");
+		driver.findElement(By.name("boton")).click();
+		driver.get("http://localhost:8080/SpringSecurity/main/viewAttribute?table_name=assessmentReport");
+		Thread.sleep(200);
+		driver.close();
+	}
 
 }

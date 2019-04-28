@@ -179,12 +179,12 @@
 					<label class="control-label col-sm-2" align="right">Archivo:</label>
 					<div class="col-sm-10">
 						<input required autocomplete="off" type="file" name="files"
-							multiple>
+							multiple id="archivo">
 					</div>
 				</div>
 				&nbsp
 				<div class="container" align="center">
-					<input type="submit" class="btn btn-primary" value="Upload Files"></input>
+					<input type="submit" class="btn btn-primary" value="Upload Files" name="uploadFile"></input>
 				</div>
 			</form>
 		</div>

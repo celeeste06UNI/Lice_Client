@@ -94,8 +94,6 @@ public class RuleController {
 	public ModelAndView viewRuleCatalogue(ModelAndView model) {
 		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
 		List<Rule> listRule = ruleService.getAllRule();
-		//List<Catalogue> catalogueList = new ArrayList<Catalogue>();
-		
 		for (int i = 0; i < listRule.size(); i++) {
 			String cadenaFinal = "";
 			String operator = listRule.get(i).getOperator();
@@ -133,7 +131,6 @@ public class RuleController {
 		}
 
 		model.addObject("listRuleView", listRuleView);
-		//model.addObject("catalogueList", catalogueList);
 		model.setViewName("ruleListManageCatalogue");
 		return model;
 	}

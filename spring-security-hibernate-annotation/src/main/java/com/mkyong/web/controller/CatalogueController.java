@@ -19,8 +19,6 @@ import com.mkyong.users.model.Organization;
 import com.mkyong.users.model.Personal;
 import com.mkyong.users.service.CatalogueService;
 
-
-
 @Controller
 public class CatalogueController {
 
