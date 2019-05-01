@@ -195,7 +195,7 @@
 					</div>
 				&nbsp
 				<div class="container" align="center">
-						<button type="submit" class="btn btn-primary">Cargar
+						<button type="submit" class="btn btn-primary" name = "loadView">Cargar
 							datos</button>
 					</div>
 				&nbsp
@@ -416,8 +416,12 @@
 		&nbsp
 		<div class="container" align="center">
 				<input type="button" class="btn btn-primary" onclick="pregunta()"
-					value="Enviar">
-			</div>
+					value="Enviar" name= "saveNewRule">
+		</div>
+		&nbsp
+		<div class="container" align="center">
+					<button type="submit" class="btn btn-primary" name="guardarRegla">Guardar</button>
+		</div>
 		</form:form>
 		&nbsp
 	</sec:authorize>

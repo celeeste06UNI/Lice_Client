@@ -151,7 +151,7 @@
 
 							<a style='cursor: pointer;'
 								onClick="muestra_oculta('contenido${rule.id_rule}')" title=""
-								class="boton_mostrar"><span
+								class="boton_mostrar" name="viewMore"><span
 								class="glyphicon glyphicon-plus-sign"></span></a> <a
 								href="<c:url value='/deleteRule?id_rule=${rule.id_rule}'/>"
 								class="boton_mostrar"> <span
@@ -253,7 +253,7 @@
 						&nbsp
 						<div class="row">
 								<div class="col-sm-12" align="center">
-									<button type="submit" class="btn btn-primary">Actualizar</button>
+									<button type="submit" class="btn btn-primary" name="updateR">Actualizar</button>
 									&nbsp
 								</div>
 							</div>
