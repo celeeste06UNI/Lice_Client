@@ -44,7 +44,8 @@ public class Test_IT4_Organization {
 		Thread.sleep(200);
 		driver.findElement(By.name("guardarOrg")).click();
 		driver.close();
-
+		
+	
 	}
 
 	@Test
@@ -59,6 +60,7 @@ public class Test_IT4_Organization {
 		driver.findElement(By.name("updateOrg")).click();
 		Thread.sleep(2000);
 		driver.close();
+		
 	}
 
 	@Test

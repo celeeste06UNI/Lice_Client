@@ -53,7 +53,7 @@ public class CodeController {
 	private DatamodelService datamodelService;
 
 	public CodeController() {
-		System.out.println("CodeController()");
+		
 	}
 
 	@RequestMapping(value = "main/newCode", method = RequestMethod.GET)
@@ -133,12 +133,12 @@ public class CodeController {
 				cadenaFinal = cadenaFinal + " y ";
 			}
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
-			System.out.println(cadenaFinal);
 			RuleForView ruleView = new RuleForView(id_rule, operator, property, state, criticity, priority, version,
 					cadenaFinal);
 
 			listRuleView.add(ruleView);
 		}
+		model.addObject("id_p",id_project);
 		model.addObject("projectList", projectList);
 		model.addObject("listRuleView", listRuleView);
 		model.setViewName("createCodeList");
@@ -276,14 +276,10 @@ public class CodeController {
 
 		sqlUnion = sql;
 		sql = sql + " WHERE";
-		System.out.println("+++++++++++++" + sql);
-
 		sql += " " + verbAnalysis(attributeList);
-		System.out.println("+++++++++++++" + sql);
-
 		sql += " UNION " + sqlUnion;
 		sql += ";";
-		System.out.println("+++++++++++++" + sql);
+		
 
 		model.addObject("sql", sql);
 		model.setViewName("preview");

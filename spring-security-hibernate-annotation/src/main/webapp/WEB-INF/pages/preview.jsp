@@ -107,7 +107,7 @@
 				</div>
 				&nbsp
 				<div class="container" align="right">
-					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button type="submit" class="btn btn-primary" name="ImprimirRu">Guardar</button>
 				</div>
 
 			</form:form>

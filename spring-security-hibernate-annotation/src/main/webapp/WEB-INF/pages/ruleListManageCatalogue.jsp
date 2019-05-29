@@ -118,12 +118,12 @@
 						<li><a href="viewCatalogue">Eliminar/Modificar</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Generar codigo <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="newCode">Regla</a></li>
-							<li><a href="newCodeTable">Tabla</a></li>
-						</ul></li>
+					data-toggle="dropdown" href="#">Generar codigo <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newCode">Regla</a></li>
+						<li><a href="newCodeTable">Tabla</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${cp}/logout"><span
@@ -139,33 +139,68 @@
 		<div class="page-header">
 			<div class="container">
 				<h2>Gestión de Reglas en Catálogos</h2>
-				<p>Busque la regla que desee gestionar. Pulse + si desea añadir la regla a un catalogo o por el contrario pulse la papelera si desea eliminar la regla de algún catálogo</p>
+				<p>Busque la regla que desee gestionar. Pulse + si desea añadir
+					la regla a un catalogo o por el contrario pulse la papelera si
+					desea eliminar la regla de algún catálogo</p>
 			</div>
-			
+
 
 		</div>
+
+
+		<div class="container" align="center">
+			<div class="w3-panel w3-border w3-round-xlarge">
+				&nbsp
+				<h4>
+					<strong>Informacion principal</strong>
+				</h4>
+				<form:form name='cargarForm' action="${cp}/main/viewRuleCatalogue"
+					method="GET">
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="exampleFormControlSelect1" align="right">Proyecto:</label>
+						<div class="col-sm-10">
+							<select class="form-control" name=project id="project">
+								<c:forEach var="project" items="${projectList}">
+									<option value="${project.id}">${project.proj_name}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+				&nbsp
+				<div class="container" align="center">
+						<button type="submit" class="btn btn-primary">Cargar
+							datos</button>
+					</div>
+				&nbsp
+				</form:form>
+			</div>
+		</div>
+
+
 		<div class="container">
 			<c:forEach var="rule" items="${listRuleView}">
-				
-				<div class="row" style="border-left: 3px solid #045FB4;">
-				
-					
-					<div class="col-sm-10">${rule.description}</div>
-					
-					<div class="col-sm-2">
-						<a href="<c:url value='/editPersonal?id=${employee.id}&username=${employee.username}' />"><span
-									class="glyphicon glyphicon-plus-sign"></span></a>
-						<a href="<c:url value='/editPersonal?id=${employee.id}&username=${employee.username}' />"><span
-									class="glyphicon glyphicon-trash"></span></a>
+
+				<div class="row">
+
+
+					<div class="col-sm-11" style="border-left: 3px solid #045FB4;">${rule.description}</div>
+
+					<div class="col-sm-1">
+						<a href="<c:url value='/deleteToCatalogue?id_r=${rule.id_rule}&id_p=${id_proj}' />"><span
+							class="glyphicon glyphicon-trash"></span></a> <a
+							href="<c:url value='/addToCatalogue?id_r=${rule.id_rule}&id_p=${id_proj}' />"><span
+							class="glyphicon glyphicon-plus-sign"></span></a>
 					</div>
 				</div>
+				&nbsp
+				&nbsp
 			</c:forEach>
-			&nbsp
-			&nbsp
+
 
 		</div>
 	</sec:authorize>
-	
+
 </body>
 
 </html>

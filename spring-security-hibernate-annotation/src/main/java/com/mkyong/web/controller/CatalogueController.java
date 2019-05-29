@@ -69,7 +69,7 @@ public class CatalogueController {
 	}
 	
 	@RequestMapping(value = "/editCatalogue", method = RequestMethod.GET)
-	public ModelAndView editOrganization(ModelAndView model, HttpServletRequest request) {
+	public ModelAndView editCatalogue(ModelAndView model, HttpServletRequest request) {
 		Integer id_catalogue = Integer.parseInt(request.getParameter("id_catalogue"));
 		Catalogue catalogue = catalogueService.getCatalogue(id_catalogue);
 		model.addObject("catalogue", catalogue);
@@ -82,4 +82,36 @@ public class CatalogueController {
 		catalogueService.updateCatalogue(catalogue);
 		return new ModelAndView("redirect:/main");
 	}
+	@RequestMapping(value = "/deleteToCatalogue", method = RequestMethod.GET)
+	public ModelAndView deleteToCatalogue(ModelAndView model, HttpServletRequest request) {
+		Integer id_rule = Integer.parseInt(request.getParameter("id_r"));
+		Integer id_project = Integer.parseInt(request.getParameter("id_p"));
+		List <Catalogue> listaCatalogos = catalogueService.getCatalogues(id_rule, id_project);
+		model.addObject("listaCatalogos", listaCatalogos);
+		model.addObject("id_proj",id_project);
+		model.addObject("id_rule",id_rule);
+		model.setViewName("selectCatalogue");
+		return model;
+	}
+	@RequestMapping(value = "/addToCatalogue", method = RequestMethod.GET)
+	public ModelAndView addToCatalogue(ModelAndView model, HttpServletRequest request) {
+		Integer id_rule = Integer.parseInt(request.getParameter("id_r"));
+		Integer id_project = Integer.parseInt(request.getParameter("id_p"));
+		List <Catalogue> listaCatalogos = catalogueService.getAllCatalogue();
+		model.addObject("listaCatalogos", listaCatalogos);
+		model.addObject("id_proj",id_project);
+		model.addObject("id_rule",id_rule);
+		model.setViewName("selectCatalogue");
+		return model;
+	}
+	@RequestMapping(value = "/deleteRuleProjCatalogue", method = RequestMethod.GET)
+	public ModelAndView deleteRuleProjCatalogue(@ModelAttribute("catalogue") Integer id_c,HttpServletRequest request) {
+		Integer id_catalogue = id_c;
+		Integer id_rule = Integer.parseInt(request.getParameter("id_rule"));
+		Integer id_project = Integer.parseInt(request.getParameter("id_proj"));
+		catalogueService.deleteRuleProjCatalogue(id_rule,id_project,id_catalogue);	
+		return new ModelAndView("redirect:/main");
+	}
 }
+
+

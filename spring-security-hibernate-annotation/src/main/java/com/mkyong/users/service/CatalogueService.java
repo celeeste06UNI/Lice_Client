@@ -22,4 +22,6 @@ public interface CatalogueService {
 	public RuleProjCatalogue getListRuleProjCatalogue(int id_rule, Integer id_project);
 
 	public List<Catalogue> getCatalogues(int id_rule, Integer id_project);
+
+	public void deleteRuleProjCatalogue(Integer id_rule, Integer id_project, Integer id_catalogue);
 }

@@ -90,10 +90,29 @@ public class RuleController {
 		return model;
 	}
 	
+	@RequestMapping(value = "main/viewProjectRuleCatalogue", method = RequestMethod.GET)
+	public ModelAndView viewProjectRuleCatalogue(ModelAndView model, HttpServletRequest request) {
+		List<Project> projectList = projectService.getOpenProject();
+		model.addObject("projectList", projectList);
+		model.setViewName("ruleListManageCatalogue");
+		return model;
+	}
+	
 	@RequestMapping(value = "main/viewRuleCatalogue", method = RequestMethod.GET)
-	public ModelAndView viewRuleCatalogue(ModelAndView model) {
+	public ModelAndView viewRuleCatalogue(ModelAndView model, HttpServletRequest request) {
+		List<Project> projectList = projectService.getOpenProject();
+		int id_project = Integer.parseInt(request.getParameter("project"));
+		List<Rule> listRule = new ArrayList<Rule>();
 		List<RuleForView> listRuleView = new ArrayList<RuleForView>();
-		List<Rule> listRule = ruleService.getAllRule();
+		List<RuleProj> listRuleProj = ruleService.getRulesByProject(id_project);
+
+		for (int z = 0; z < listRuleProj.size(); z++) {
+
+			int id_r = listRuleProj.get(z).getId_rule();
+			Rule rule = ruleService.getRule(id_r);
+			listRule.add(rule);
+		}
+
 		for (int i = 0; i < listRule.size(); i++) {
 			String cadenaFinal = "";
 			String operator = listRule.get(i).getOperator();
@@ -103,8 +122,7 @@ public class RuleController {
 			String priority = listRule.get(i).getPriority();
 			String version = listRule.get(i).getVersion();
 			int id_rule = listRule.get(i).getId_rule();
-			int id_project = projectService.getProjectByRule(id_rule);
-			List<Catalogue> catalogueList = catalogueService.getCatalogues(id_rule, id_project);
+
 			List<Attribute> listAttribute = ruleService.getAttributesByRule(id_rule);
 			cadenaFinal = operator;
 			for (int j = 0; j < listAttribute.size(); j++) {
@@ -119,17 +137,18 @@ public class RuleController {
 					cadenaFinal = cadenaFinal + " " + modal_operator + " " + term + " " + verb + " " + logical_operator
 							+ " " + term_value;
 				}
-
 				cadenaFinal = cadenaFinal + " y ";
 			}
 			cadenaFinal = cadenaFinal.substring(0, cadenaFinal.length() - 2);
-			
 			RuleForView ruleView = new RuleForView(id_rule, operator, property, state, criticity, priority, version,
-					cadenaFinal, catalogueList);
+					cadenaFinal);
 
 			listRuleView.add(ruleView);
 		}
 
+		model.addObject("listRuleView", listRuleView);
+		model.addObject("id_proj",id_project);
+		model.addObject("projectList", projectList);
 		model.addObject("listRuleView", listRuleView);
 		model.setViewName("ruleListManageCatalogue");
 		return model;

@@ -60,7 +60,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="main/newRule">Crear</a></li>
 							<li><a href="main/viewRule">Visualizar</a></li>
-							<li><a href="main/viewRuleCatalogue">Añadir a un catálogo</a></li>
+							<li><a href="main/viewProjectRuleCatalogue">Añadir a un catálogo</a></li>
 							<li><a href="#">Eliminar de un catálogo</a></li>
 						</ul></li>
 
