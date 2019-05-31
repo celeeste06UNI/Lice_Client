@@ -217,4 +217,18 @@ public class CatalogueServiceImpl implements CatalogueService {
 
 	}
 
+	@Override
+	public void addRuleProjCatalogue(Integer id_rule, Integer id_project, Integer id_catalogue) {
+		String url = rutaServidor + "/catalogue/addRuleProjCatalogue?" + "id_rule=" + id_rule + "&id_project="
+				+ id_project + "&id_catalogue=" + id_catalogue;
+
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResource = client.resource(url);
+		ClientResponse response = webResource.accept("application/json").type("application/json")
+				.post(ClientResponse.class);
+		
+	}
+
 }

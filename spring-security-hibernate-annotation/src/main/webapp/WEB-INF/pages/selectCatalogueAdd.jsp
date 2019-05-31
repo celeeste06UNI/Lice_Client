@@ -154,7 +154,7 @@
 				<h4>
 					<strong>Informacion principal</strong>
 				</h4>
-				<form:form name='cargarForm' action="${cp}/main/viewRuleCatalogue"
+				<form:form name='cargarForm' action="${cp}/addRuleProjCatalogue"
 					method="GET">
 					<input id="id_proj" type="hidden" class="form-control"
 						name="id_proj" value="${id_proj}">

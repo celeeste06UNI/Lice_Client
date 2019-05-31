@@ -101,7 +101,7 @@ public class CatalogueController {
 		model.addObject("listaCatalogos", listaCatalogos);
 		model.addObject("id_proj",id_project);
 		model.addObject("id_rule",id_rule);
-		model.setViewName("selectCatalogue");
+		model.setViewName("selectCatalogueAdd");
 		return model;
 	}
 	@RequestMapping(value = "/deleteRuleProjCatalogue", method = RequestMethod.GET)
@@ -110,6 +110,15 @@ public class CatalogueController {
 		Integer id_rule = Integer.parseInt(request.getParameter("id_rule"));
 		Integer id_project = Integer.parseInt(request.getParameter("id_proj"));
 		catalogueService.deleteRuleProjCatalogue(id_rule,id_project,id_catalogue);	
+		return new ModelAndView("redirect:/main");
+	}
+	
+	@RequestMapping(value = "/addRuleProjCatalogue", method = RequestMethod.GET)
+	public ModelAndView addRuleProjCatalogue(@ModelAttribute("catalogue") Integer id_c,HttpServletRequest request) {
+		Integer id_catalogue = id_c;
+		Integer id_rule = Integer.parseInt(request.getParameter("id_rule"));
+		Integer id_project = Integer.parseInt(request.getParameter("id_proj"));
+		catalogueService.addRuleProjCatalogue(id_rule,id_project,id_catalogue);	
 		return new ModelAndView("redirect:/main");
 	}
 }
