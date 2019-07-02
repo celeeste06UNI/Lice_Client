@@ -419,9 +419,7 @@
 					value="Enviar" name= "saveNewRule">
 		</div>
 		&nbsp
-		<div class="container" align="center">
-					<button type="submit" class="btn btn-primary" name="guardarRegla">Guardar</button>
-		</div>
+		
 		</form:form>
 		&nbsp
 	</sec:authorize>
